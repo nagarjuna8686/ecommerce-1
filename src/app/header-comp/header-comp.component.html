@@ -1,0 +1,17 @@
+<nav class="navbar navbar-dark bg-dark">
+    <img src="../assets/img/icon.png" width="50" height="50" class="d-inline-block align-top">
+    <div class="container">
+      <div class="input-group mb-1">
+        <input type="text" class="form-control" placeholder="Inserisci prodotto" [(ngModel)]="term" (ngModelChange)="emitTermUpdate($event)">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button">Ricerca</button>
+        </div>
+        <!-- QUi il contatore dopo aver premuto il pulsante -->
+        <div class="product-thumbnail">
+        <fa-icon [icon]="['fas', 'heart']"></fa-icon>
+    </div>
+    </div> <!-- fine input group mb 1-->
+
+</div>
+
+</nav>
