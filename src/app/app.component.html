@@ -1,65 +1,36 @@
-<div class="container-fluid">
-  
   <app-header-comp
     (termUpdate)="term = $event"
   ></app-header-comp>
 
+  <body>
+    <div class="container-fluid">
 <div class="row">
   <div class="col-3">
-    <ul class="nav flex-column gianni">
-      <li class="nav-item">
-        <!-- <a class=" colorTesto">
-            <h3>filter</h3>
-          </a>
-        </li>
-        <div>&nbsp;</div>
-        <li class="nav-item">
-          <a class="nav-link colorTestoCheck bottoneFilter">
-            <input id="fil-sconti" type="checkbox"> 
-            <label for="fil-sconti colorTestoCheck" >sconti</label> 
-          </a>
-        </li>
-        <div>&nbsp;</div>
-        <li class="nav-item">
-          <a class="nav-link colorTestoCheck bottoneFilter "><input type="checkbox" name="test"
-              (click)="getOnChangeCheckbox(this)"> amd </a>
-
-          
-
-        </li>
-        <div>&nbsp;</div>
-        <li class="nav-item">
-          <a class="nav-link colorTestoCheck bottoneFilter "><input type="checkbox"> intel </a>
-          <div>&nbsp;</div>
-        </li>
--->
-      <li class="nav-item">
-        <a class=" colorTesto">
-          <h3>order</h3>
-        </a>
-      </li>
-
-      <select class="colorTesto" id="scelta" [(ngModel)]="selected" (ngModelChange)="orderBy($event)">
-        <option *ngFor="let option of sortOptions" [ngValue]="option.value">
-          {{option.label}}
-        </option>
-      </select>
-
-    </ul>
+    <!-- nav bar cancellata si trovava qui-->
+    <app-navbar-comp
+    (sortUpdate)="orderBy = $event"
+    [sortOptions] = "sortOptions" 
+    ></app-navbar-comp>
+    
   </div>
   <div class="col-9">
     <div class="row">
       <!--Oggetti di immagini-->
       <ng-container class="immaginiDimensione" *ngFor="let list of getFilteredProducts() ">
-        <div class="col-4 ">
-          <div class="favorite-button product-thumbnail" (click)="wishlistService.test()">
+        <div class="col-4 product-thumbnail">
+          <div class="favorite-button" 
+            [ngClass]="{'added' : wishlistService.isItemInWishlist(list)}"
+            (click)="wishlistService.toogleItemInWishlist(list)">
+            
             <fa-icon [icon]="['fas', 'heart']"></fa-icon>
           </div>
           <img [src]='list.url' class="test" />
           <p>{{list.name}}</p>
           <p class="descrizione dimDescr">{{list.description}}</p>
-          <p>{{list.field | currency:'EUR' }} </p>
-          <button type="button" class="btn btn-warning">Acquista</button>
+          <p>{{list.price | currency:'EUR' }} </p>
+          <button type="button" class="btn btn-warning"
+          (click)="cartService.addItemsToCart($event,list)"
+          >Acquista</button>
         </div>
       </ng-container>
 
@@ -67,3 +38,4 @@
   </div>
 </div>
 </div>
+</body>

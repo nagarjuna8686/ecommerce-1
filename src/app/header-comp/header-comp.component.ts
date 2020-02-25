@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
-
+import { WishlistService } from '../services/wishlist.service';
+import { CartService } from '../services/cart.service'
 
 @Component({
   selector: 'app-header-comp',
@@ -14,7 +15,12 @@ export class HeaderCompComponent implements OnInit {
 
   public term:string;
 
-  constructor() { }
+  constructor(
+    public wishlistService: WishlistService,
+    public cartService : CartService
+  ){
+
+  }
 
   ngOnInit(): void {}
 

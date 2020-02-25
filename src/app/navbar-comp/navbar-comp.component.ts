@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-navbar-comp',
@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarCompComponent implements OnInit {
 
+  @Output() sortUpdate:EventEmitter <string> = new EventEmitter()
+
+  @Input() sortOptions : any[] ;
+
+  public selected:string;
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  emitSortUpdate = (s:string) => {
+    this.sortUpdate.emit(s);
+  } 
 
 }

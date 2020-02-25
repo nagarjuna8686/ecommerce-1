@@ -2,6 +2,12 @@
   box-sizing: border-box;
 }
 
+body{
+  padding-top: 5%;
+}
+
+
+
 .row::after {
   content: "";
   clear: both;
@@ -73,18 +79,6 @@ html {
 
 }
 
-/* immagini prodotti */
-
-/* .horizontal { test di div senza bootstrap
-  
-    position: absolute;
-    width: 300px;
-    left: 400px;
-   display: -webkit-inline-box; 
-    list-style-type: none;
-    padding-right: 20px;
-    
-  } */
 
 .bdm {
   border-width: 5px;
@@ -138,17 +132,21 @@ html {
   }
   */
 
-.product-thumbnail {
-
-  color: red;
-
-}
 
 .favorite-button{
   position: absolute;
   top: 10px;
   right: 10px;
 }
+
+.product-thumbnail .favorite-button{
+  color: black
+}
+
+.product-thumbnail .favorite-button.added{
+  color: red
+}
+
 
 .contatoreStile{
   color: #ddd;
@@ -177,8 +175,7 @@ html {
 }
 
 .test {
-
-  max-width: 300px;
+  max-width: 100%;
 }
 
 /* For mobile phones: */
@@ -318,7 +315,6 @@ html {
 .colorTesto {
   color: #343A40;
   text-align: center;
-  /* orizzontale */
   font-size: medium;
 }
 
@@ -337,12 +333,6 @@ html {
 
 }
 
-.gianni {
-  height: 100%;
-  /* background-color: #343A40; */
-  box-shadow: 1px 0px 5px 2px rgb(187, 187, 187);
-  
-}
 
 #sidebar.active {
   margin-left: -250px;
