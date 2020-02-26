@@ -20,19 +20,29 @@ export class CartService {
     return this.items;
   }
 
-  getTotalItemsCart = ()  =>{
-    return this.items.length;
-  }
-
   addItemsToCart = (quantity,product) => {
-    let ci:CartItem= {
+    const ci : CartItem= {
       quantity:quantity,
       product:product
+    } 
+    // se non c'è lo aggiunge
+    if(!this.isItemInCart(ci))
+      this.items.push(ci);
+      // find ritorna l'oggetto item
+    else  {
+      console.log("SONO ENTRATO CAZZO!");
+      this.items.find(i => i.product.id === product.id ).quantity += quantity;
     }
+  }
+
+  getTotalItemsCart = () =>{
+    let supp : number = 0;
+    for( let i of this.items)      
+      supp += i.quantity;
+    return supp ;
     
-    this.items.push(ci);
-      
-  } 
+  }
+
 }
 
 

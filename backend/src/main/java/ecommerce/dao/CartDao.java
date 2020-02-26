@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
@@ -18,16 +19,16 @@ public class CartDao {
 	@Resource(lookup = "java:/jdbc/ecommerce")
 	private DataSource ds;
 
-	public ArrayList<CartDto> selectAll() {
+	public List<CartDto> selectAll() {
 
-		ArrayList<CartDto> cartReg = new ArrayList<>();
+		List<CartDto> cartReg = new ArrayList<>();
 
 		try {
 
 			Connection conn = ds.getConnection();
 			String sql = "select  * from cart";
 			PreparedStatement select_stmt = conn.prepareStatement(sql);
-			ResultSet result = select_stmt.executeQuery(sql);
+			ResultSet result = select_stmt.executeQuery();
 
 			while (result.next()) {
 				int cartID = result.getInt(1);
@@ -46,17 +47,17 @@ public class CartDao {
 
 	}
 
-	public ArrayList<CartDto> select(String col, String cond) {
+	public List<CartDto> selectById(String cond) {
 
-		ArrayList<CartDto> cartReg = new ArrayList<>();
+		List<CartDto> cartReg = new ArrayList<>();
 
 		try {
 
 			Connection conn = ds.getConnection();
-			String sql = "select  * from cart where ? = ?";
+			String sql = "select  * from cart where cartID = ?";
 			PreparedStatement select_stmt = conn.prepareStatement(sql);
-			select_stmt.setString(1, col);
-			select_stmt.setString(2, cond);
+			select_stmt.setString(1, cond);
+			
 
 			ResultSet result = select_stmt.executeQuery(sql);
 
@@ -77,17 +78,16 @@ public class CartDao {
 
 	}
 
-	public void insert(int cartID, int userID, int productID) throws Exception {
+	public void insert(CartDto cdto) throws Exception {
 
 		try {
 
 			Connection conn = ds.getConnection();
-			String sql = " insert into cart (cartID, userID, productID)" + " values (?, ?, ?)";
+			String sql = " insert into cart (userID, productID)" + " values (?, ?)";
 
 			PreparedStatement insert_statement = conn.prepareStatement(sql);
-			insert_statement.setInt(1, cartID);
-			insert_statement.setInt(2, userID);
-			insert_statement.setInt(3, productID);
+			insert_statement.setInt(1, cdto.getUserID());
+			insert_statement.setInt(2, cdto.getProductID());
 
 			int rows_affected = insert_statement.executeUpdate();
 
@@ -101,16 +101,15 @@ public class CartDao {
 		}
 	}
 
-	public void delete(String col, String cond) {
+	public void delete(String cond) {
 
 		try {
 
 			Connection conn = ds.getConnection();
-			String sql = "delete from cart where ? = ?";
+			String sql = "delete from cart where cartID = ?";
 
 			PreparedStatement delete_stmt = conn.prepareStatement(sql);
-			delete_stmt.setString(1, col);
-			delete_stmt.setString(2, cond);
+			delete_stmt.setString(1, cond);
 			delete_stmt.execute();
 			conn.close();
 

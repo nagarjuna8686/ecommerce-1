@@ -32,18 +32,19 @@
           <div class="cartContainer">
             <div class="dropdown">
               <fa-icon [icon]="['fas', 'shopping-cart']" class=""></fa-icon>
-              <label class="cart" *ngIf="cartService.getTotalItemsCart()">
+              <label class="cart" *ngIf = "cartService.getTotalItemsCart()" >
                 {{cartService.getTotalItemsCart()}}
               </label>
-              <div class="dropdown-body" *ngFor="let item of cartService.getItems()">
-                <p>{{item.product.name}}
-                </p>
-                <p>{{item.quantity}}
-                  <fa-icon (click)="cartService.addItemsToCart(1,item)" [icon]="['fas', 'plus-square']"></fa-icon>
-                  
-                  <fa-icon [icon]="['fas', 'minus-square']"></fa-icon>
-                </p>
-
+              <div class="dropdown-body" *ngFor ="let item of cartService.items"> 
+               
+                  <p href="#"> {{item.product.name}}</p>  
+                  <p href="#"> {{item.quantity}} 
+                    <fa-icon (click)="cartService.addItemsToCart(1,item.product)"
+                    [icon]="['fas', 'plus-square']"></fa-icon>
+                    <fa-icon (click)="cartService.addItemsToCart(-1,item)" 
+                    [icon]="['fas', 'minus-square']"></fa-icon>
+                  </p>
+                
               </div>
             </div>
           </div>

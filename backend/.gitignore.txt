@@ -1,3 +1,0 @@
-target/
-.setting/
-bin/

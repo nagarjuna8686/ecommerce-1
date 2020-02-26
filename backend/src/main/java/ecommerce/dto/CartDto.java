@@ -5,6 +5,8 @@ public class CartDto {
 	private int userID;
 	private int productID;
 	
+	public CartDto () {}
+	
 	public CartDto (int cartID, int userID, int productID) {
 		
 		this.cartID = cartID;

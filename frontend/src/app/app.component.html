@@ -21,7 +21,7 @@
           <div class="favorite-button" 
             [ngClass]="{'added' : wishlistService.isItemInWishlist(list)}"
             (click)="wishlistService.toogleItemInWishlist(list)">
-            
+            <!-- Controllare quantity al posto di event-->
             <fa-icon [icon]="['fas', 'heart']"></fa-icon>
           </div>
           <img [src]='list.url' class="test" />
