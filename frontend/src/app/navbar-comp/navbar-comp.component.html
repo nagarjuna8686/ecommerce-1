@@ -1,0 +1,21 @@
+<ul class="nav flex-column gianni">
+  <li class="nav-item">
+  <li class="nav-item">
+    <a class=" colorTesto">
+      <h3>order</h3>
+      
+    </a>
+  </li>
+
+  <select class="selectpicker show-menu-arrow form-control colorTesto" 
+    [(ngModel)]="selected" (ngModelChange)="emitSortUpdate($event)">
+      <option *ngFor="let option of sortOptions" 
+      [ngValue]="option.value">
+      {{option.label}}
+      </option>
+
+        
+
+  </select>
+
+</ul>

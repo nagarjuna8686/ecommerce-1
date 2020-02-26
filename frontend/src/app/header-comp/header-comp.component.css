@@ -1,0 +1,114 @@
+.navbar-dark {
+
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+
+}
+
+.row.full-width {
+  width: 100%;
+  align-items: center;
+}
+
+.form-control {
+
+  border-radius: 10px;
+
+}
+
+.btn-outline-secondary {
+  width: 50px;
+  background-color: #ffc107;
+  border-radius: 0px 0px 0px 0px;
+
+}
+
+
+.btn-outline-secondary {
+
+  height: 40px;
+
+}
+
+.cuorePrincipale {
+
+  color: red;
+  font-size: 25px;
+  position: absolute;
+
+
+}
+
+
+.cartPrincipale {
+
+  color: red;
+  font-size: 25px;
+  position: absolute;
+  z-index: 3;
+
+}
+
+.dropdown-menu {
+  z-index: 2;
+}
+
+.cartPrincipale label {
+
+  color: aliceblue;
+  font-size: 12pt;
+  font-family: 'Archivo Black';
+
+}
+
+.cuorePrincipale label {
+
+  color: aliceblue;
+  font-size: 12pt;
+  font-family: 'Archivo Black';
+
+}
+
+.cartContainer {
+  position: relative;
+  width: auto;
+  height: auto;
+  bottom: 20px;
+}
+
+.cuoreContainer {
+  position: relative;
+  width: auto;
+  height: auto;
+  bottom: 20px;
+}
+
+.wish {
+  position: absolute;
+  right: 20;
+}
+
+.cart {
+  position: fixed;
+  right: 20;
+}
+
+.dropdown-body{
+  display: none;
+  height:80%;
+  width: 100%;
+  background-color: white;
+  border-style: solid;
+  border-color: black;
+  font-size: 10pt;
+}
+
+.colorItem{
+  color:black;
+}
+
+.dropdown:hover .dropdown-body{
+  display: block;
+}
+

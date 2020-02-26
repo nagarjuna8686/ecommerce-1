@@ -1,0 +1,41 @@
+  <app-header-comp
+    (termUpdate)="term = $event"
+  ></app-header-comp>
+
+  <body>
+    <div class="container-fluid">
+<div class="row">
+  <div class="col-3">
+    <!-- nav bar cancellata si trovava qui-->
+    <app-navbar-comp
+    (sortUpdate)="orderBy = $event"
+    [sortOptions] = "sortOptions" 
+    ></app-navbar-comp>
+    
+  </div>
+  <div class="col-9">
+    <div class="row">
+      <!--Oggetti di immagini-->
+      <ng-container class="immaginiDimensione" *ngFor="let list of getFilteredProducts() ">
+        <div class="col-4 product-thumbnail">
+          <div class="favorite-button" 
+            [ngClass]="{'added' : wishlistService.isItemInWishlist(list)}"
+            (click)="wishlistService.toogleItemInWishlist(list)">
+            
+            <fa-icon [icon]="['fas', 'heart']"></fa-icon>
+          </div>
+          <img [src]='list.url' class="test" />
+          <p>{{list.name}}</p>
+          <p class="descrizione dimDescr">{{list.description}}</p>
+          <p>{{list.price | currency:'EUR' }} </p>
+          <button type="button" class="btn btn-warning"
+          (click)="cartService.addItemsToCart($event,list)"
+          >Acquista</button>
+        </div>
+      </ng-container>
+
+    </div>
+  </div>
+</div>
+</div>
+</body>

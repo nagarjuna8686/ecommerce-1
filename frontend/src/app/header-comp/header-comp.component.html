@@ -1,0 +1,45 @@
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Archivo+Black&display=swap');
+  </style>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="row full-width">
+      <div class="col-2">
+        <img src="assets/img/icon.png" width="50" height="50" class="d-inline-block align-top">
+      </div>
+      <div class="col-7">
+        <div class="input-group mb-1">
+          <input type="text" class="form-control" placeholder="Inserisci prodotto" [(ngModel)]="term"
+            (ngModelChange)="emitTermUpdate($event)">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">
+              <fa-icon [icon]="['fas', 'search']"></fa-icon>
+            </button>
+          </div>
+        </div> <!-- fine input group mb 1-->
+      </div>
+      <div class="col 2">
+        <div class="cuorePrincipale">
+          <div class="cuoreContainer">
+            <fa-icon [icon]="['fas', 'heart']"></fa-icon>
+            <label class="wish" *ngIf="wishlistService.getTotalItems()">{{wishlistService.getTotalItems()}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="col ">
+        <div class="cartPrincipale">
+          <div class="cartContainer">
+            <div class="dropdown">
+              <fa-icon [icon]="['fas', 'shopping-cart']" class=""></fa-icon>
+              <label class="cart" *ngIf="cartService.getTotalItemsCart()">
+                {{cartService.getTotalItemsCart()}}
+              </label>
+              <div class="dropdown-body"> 
+                <option></option>
+            </div> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
