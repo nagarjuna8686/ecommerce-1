@@ -78,22 +78,38 @@ public class CartDao {
 
 	}
 
-	public void insert(CartDto cdto) throws Exception {
+	public void insert(int usid, int prodid) {
 
 		try {
 
 			Connection conn = ds.getConnection();
+			
+//			eventuale query di select per recueprare userID e productID 
+			
+//			String sql = "select  * from users where userID = ?";
+//			PreparedStatement select_stmt = conn.prepareStatement(sql);
+//			select_stmt.setInt(1, usid);
+//			ResultSet resultU = select_stmt.executeQuery();
+//			
+//			while (resultU.next()) {
+//			usid = resultU.getInt(1);
+//			}
+//			
+//			sql = "select  * from products where name = ?";
+//			select_stmt.setInt(1, prodid);
+//			ResultSet resultP = select_stmt.executeQuery();
+//			while (resultP.next()) {
+//			usid = resultP.getInt(1);
+//			}
+			
 			String sql = " insert into cart (userID, productID)" + " values (?, ?)";
 
 			PreparedStatement insert_statement = conn.prepareStatement(sql);
-			insert_statement.setInt(1, cdto.getUserID());
-			insert_statement.setInt(2, cdto.getProductID());
+			insert_statement.setInt(1, usid);
+			insert_statement.setInt(2, prodid);
 
-			int rows_affected = insert_statement.executeUpdate();
+			insert_statement.executeUpdate();
 
-			if (rows_affected == 0) {
-				throw new Exception("Inserimento non valido");
-			}
 			conn.close();
 
 		} catch (SQLException e) {

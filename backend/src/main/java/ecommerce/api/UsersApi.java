@@ -19,6 +19,7 @@ import ecommerce.dto.UsersDto;
 @Path(value = "/users")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+
 public class UsersApi {
 
 	@EJB
