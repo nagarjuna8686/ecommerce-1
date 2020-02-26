@@ -21,7 +21,7 @@
           <div class="favorite-button" 
             [ngClass]="{'added' : wishlistService.isItemInWishlist(list)}"
             (click)="wishlistService.toogleItemInWishlist(list)">
-            
+            <!-- Controllare quantity al posto di event-->
             <fa-icon [icon]="['fas', 'heart']"></fa-icon>
           </div>
           <img [src]='list.url' class="test" />
@@ -29,7 +29,7 @@
           <p class="descrizione dimDescr">{{list.description}}</p>
           <p>{{list.price | currency:'EUR' }} </p>
           <button type="button" class="btn btn-warning"
-          (click)="cartService.addItemsToCart($event,list)"
+          (click)="cartService.addItemsToCart(1,list)"
           >Acquista</button>
         </div>
       </ng-container>
