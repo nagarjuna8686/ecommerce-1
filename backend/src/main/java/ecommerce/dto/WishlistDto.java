@@ -6,6 +6,8 @@ public class WishlistDto {
 	private int userID;
 	private int productID;
 
+	public WishlistDto() {}
+	
 	public WishlistDto (int wishlistID, int userID, int productID) {
 		
 		this.wishlistID = wishlistID;
