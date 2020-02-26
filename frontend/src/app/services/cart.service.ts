@@ -47,8 +47,6 @@ export class CartService {
     item.quantity ++
   }
   //fare un metodo che mi dice se c'è l'ho già nel carrello
-  
-
 }
 
 

@@ -37,8 +37,6 @@ export class WishlistService {
   }
 
   removeItemToWishlist = (item)=> {
-    
-    console.log('sono entrato');
     this.items = this.items.filter(i => i.id !== item.id ) ;
 
   }
