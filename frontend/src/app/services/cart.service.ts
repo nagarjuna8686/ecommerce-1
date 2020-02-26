@@ -22,7 +22,6 @@ export class CartService {
 
   getTotalItemsCart = ()  =>{
     
-    console.log(this.items.length);
     return this.items.length;
     
   }

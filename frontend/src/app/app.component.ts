@@ -20,7 +20,7 @@ export class AppComponent {
   public term: string = '';
   public selected: { name:string, field:string, ascending: boolean };
 
-    //input componente
+  //input componente
 
   public sortOptions: any[] = [
     {
@@ -59,30 +59,30 @@ export class AppComponent {
     },
     {
       id: 2,
-      name: "HP 255 G7",
-      price: 250,
-      model: "amd",
-      brand: "hp",
-      description: "Un bellissimo computer con 4GB di ram \n pronto a far laggare tutto testo di prova fantastico testo di prova fantastico ",
-      url: 'https://m.media-amazon.com/images/I/61WXqkBAocL._AC_UY218_ML3_.jpg'
+      name: "Microsoft Surface Laptop 3",
+      price: 950,
+      model: "intel",
+      brand: "microsoft",
+      description: "13, Core i5, RAM 8 GB, SSD 128 GB, Platinum ",
+      url: 'https://m.media-amazon.com/images/I/71P2UAK2RJL._AC_UY327_FMwebp_QL65_.jpg'
     },
     {
       id: 3,
-      name: "HP 255 G7",
-      price: 250,
+      name: "HP - PC Pavilion 15",
+      price: 750,
       model: "amd",
       brand: "hp",
       description: "Un bellissimo computer con 4GB di ram \n pronto a far laggare tutto testo di prova fantastico testo di prova fantastico ",
-      url: 'https://m.media-amazon.com/images/I/61WXqkBAocL._AC_UY218_ML3_.jpg'
+      url: 'https://m.media-amazon.com/images/I/417eOIvJS7L._AC_UY327_FMwebp_QL65_.jpg'
     },
     {
       id: 4,
-      name: "HP 255 G7",
+      name: "Lenovo Ideapad S130 Notebook, Display 14",
       price: 250,
-      model: "amd",
-      brand: "hp",
-      description: "Un bellissimo computer con 4GB di ram \n pronto a far laggare tutto testo di prova fantastico testo di prova fantastico ",
-      url: 'https://m.media-amazon.com/images/I/61WXqkBAocL._AC_UY218_ML3_.jpg'
+      model: "intel",
+      brand: "lenovo",
+      description: " HD, Processore Intel N5000, 128 GB SSD, RAM 4 GB, Windows 10, Midnight Blue",
+      url: 'https://m.media-amazon.com/images/I/71+kX8rAB7L._AC_UY327_FMwebp_QL65_.jpg'
     },
     {
       id: 5,
@@ -131,7 +131,9 @@ export class AppComponent {
 
   }
 
-  getFilteredProducts = (): any[] => {
+  getFilteredProducts = (): Product[] => {
+
+ 
     let filteredProducts = this.products.filter(
       product => {
         
@@ -154,7 +156,6 @@ export class AppComponent {
   
   orderBy(sortOption) {
 
-    console.log('orderBy', sortOption.field, sortOption.ascending)
 
     this.products.sort( (a, b) => {
 

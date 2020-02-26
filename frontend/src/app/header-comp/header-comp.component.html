@@ -1,6 +1,5 @@
   <style>
     @import url('https://fonts.googleapis.com/css?family=Archivo+Black&display=swap');
-
   </style>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <nav class="navbar navbar-dark bg-dark">
@@ -12,22 +11,10 @@
         <div class="input-group mb-1">
           <input type="text" class="form-control" placeholder="Inserisci prodotto" [(ngModel)]="term"
             (ngModelChange)="emitTermUpdate($event)">
-
           <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="button">
               <fa-icon [icon]="['fas', 'search']"></fa-icon>
             </button>
-            <div class="dropdown show">
-              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Categoria
-              </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item">Amd</a>
-                <a class="dropdown-item">DSA</a>
-                <a class="dropdown-item">Intel</a>
-              </div>
-            </div>
           </div>
         </div> <!-- fine input group mb 1-->
       </div>
@@ -42,20 +29,17 @@
       <div class="col ">
         <div class="cartPrincipale">
           <div class="cartContainer">
-            
-              <div class="dropdown">
-                <fa-icon [icon]="['fas', 'shopping-cart']" class=""></fa-icon>
-                <div class="dropdown-body" *ngFor>
-              
-                  
-              </div>
+            <div class="dropdown">
+              <fa-icon [icon]="['fas', 'shopping-cart']" class=""></fa-icon>
+              <label class="cart" *ngIf="cartService.getTotalItemsCart()">
+                {{cartService.getTotalItemsCart()}}
+              </label>
+              <div class="dropdown-body"> 
+                <option></option>
+            </div> 
             </div>
-            <label class="cart" *ngIf="cartService.getTotalItemsCart()">{{cartService.getTotalItemsCart()}}</label>
-
           </div>
-
         </div>
       </div>
-
     </div>
   </nav>
