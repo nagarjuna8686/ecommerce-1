@@ -69,6 +69,9 @@
   font-family: 'Archivo Black';
 
 }
+.cuorePrincipale .colorLabel{
+  color: black;
+}
 
 .cartContainer {
   position: relative;
@@ -97,8 +100,9 @@
 .dropdown-body{
   display: none;
   height:80%;
-  width: 100%;
+  width: 190px;
   background-color: white;
+  color: black;
   border-style: solid;
   border-color: black;
   font-size: 10pt;
@@ -111,4 +115,6 @@
 .dropdown:hover .dropdown-body{
   display: block;
 }
+
+
 

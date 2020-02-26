@@ -1,5 +1,6 @@
   <style>
     @import url('https://fonts.googleapis.com/css?family=Archivo+Black&display=swap');
+
   </style>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <nav class="navbar navbar-dark bg-dark">
@@ -34,9 +35,16 @@
               <label class="cart" *ngIf="cartService.getTotalItemsCart()">
                 {{cartService.getTotalItemsCart()}}
               </label>
-              <div class="dropdown-body"> 
-                <option></option>
-            </div> 
+              <div class="dropdown-body" *ngFor="let item of cartService.getItems()">
+                <p>{{item.product.name}}
+                </p>
+                <p>{{item.quantity}}
+                  <fa-icon (click)="cartService.addItemsToCart(1,item)" [icon]="['fas', 'plus-square']"></fa-icon>
+                  
+                  <fa-icon [icon]="['fas', 'minus-square']"></fa-icon>
+                </p>
+
+              </div>
             </div>
           </div>
         </div>

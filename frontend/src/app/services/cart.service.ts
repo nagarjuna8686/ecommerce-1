@@ -8,24 +8,31 @@ import { Product } from '../classes/Product';
 export class CartService {
 
   public items: CartItem[] = [];
-
+  
   constructor() { }
+
+  isItemInCart= (item) : boolean => {
+
+    return this.items.find(i => i.product.id === item.product.id) != null;
+   } 
+
+  getItems = () =>{
+    return this.items;
+  }
+
+  getTotalItemsCart = ()  =>{
+    return this.items.length;
+  }
 
   addItemsToCart = (quantity,product) => {
     let ci:CartItem= {
       quantity:quantity,
       product:product
-    } 
-     this.items.push(ci);
- 
-  }
-
-  getTotalItemsCart = ()  =>{
+    }
     
-    return this.items.length;
-    
-  }
-  //fare un metodo che mi dice se c'è l'ho già nel carrello
-  
-
+    this.items.push(ci);
+      
+  } 
 }
+
+
