@@ -112,3 +112,14 @@
   display: block;
 }
 
+.plus-icon{
+  color: black;
+}
+
+.minus-icon{
+  color: black;
+}
+
+.remove-icon{
+  color: darkgrey;
+}

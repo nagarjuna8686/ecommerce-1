@@ -39,11 +39,11 @@
                   <p href="#"> {{item.product.name}}  </p>
                   <p href="#"> {{item.quantity}} 
                     <fa-icon (click)="cartService.incrementItemQuantityInCart(item)"
-                    [icon]="['fas', 'plus-square']"></fa-icon>
+                    [icon]="['fas', 'plus-square']" class="plus-icon"></fa-icon>
                     <fa-icon (click)="cartService.decrementItemQuantityInCart(item)" 
-                    [icon]="['fas', 'minus-square']"></fa-icon>
+                    [icon]="['fas', 'minus-square']" class="minus-icon"></fa-icon>
                     <fa-icon (click)="cartService.removeItemFromCart(item)"
-                    [icon]="['fas', 'trash']"></fa-icon>
+                    [icon]="['fas', 'trash']" class="remove-icon"></fa-icon>
                   </p>
                 
               </div>

@@ -48,12 +48,12 @@ export class CartService {
     item.quantity ++;
   }
 
+  //modifica : tolgo if e decremento a prescindere, if su una sola riga
   decrementItemQuantityInCart = (item:CartItem) => {
     if(item.quantity > 1)
-       item.quantity --;
-    
-      
-      //richiama il metodo di rimozione
+      item.quantity --;
+    else if(item.quantity > 0)
+      this.removeItemFromCart(item);
   }
 
 }
