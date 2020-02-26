@@ -19,16 +19,15 @@ import ecommerce.dto.ProductsDto;
 @Path(value = "/products")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-
 public class ProductsApi {
 
 	@EJB
-	ProductsDao pdao;
+	ProductsDao productdao;
 	
 
 	@GET
 	public List<ProductsDto> getAllProducts() {
-		List<ProductsDto> listaProdotti = pdao.selectAll();
+		List<ProductsDto> listaProdotti = productdao.selectAll();
 		return listaProdotti;
 
 	}
@@ -36,33 +35,33 @@ public class ProductsApi {
 	@GET
 	@Path(value = "/productsByName/{name}") 
 	public List<ProductsDto> getProductByName(@PathParam("name")String cond) {
-		List<ProductsDto> listaProdotti = pdao.selectByName(cond);
+		List<ProductsDto> listaProdotti = productdao.selectByName(cond);
 		return listaProdotti;
 	}
 	
 	@GET
-	@Path(value = "/productsById/{id}") 
-	public List<ProductsDto> getProductById(@PathParam("id")String cond) {
-		List<ProductsDto> listaProdotti = pdao.selectById(cond);
+	@Path(value = "/productsByID/{productID}") 
+	public List<ProductsDto> getProductByID(@PathParam("productID")String cond) {
+		List<ProductsDto> listaProdotti = productdao.selectById(cond);
 		return listaProdotti;
 	}
 	
 	@DELETE
 	@Path(value = "/deleteProduct/{productID}")
-	public void deleteProductById(@PathParam("productID")String cond) {
-		pdao.delete(cond);
+	public void deleteProductByID(@PathParam("productID")String cond) {
+		productdao.delete(cond);
 	}
 	
 	@POST 
 	@Path(value = "/regProduct") 
 	public void registerProduct(ProductsDto pdto) {
-		pdao.insert(pdto);
+		productdao.insert(pdto);
 	}
 	
 	@PUT
 	@Path(value = "/updateProduct") 
-	public void updateProductById(ProductsDto pdto) {
-		pdao.update(pdto);
+	public void updateProductByID(ProductsDto pdto) {
+		productdao.update(pdto);
 	}
 
 }
