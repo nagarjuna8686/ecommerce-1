@@ -18,15 +18,14 @@ import ecommerce.dto.UsersDto;
 
 
 @Path(value = "/users")
-@Consumes({ "application/json" })
-@Produces({ "application/json" })
+@Consumes({MediaType.APPLICATION_JSON})
+@Produces({MediaType.APPLICATION_JSON})
 public class UsersApi {
 
 	@EJB
 	UsersDao userdao;
 
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
 	public List<UsersDto> getAllUsers() {
 		List<UsersDto> listaUtenti = new ArrayList<>();
 		listaUtenti = userdao.selectAll();
