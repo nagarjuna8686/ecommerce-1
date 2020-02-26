@@ -11,22 +11,21 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
 import ecommerce.dao.UsersDao;
 import ecommerce.dto.UsersDto;
 
 
 
 @Path(value = "/users")
-@Consumes({ "application/json" })
-@Produces({ "application/json" })
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
+
 public class UsersApi {
 
 	@EJB
 	UsersDao userdao;
 
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
 	public List<UsersDto> getAllUsers() {
 		List<UsersDto> listaUtenti = new ArrayList<>();
 		listaUtenti = userdao.selectAll();

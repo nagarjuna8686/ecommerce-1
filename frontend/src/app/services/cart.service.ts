@@ -43,10 +43,21 @@ export class CartService {
     
   }
 
-  incrementItemQuantityInCart = (item:CartItem) => {
-    item.quantity ++
+  removeItemFromCart = (item : CartItem) => {
+    this.items = this.items.filter(i => i.product.id !== item.product.id ) ;
   }
-  //fare un metodo che mi dice se c'è l'ho già nel carrello
+
+  incrementItemQuantityInCart = (item:CartItem) => {
+    item.quantity ++;
+  }
+
+  decrementItemQuantityInCart = (item:CartItem) => {
+    if(item.quantity > 1)
+       item.quantity --;
+    
+      
+      //richiama il metodo di rimozione
+  }
 }
 
 

@@ -157,7 +157,7 @@ public class UsersDao {
 	
 	
 
-	public void deleteUser(int ID){
+	public void deleteUser(int userID){
 
 		try {
 
@@ -165,7 +165,7 @@ public class UsersDao {
 			String sql = "delete from users where userID = ?";
 
 			PreparedStatement delete_stmt = conn.prepareStatement(sql);
-			delete_stmt.setInt(1, ID);
+			delete_stmt.setInt(1, userID);
 			delete_stmt.execute();
 			conn.close();
 
@@ -199,35 +199,10 @@ public class UsersDao {
 		}
 
 	}
-	public boolean retrievePasswordByID(int id, String password) {
-		List<UsersDto> udto;
-		Connection conn;
-		try {
-			conn = ds.getConnection();
-		
-		String sql = "select md5('?') from dual";
-		String pswMD5 = null;
-		PreparedStatement insert_statement = conn.prepareStatement(sql);
-		insert_statement.setString(1, password);
-		ResultSet result = insert_statement.executeQuery();
-		while(result.next()) {
-			pswMD5 = result.getString(1);
-		}
-		udto = this.selectByID(id);
-		System.out.println(pswMD5);
-		System.out.println(udto.get(0).getPassword());
-		if(pswMD5.equals(udto.get(0).getPassword())) {
-			return true;
-		}
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return false;
 	
-	}
 	
 
-	public void changeUserPassword(int id, String password) {
+	public void changeUserPassword(int userID, String password) {
 		try {
 			Connection conn = ds.getConnection();
 			String sql = "select md5(?) from dual";
@@ -241,7 +216,7 @@ public class UsersDao {
 			sql = "update users set password = ? where userID = ?";
 			insert_statement = conn.prepareStatement(sql);
 			insert_statement.setString(1, pswMD5);
-			insert_statement.setInt(2, id);
+			insert_statement.setInt(2, userID);
 			insert_statement.executeUpdate();
 	
 			conn.close();
