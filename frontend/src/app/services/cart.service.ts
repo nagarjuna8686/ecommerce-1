@@ -8,14 +8,17 @@ import { Product } from '../classes/Product';
 export class CartService {
 
   public items: CartItem[] = [];
-
+  
   constructor() { }
 
-  isItemInCart = (item) : boolean => {
+  isItemInCart= (item) : boolean => {
 
-
-    return this.items.find(i => i.product.id === item.product.id ) != null;
+    return this.items.find(i => i.product.id === item.product.id) != null;
    } 
+
+  getItems = () =>{
+    return this.items;
+  }
 
   addItemsToCart = (quantity,product) => {
     const ci : CartItem= {
@@ -55,5 +58,6 @@ export class CartService {
     else if(item.quantity > 0)
       this.removeItemFromCart(item);
   }
-
 }
+
+

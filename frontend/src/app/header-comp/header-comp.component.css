@@ -69,6 +69,9 @@
   font-family: 'Archivo Black';
 
 }
+.cuorePrincipale .colorLabel{
+  color: black;
+}
 
 .cartContainer {
   position: relative;
@@ -97,8 +100,9 @@
 .dropdown-body{
   display: none;
   height:80%;
-  width: 100%;
+  width: 190px;
   background-color: white;
+  color: black;
   border-style: solid;
   border-color: black;
   font-size: 10pt;
@@ -112,6 +116,7 @@
   display: block;
 }
 
+<<<<<<< HEAD
 .plus-icon{
   color: black;
 }
@@ -123,3 +128,7 @@
 .remove-icon{
   color: darkgrey;
 }
+=======
+
+
+>>>>>>> 97471e3e13c2e65900800593a4fb8eb88afc599f
