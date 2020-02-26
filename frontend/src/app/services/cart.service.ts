@@ -39,6 +39,10 @@ export class CartService {
     return supp ;
     
   }
+
+  incrementItemQuantityInCart = (item:CartItem) => {
+    item.quantity ++
+  }
   //fare un metodo che mi dice se c'è l'ho già nel carrello
   
 

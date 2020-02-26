@@ -36,11 +36,11 @@
               </label>
               <div class="dropdown-body" *ngFor ="let item of cartService.items"> 
                
-                  <p href="#"> {{item.product.name}}  
+                  <p href="#"> {{item.product.name}}  </p>
                   <p href="#"> {{item.quantity}} 
-                    <fa-icon (click)="cartService.addItemsToCart(1,item)"
+                    <fa-icon (click)="cartService.incrementItemQuantityInCart(item)"
                     [icon]="['fas', 'plus-square']"></fa-icon>
-                    <fa-icon (click)="cartService.addItemsToCart(-1,item)" 
+                    <fa-icon (click)="cartService.addItemsToCart(-1,item.product)" 
                     [icon]="['fas', 'minus-square']"></fa-icon>
                   </p>
                 
