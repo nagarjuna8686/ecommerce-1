@@ -40,8 +40,10 @@
                   <p href="#"> {{item.quantity}} 
                     <fa-icon (click)="cartService.incrementItemQuantityInCart(item)"
                     [icon]="['fas', 'plus-square']"></fa-icon>
-                    <fa-icon (click)="cartService.addItemsToCart(-1,item.product)" 
+                    <fa-icon (click)="cartService.decrementItemQuantityInCart(item)" 
                     [icon]="['fas', 'minus-square']"></fa-icon>
+                    <fa-icon (click)="cartService.removeItemFromCart(item)"
+                    [icon]="['fas', 'trash']"></fa-icon>
                   </p>
                 
               </div>
