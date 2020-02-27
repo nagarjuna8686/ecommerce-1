@@ -69,7 +69,6 @@
   font-family: 'Archivo Black';
 
 }
-
 .textQuantity{
 
   font-size: 12pt;
@@ -116,12 +115,12 @@
 .dropdown-body{
   display: none;
   height:80%;
-  width: 190px;
+  width: 100%;
   background-color: white;
-  color: black;
   border-style: solid;
   border-color: black;
   font-size: 10pt;
+  color:black;
 }
 
 .colorItem{
@@ -141,6 +140,7 @@
 
 .plus-icon{
   color: black;
+
 }
 
 .minus-icon{
@@ -150,3 +150,4 @@
 .remove-icon{
   color: darkgrey;
 }
+

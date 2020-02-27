@@ -65,15 +65,16 @@ export class CartService {
   //modifica : tolgo if e decremento a prescindere, if su una sola riga
   decrementItemQuantityInCart = (item:CartItem) => {
     if(item.quantity > 1)
-       item.quantity --;
-    
-      
-      /*
+       item.quantity --;     
+    else if(item.quantity > 0)
+      this.removeItemFromCart(item);
+  }
+  /*
         routing come fare pagine diverse in angular,
         pagina di login che si interfaccia, authentication service.
         angular chiamate rest e interfaccia api
       */
   }
-}
+
 
 
