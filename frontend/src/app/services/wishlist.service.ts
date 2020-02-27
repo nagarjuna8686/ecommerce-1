@@ -7,7 +7,7 @@ import { Product } from '../classes/Product';
 export class WishlistService {
 
 
-  private products: Product[] = [];
+  public products: Product[] = [];
 
   constructor() { }
 
