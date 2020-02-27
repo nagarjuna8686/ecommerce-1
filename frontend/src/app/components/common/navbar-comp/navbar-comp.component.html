@@ -1,0 +1,17 @@
+<div class="nav flex-column shad-box">
+      
+  <div class="form-group">
+    <h3 class="colorTesto">order</h3>
+
+    <select 
+      class="selectpicker form-control colorTesto" 
+      [(ngModel)]="selected" 
+      (ngModelChange)="emitSortUpdate($event)">
+        <option *ngFor="let option of sortOptions" 
+          [ngValue]="option.value">
+          {{option.label}}
+        </option>
+    </select>
+  </div>
+
+</div>

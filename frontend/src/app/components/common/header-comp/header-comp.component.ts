@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
-import { WishlistService } from '../services/wishlist.service';
-import { CartService } from '../services/cart.service'
+import { WishlistService } from '../../../services/wishlist.service';
+import { CartService } from '../../../services/cart.service'
 
 @Component({
   selector: 'app-header-comp',
@@ -8,8 +8,6 @@ import { CartService } from '../services/cart.service'
   styleUrls: ['./header-comp.component.css']
 })
 export class HeaderCompComponent implements OnInit {
-
- 
 
   @Output() termUpdate:EventEmitter<string> = new EventEmitter()
 

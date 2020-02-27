@@ -6,7 +6,7 @@
   <nav class="navbar navbar-dark bg-dark">
     <div class="row full-width">
       <div class="col-2">
-        <img src="assets/img/icon.png" width="50" height="50" class="d-inline-block align-top">
+        <img routerLink="/"src="assets/img/icon.png" width="50" height="50" class="d-inline-block align-top">
       </div>
       <div class="col-7">
         <div class="input-group mb-1">
@@ -23,8 +23,10 @@
         <div class="cuorePrincipale">
           <div class="cuoreContainer">
             <fa-icon [icon]="['fas', 'heart']"></fa-icon>
+            <fa-icon class="clickable" routerLink="/login" [icon]="['fas', 'user']"></fa-icon>
             <label class="wish" *ngIf="wishlistService.getTotalItems()">{{wishlistService.getTotalItems()}}</label>
           </div>
+          
         </div>
       </div>
       <div class="col ">

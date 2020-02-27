@@ -6,12 +6,13 @@
   background-color: red;
 }
 
-.gianni {
+.shad-box {
     height: 70%;
     box-shadow: 1px 0px 5px 2px rgb(187, 187, 187);
     position: fixed;    
     width: 20%;
     z-index:1;
+    padding: 0 10px;
   }
 
   
