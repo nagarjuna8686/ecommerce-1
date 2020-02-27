@@ -8,7 +8,6 @@ const routes: Routes = [
   { path:'catalog', component: CatalogComponent},
   { path: 'login', component: LoginComponent},
   { path: '', redirectTo:'catalog', pathMatch:'full'}
-
 ];
 
 @NgModule({

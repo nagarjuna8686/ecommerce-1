@@ -2,11 +2,6 @@ import {
   Component
 } from '@angular/core';
 
-import { WishlistService } from './services/wishlist.service';
-import { CartService } from './services/cart.service'
-import { Product } from './classes/Product';
-
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,16 +9,8 @@ import { Product } from './classes/Product';
 })
 
 
-
 export class AppComponent {
 
-  public term: string = '';
-
-
-
-  constructor(
-  ){
-
-  }
+  constructor(){}
 
 } //fine totale
