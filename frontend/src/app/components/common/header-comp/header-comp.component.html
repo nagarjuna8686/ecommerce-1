@@ -9,15 +9,23 @@
         <img routerLink="/"src="assets/img/icon.png" width="50" height="50" class="d-inline-block align-top clickable">
       </div>
       <div class="col-7">
-        <div class="input-group mb-1">
-          <input type="text" class="form-control" placeholder="Inserisci prodotto" [(ngModel)]="term"
-            (ngModelChange)="emitTermUpdate($event)">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">
-              <fa-icon [icon]="['fas', 'search']"></fa-icon>
-            </button>
-          </div>
-        </div> <!-- fine input group mb 1-->
+        <form (ngSubmit)="search()">
+          <div class="input-group mb-1">
+            <input 
+              type="text" 
+              class="form-control" 
+              name="seachTerm"
+              placeholder="Inserisci prodotto" 
+              [(ngModel)]="term">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" 
+                (click)="search()"
+                type="button">
+                <fa-icon [icon]="['fas', 'search']"></fa-icon>
+              </button>
+            </div>
+          </div> <!-- fine input group mb 1-->
+        </form>
       </div>
       <div class="col 1">
         <div class="cuorePrincipale">

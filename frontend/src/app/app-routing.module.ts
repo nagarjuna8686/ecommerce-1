@@ -14,7 +14,6 @@ const routes: Routes = [
   { path: 'shopping-cart-comp', component: ShoppingCartCompComponent},
   { path: 'wishlist-comp', component: WishlistCompComponent},
   { path: '', redirectTo:'catalog', pathMatch:'full'}
-
 ];
 
 @NgModule({

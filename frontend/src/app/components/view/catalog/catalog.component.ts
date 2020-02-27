@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/classes/Product';
 import { WishlistService } from 'src/app/services/wishlist.service';
 import { CartService } from 'src/app/services/cart.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-catalog',
@@ -121,10 +122,15 @@ export class CatalogComponent implements OnInit {
 
   constructor(
     public wishlistService: WishlistService,
-    public cartService : CartService
+    public cartService : CartService,
+    public productService : ProductService
   ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.productService.search.subscribe( term => {
+      this.term = term;
+    })
+  }
 
   getFilteredProducts = (): Product[] => {
 
