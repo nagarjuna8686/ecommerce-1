@@ -17,10 +17,13 @@
   }  
 
 .wish {
+    left: 30px;
     position: absolute;
-    right: 20;
-    font-size: 25px;
-    z-index: 3;
+    color: white;
+    font-size: 12pt;
+    font-family: 'Archivo Black';
+    bottom: 10px;
+    
   }
 .cuorePrincipale .colorLabel{
     color: black;

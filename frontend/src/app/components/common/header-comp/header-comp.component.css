@@ -84,12 +84,19 @@
   font-size: 12pt;
   font-family: 'Archivo Bold';
 }
-/*
+
 .cuorePrincipale .colorLabel{
   color: black;
-}*/
+}
 
 .cartContainer {
+  position: relative;
+  width: auto;
+  height: auto;
+  bottom: 20px;
+}
+
+.cuoreContainer {
   position: relative;
   width: auto;
   height: auto;
@@ -106,6 +113,7 @@
 .wish {
   position: absolute;
   right: 20;
+  left: 20;
   font-size: 25px;
   z-index: 3;
 }
