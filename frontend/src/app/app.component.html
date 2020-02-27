@@ -17,7 +17,7 @@
     <div class="row">
       <!--Oggetti di immagini-->
       <ng-container class="immaginiDimensione" *ngFor="let list of getFilteredProducts() ">
-        <div class="col-4 product-thumbnail">
+        <div class="col-4 product-thumbnail"> <!-- farlo diventare un component-->
           <div class="favorite-button" 
             [ngClass]="{'added' : wishlistService.isItemInWishlist(list)}"
             (click)="wishlistService.toogleItemInWishlist(list)">
@@ -29,7 +29,7 @@
           <p class="descrizione dimDescr">{{list.description}}</p>
           <p>{{list.price | currency:'EUR' }} </p>
           <button type="button" class="btn btn-warning"
-          (click)="cartService.addItemsToCart(1,list)"
+          (click)="cartService.addItemsToCart(1,list,list.price)"
           >Acquista</button>
         </div>
       </ng-container>

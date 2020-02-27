@@ -69,6 +69,22 @@
   font-family: 'Archivo Black';
 
 }
+
+.textQuantity{
+
+  font-size: 12pt;
+  font-family: 'Archivo Black';
+  
+}
+
+.textInfo{
+  padding-left: 15px;
+  padding-top: 5px;
+  
+  font-size: 12pt;
+  font-family: 'Archivo Bold';
+}
+
 .cuorePrincipale .colorLabel{
   color: black;
 }
@@ -116,5 +132,10 @@
   display: block;
 }
 
+.positionIcon{
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 15pt;
+}
 
 
