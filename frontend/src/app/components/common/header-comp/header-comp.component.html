@@ -32,7 +32,7 @@
           <div class="cuoreContainer">
              <app-summary-wishlist-comp> </app-summary-wishlist-comp>    
           </div>
-        </div>cd
+        </div>
       </div>
       <div class="col 1">
         <!-- si chiama cuore ma è riferito al login-->
@@ -44,30 +44,13 @@
       </div>
       <div class="col ">
         <div class="cartPrincipale">
-          <div class="cartContainer">
-            <div class="dropdown">
-              <fa-icon class="clickable" routerLink="/shopping-cart-comp" [icon]="['fas', 'shopping-cart']"></fa-icon>
-              <label class="cart" *ngIf = "cartService.getTotalItemsCart()" >
-                {{cartService.getTotalItemsCart()}}
-              </label>
-              <div class="dropdown-body" *ngFor ="let item of cartService.items"> 
-               
-                  <p class="textInfo"> {{item.product.name}}  </p>
-                  <p class="textInfo">Q.tà: {{item.quantity}} </p>
-                  <p class="textInfo">Prezzo: {{item.product.price}}</p>
-                  
-                  <div class="positionIcon">
-                    <fa-icon class="dimIcon" (click)="cartService.incrementItemQuantityInCart(item)"
-                    [icon]="['fas', 'plus-square']"></fa-icon>
-                    <fa-icon class="dimIcon" (click)="cartService.decrementItemQuantityInCart(item)" 
-                    [icon]="['fas', 'minus-square']"></fa-icon>
-                    <fa-icon class="dimIcon" (click)="cartService.removeItemFromCart(item)"
-                    [icon]="['fas', 'trash']"></fa-icon>
-                  </div>        
-              </div>
-            </div>
-          </div>
-        </div>
+          <div class="cartContainer">  
+            <fa-icon [icon]="['fas', 'shopping-cart']" class="clickable" routerLink="/shopping-cart-comp"></fa-icon>
+              <app-summary-list-comp>
+              </app-summary-list-comp>
+
+             </div> <!-- cartcontainer-->
+            </div> <!-- cartprincipale-->
       </div>
     </div>
   </nav>
