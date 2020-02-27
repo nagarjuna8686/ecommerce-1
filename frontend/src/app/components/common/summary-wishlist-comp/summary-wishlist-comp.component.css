@@ -1,0 +1,45 @@
+.dropdown-body{
+    display: none;
+    height:80%;
+    width: 100%;
+    background-color: white;
+    border-style: solid;
+    border-color: black;
+    font-size: 10pt;
+    color:black;
+  }
+.dropdown:hover .dropdown-body{
+    display: block;
+  }
+  
+.dropdown-menu {
+    z-index: 2;
+  }  
+
+.wish {
+    position: absolute;
+    right: 20;
+    font-size: 25px;
+    z-index: 3;
+  }
+.cuorePrincipale .colorLabel{
+    color: black;
+  }
+
+  .cuoreContainer {
+    position: relative;
+    width: auto;
+    height: auto;
+    bottom: 20px;
+  }
+  
+.cuorePrincipale .colorLabel{
+  color: black;
+}
+.cuorePrincipale label {
+
+  color: aliceblue;
+  font-size: 12pt;
+  font-family: 'Archivo Black';
+
+}

@@ -19,6 +19,9 @@ import { CartService } from './services/cart.service';
 import { ProductThumbnailCompComponent } from './components/common/product-thumbnail-comp/product-thumbnail-comp.component';
 import { CatalogComponent } from './components/view/catalog/catalog.component';
 import { LoginComponent } from './components/view/login/login.component';
+import { SummaryWishlistCompComponent } from './components/common/summary-wishlist-comp/summary-wishlist-comp.component';
+import { ShoppingCartCompComponent } from './components/view/shopping-cart-comp/shopping-cart-comp.component';
+import { WishlistCompComponent } from './components/view/wishlist-comp/wishlist-comp.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { LoginComponent } from './components/view/login/login.component';
     SummaryListCompComponent,
     ProductThumbnailCompComponent,
     CatalogComponent,
-    LoginComponent
+    LoginComponent,
+    SummaryWishlistCompComponent,
+    ShoppingCartCompComponent,
+    WishlistCompComponent
   ],
   imports: [
     BrowserModule,

@@ -27,9 +27,8 @@
 
 
 .btn-outline-secondary {
-
-  height: 40px;
-
+  height: 38px;
+  margin: -1px 0 0 0;
 }
 
 .cuorePrincipale {
@@ -37,7 +36,7 @@
   color: red;
   font-size: 25px;
   position: absolute;
-
+  
 
 }
 
@@ -50,11 +49,11 @@
   z-index: 3;
 
 }
-
+/*
 .dropdown-menu {
   z-index: 2;
 }
-
+*/
 .cartPrincipale label {
 
   color: aliceblue;
@@ -70,6 +69,7 @@
   font-family: 'Archivo Black';
 
 }
+
 .textQuantity{
 
   font-size: 12pt;
@@ -84,10 +84,10 @@
   font-size: 12pt;
   font-family: 'Archivo Bold';
 }
-
+/*
 .cuorePrincipale .colorLabel{
   color: black;
-}
+}*/
 
 .cartContainer {
   position: relative;
@@ -96,18 +96,20 @@
   bottom: 20px;
 }
 
-.cuoreContainer {
+.loginContainer {
   position: relative;
   width: auto;
   height: auto;
   bottom: 20px;
 }
-
+/*
 .wish {
   position: absolute;
   right: 20;
+  font-size: 25px;
+  z-index: 3;
 }
-
+/*
 .cart {
   position: fixed;
   right: 20;
@@ -122,15 +124,15 @@
   border-color: black;
   font-size: 10pt;
   color:black;
-}
+}*/
 
 .colorItem{
   color:black;
 }
-
+/*
 .dropdown:hover .dropdown-body{
   display: block;
-}
+}*/
 
 
 .positionIcon{

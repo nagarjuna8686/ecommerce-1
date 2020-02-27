@@ -1,0 +1,13 @@
+<div class="cuorePrincipale">
+    <div class="cuoreContainer">
+        <div class="dropdown">
+            <fa-icon class="clickable" routerLink="/wishlist-comp" [icon]="['fas', 'heart']"></fa-icon>
+            <label class="wish" *ngIf="WishlistService.getTotalItems() " >
+                {{WishlistService.getTotalItems()}}
+            </label>
+            <div class="dropdown-body" *ngFor ="let item of WishlistService.items">                
+                <p class="textInfo"> {{item.name}}  </p>
+            </div>
+        </div>
+    </div>
+</div>

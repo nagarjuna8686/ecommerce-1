@@ -6,27 +6,40 @@
   <nav class="navbar navbar-dark bg-dark">
     <div class="row full-width">
       <div class="col-2">
-        <img routerLink="/" src="assets/img/icon.png" width="50" height="50" class="d-inline-block align-top">
+        <img routerLink="/"src="assets/img/icon.png" width="50" height="50" class="d-inline-block align-top clickable">
       </div>
       <div class="col-7">
-        <div class="input-group mb-1">
-          <input type="text" class="form-control" placeholder="Inserisci prodotto" [(ngModel)]="term"
-            (ngModelChange)="emitTermUpdate($event)">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">
-              <fa-icon [icon]="['fas', 'search']"></fa-icon>
-            </button>
-          </div>
-        </div> <!-- fine input group mb 1-->
+        <form (ngSubmit)="search()">
+          <div class="input-group mb-1">
+            <input 
+              type="text" 
+              class="form-control" 
+              name="seachTerm"
+              placeholder="Inserisci prodotto" 
+              [(ngModel)]="term">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" 
+                (click)="search()"
+                type="button">
+                <fa-icon [icon]="['fas', 'search']"></fa-icon>
+              </button>
+            </div>
+          </div> <!-- fine input group mb 1-->
+        </form>
       </div>
-      <div class="col 2">
+      <div class="col 1">
         <div class="cuorePrincipale">
           <div class="cuoreContainer">
-            <fa-icon [icon]="['fas', 'heart']"></fa-icon>
-            <fa-icon class="clickable" routerLink="/login" [icon]="['fas', 'user']"></fa-icon>
-            <label class="wish" *ngIf="wishlistService.getTotalItems()">{{wishlistService.getTotalItems()}}</label>
+             <app-summary-wishlist-comp> </app-summary-wishlist-comp>    
           </div>
-
+        </div>
+      </div>
+      <div class="col 1">
+        <!-- si chiama cuore ma è riferito al login-->
+        <div class="cuorePrincipale">
+          <div class="loginContainer">
+           <fa-icon class="clickable" routerLink="/login" [icon]="['fas', 'user']"></fa-icon>
+          </div>
         </div>
       </div>
       <div class="col ">
@@ -48,7 +61,8 @@
                   <p class="textInfo">Q.tà: {{item.quantity}} </p>
                   <p class="textInfo">Prezzo: {{item.product.price}}</p>
                   
-                  <div class="positionIcon"><fa-icon class="dimIcon" (click)="cartService.incrementItemQuantityInCart(item)"
+                  <div class="positionIcon">
+                    <fa-icon class="dimIcon" (click)="cartService.incrementItemQuantityInCart(item)"
                     [icon]="['fas', 'plus-square']"></fa-icon>
                     <fa-icon class="dimIcon" (click)="cartService.decrementItemQuantityInCart(item)" 
                     [icon]="['fas', 'minus-square']"></fa-icon>
