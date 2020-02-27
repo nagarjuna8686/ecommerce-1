@@ -20,10 +20,21 @@ export class CartService {
     return this.items;
   }
 
-  addItemsToCart = (quantity,product) => {
+  
+  getTotPrice = (quantity,product,price) => {
+    const ci: CartItem = {
+      quantity:quantity,
+      product:product,
+      price:price
+    }
+    this.items.find(i=>i.product.id !== product.id).price //da completare perché non so contare
+  }
+
+  addItemsToCart = (quantity,product,price) => {
     const ci : CartItem= {
       quantity:quantity,
-      product:product
+      product:product,
+      price: price
     } 
     // se non c'è lo aggiunge
     if(!this.isItemInCart(ci))
@@ -51,13 +62,18 @@ export class CartService {
     item.quantity ++;
   }
 
+  //modifica : tolgo if e decremento a prescindere, if su una sola riga
   decrementItemQuantityInCart = (item:CartItem) => {
     if(item.quantity > 1)
-       item.quantity --;
-    
-      
-      //richiama il metodo di rimozione
+       item.quantity --;     
+    else if(item.quantity > 0)
+      this.removeItemFromCart(item);
   }
+  /*
+        routing come fare pagine diverse in angular,
+        pagina di login che si interfaccia, authentication service.
+        angular chiamate rest e interfaccia api
+      */
 }
 
 

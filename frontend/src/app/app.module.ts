@@ -17,6 +17,7 @@ import { far } from '@fortawesome/free-regular-svg-icons';
 import { WishlistService } from './services/wishlist.service';
 import { SummaryListCompComponent } from './summary-list-comp/summary-list-comp.component';
 import { CartService } from './services/cart.service';
+import { ProductThumbnailCompComponent } from './product-thumbnail-comp/product-thumbnail-comp.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CartService } from './services/cart.service';
     BodyCompComponent,
     NavbarCompComponent,
     FooterCompComponent,
-    SummaryListCompComponent
+    SummaryListCompComponent,
+    ProductThumbnailCompComponent
   ],
   imports: [
     BrowserModule,

@@ -37,17 +37,20 @@
               </label>
               <div class="dropdown-body" *ngFor ="let item of cartService.items"> 
                
-                  <p href="#"> {{item.product.name}}  </p>
-                  <p href="#"> {{item.quantity}} 
-                    <fa-icon (click)="cartService.incrementItemQuantityInCart(item)"
+                  <p class="textInfo"> {{item.product.name}}  </p>
+                  <p class="textInfo">Q.tà: {{item.quantity}} </p>
+                  <p class="textInfo">Prezzo: {{item.product.price}}</p>
+                  
+                  <div class="positionIcon"><fa-icon class="dimIcon" (click)="cartService.incrementItemQuantityInCart(item)"
                     [icon]="['fas', 'plus-square']"></fa-icon>
-                    <fa-icon (click)="cartService.decrementItemQuantityInCart(item)" 
+                    <fa-icon class="dimIcon" (click)="cartService.decrementItemQuantityInCart(item)" 
                     [icon]="['fas', 'minus-square']"></fa-icon>
-                    <fa-icon (click)="cartService.removeItemFromCart(item)"
-                    [icon]="['fas', 'trash']"></fa-icon>
-                  </p>
+                    <fa-icon class="dimIcon" (click)="cartService.removeItemFromCart(item)"
+                    [icon]="['fas', 'trash']"></fa-icon></div>
+                  
                 
               </div>
+              
             </div>
           </div>
         </div>
