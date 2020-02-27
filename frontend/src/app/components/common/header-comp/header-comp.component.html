@@ -6,7 +6,7 @@
   <nav class="navbar navbar-dark bg-dark">
     <div class="row full-width">
       <div class="col-2">
-        <img routerLink="/"src="assets/img/icon.png" width="50" height="50" class="d-inline-block align-top">
+        <img routerLink="/"src="assets/img/icon.png" width="50" height="50" class="d-inline-block align-top clickable">
       </div>
       <div class="col-7">
         <div class="input-group mb-1">
@@ -19,21 +19,26 @@
           </div>
         </div> <!-- fine input group mb 1-->
       </div>
-      <div class="col 2">
+      <div class="col 1">
         <div class="cuorePrincipale">
           <div class="cuoreContainer">
-            <fa-icon [icon]="['fas', 'heart']"></fa-icon>
-            <fa-icon class="clickable" routerLink="/login" [icon]="['fas', 'user']"></fa-icon>
-            <label class="wish" *ngIf="wishlistService.getTotalItems()">{{wishlistService.getTotalItems()}}</label>
+             <app-summary-wishlist-comp> </app-summary-wishlist-comp>    
           </div>
-          
+        </div>
+      </div>
+      <div class="col 1">
+        <!-- si chiama cuore ma è riferito al login-->
+        <div class="cuorePrincipale">
+          <div class="loginContainer">
+           <fa-icon class="clickable" routerLink="/login" [icon]="['fas', 'user']"></fa-icon>
+          </div>
         </div>
       </div>
       <div class="col ">
         <div class="cartPrincipale">
           <div class="cartContainer">
             <div class="dropdown">
-              <fa-icon [icon]="['fas', 'shopping-cart']" class=""></fa-icon>
+              <fa-icon class="clickable" routerLink="/shopping-cart-comp" [icon]="['fas', 'shopping-cart']"></fa-icon>
               <label class="cart" *ngIf = "cartService.getTotalItemsCart()" >
                 {{cartService.getTotalItemsCart()}}
               </label>
@@ -43,16 +48,15 @@
                   <p class="textInfo">Q.tà: {{item.quantity}} </p>
                   <p class="textInfo">Prezzo: {{item.product.price}}</p>
                   
-                  <div class="positionIcon"><fa-icon class="dimIcon" (click)="cartService.incrementItemQuantityInCart(item)"
+                  <div class="positionIcon">
+                    <fa-icon class="dimIcon" (click)="cartService.incrementItemQuantityInCart(item)"
                     [icon]="['fas', 'plus-square']"></fa-icon>
                     <fa-icon class="dimIcon" (click)="cartService.decrementItemQuantityInCart(item)" 
                     [icon]="['fas', 'minus-square']"></fa-icon>
                     <fa-icon class="dimIcon" (click)="cartService.removeItemFromCart(item)"
-                    [icon]="['fas', 'trash']"></fa-icon></div>
-                  
-                
+                    [icon]="['fas', 'trash']"></fa-icon>
+                  </div>        
               </div>
-              
             </div>
           </div>
         </div>

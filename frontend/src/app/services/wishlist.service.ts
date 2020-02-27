@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class WishlistService {
 
 
-  private items: any[] = [];
+  public items: any[] = [];
 
   constructor() { }
 
