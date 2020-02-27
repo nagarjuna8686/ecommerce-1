@@ -132,10 +132,27 @@
   display: block;
 }
 
+<<<<<<< HEAD
 .positionIcon{
   display: flex;
   justify-content: space-evenly;
   font-size: 15pt;
 }
+=======
+<<<<<<< HEAD
+.plus-icon{
+  color: black;
+}
+
+.minus-icon{
+  color: black;
+}
+
+.remove-icon{
+  color: darkgrey;
+}
+=======
+>>>>>>> 1570dcd43ce2fa63a73bb2f48ad7bda1c4439364
 
 
+>>>>>>> 97471e3e13c2e65900800593a4fb8eb88afc599f

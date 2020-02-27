@@ -62,8 +62,10 @@ export class CartService {
     item.quantity ++;
   }
 
+  //modifica : tolgo if e decremento a prescindere, if su una sola riga
   decrementItemQuantityInCart = (item:CartItem) => {
     if(item.quantity > 1)
+<<<<<<< HEAD
        item.quantity --;
     
       
@@ -72,6 +74,11 @@ export class CartService {
         pagina di login che si interfaccia, authentication service.
         angular chiamate rest e interfaccia api
       */
+=======
+      item.quantity --;
+    else if(item.quantity > 0)
+      this.removeItemFromCart(item);
+>>>>>>> 1570dcd43ce2fa63a73bb2f48ad7bda1c4439364
   }
 }
 
