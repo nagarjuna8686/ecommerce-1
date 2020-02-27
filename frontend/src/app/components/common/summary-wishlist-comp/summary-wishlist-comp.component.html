@@ -5,9 +5,11 @@
             <label class="wish" *ngIf="WishlistService.getTotalItems() " >
                 {{WishlistService.getTotalItems()}}
             </label>
-            <div class="dropdown-body" *ngFor ="let product of WishlistService.products">                
+            <div class="dropdown-body" 
+             *ngFor ="let product of WishlistService.products">                
                 <p class="textInfo"> {{product.name}}  </p>
             </div>
         </div>
+        
     </div>
 </div>
