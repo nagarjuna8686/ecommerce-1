@@ -6,6 +6,7 @@
   <p class="textInfo"> {{item.product.name}} </p>
   <p class="textInfo">Q.tà: {{item.quantity}} </p>
   <p class="textInfo">Prezzo: {{item.product.price}}</p>
+  
   <div class="positionIcon">
     <fa-icon class="dimIcon" (click)="cartService.incrementItemQuantityInCart(item)" [icon]="['fas', 'plus-square']">
     </fa-icon>
@@ -13,5 +14,6 @@
     </fa-icon>
     <fa-icon class="dimIcon" (click)="cartService.removeItemFromCart(item)" [icon]="['fas', 'trash']"></fa-icon>
   </div>
+  
 </div>
 </div>

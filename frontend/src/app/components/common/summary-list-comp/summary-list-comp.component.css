@@ -86,8 +86,12 @@ details[open] summary {
   }
   
   .cart {
-    position: fixed;
-    right: 20;
+    left:30px;
+    color:white;
+    font-size: 12pt;
+    font-family: 'Archivo Black';
+    position: absolute;
+    bottom:10px;
   }
   
   .dropdown-body{
