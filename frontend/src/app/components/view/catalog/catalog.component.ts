@@ -1,20 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input, Output } from '@angular/core';
 import { Product } from 'src/app/classes/Product';
 import { WishlistService } from 'src/app/services/wishlist.service';
 import { CartService } from 'src/app/services/cart.service';
+import { EventEmitter } from 'protractor';
+
 
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.css']
 })
+
 export class CatalogComponent implements OnInit {
 
   public term: string = '';
 
   public selected: { name:string, field:string, ascending: boolean };
-
-  //input componente
 
   public sortOptions: any[] = [
     {
@@ -39,7 +40,6 @@ export class CatalogComponent implements OnInit {
        }
      }
   ]
-
 
   public products: Product[] = [
 
@@ -119,6 +119,7 @@ export class CatalogComponent implements OnInit {
 
   ] 
 
+
   constructor(
     public wishlistService: WishlistService,
     public cartService : CartService
@@ -150,9 +151,7 @@ export class CatalogComponent implements OnInit {
   }
 
   orderBy(sortOption) {
-
-    this.products.sort( (a, b) => {
-
+    this.products.sort( (a, b) => { //qui ho messo l'input del event
       const fieldA = a[sortOption.field];
       const fieldB = b[sortOption.field];
       const asc = sortOption.ascending;
@@ -164,9 +163,7 @@ export class CatalogComponent implements OnInit {
       } else {
         return 0;
       }
-      
     });
-  
   }
 
 }

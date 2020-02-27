@@ -10,13 +10,19 @@
     <div class="col-9">
       <div class="row">
         <!--Oggetti di immagini-->
-        <ng-container class="immaginiDimensione" *ngFor="let list of getFilteredProducts() ">
-          <div class="col-4 product-thumbnail"> <!-- farlo diventare un component-->
+        <ng-container class="immaginiDimensione" 
+        *ngFor="let product of getFilteredProducts() ">
+          <div class="col-4 "> 
+            <app-product-thumbnail-comp
+            [inputProduct]="product"> 
+            </app-product-thumbnail-comp>
+            <!-- qui devo fare un collegamento della list con il component -->
+           <!-- <div class="product-thumbnail">
             <div class="img-wrap" [ngStyle]="{ backgroundImage:'url(' + list.url + ')'}"></div>
             <div class="favorite-button clickable" 
               [ngClass]="{'added' : wishlistService.isItemInWishlist(list)}"
               (click)="wishlistService.toogleItemInWishlist(list)">
-              <!-- Controllare quantity al posto di event-->
+              
               <fa-icon [icon]="['fas', 'heart']" ></fa-icon>
             </div> 
             <p>{{list.name}}</p>
@@ -25,6 +31,7 @@
             <button type="button" class="btn btn-warning"
             (click)="cartService.addItemsToCart(1,list,list.price)"
             >Acquista</button>
+            </div> -->
           </div>
         </ng-container>
 

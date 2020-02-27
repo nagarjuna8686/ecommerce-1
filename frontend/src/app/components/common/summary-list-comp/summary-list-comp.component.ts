@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-summary-list-comp',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SummaryListCompComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public cartService : CartService
+  ) { 
+    
+  }
 
   ngOnInit(): void {
   }
