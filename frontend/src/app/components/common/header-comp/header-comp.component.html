@@ -10,29 +10,29 @@
       </div>
       <div class="col-7">
         <form (ngSubmit)="search()">
-          <div class="input-group mb-1">
-            <input 
+        <div class="input-group mb-1">
+          <input 
               type="text" 
               class="form-control" 
               name="seachTerm"
               placeholder="Inserisci prodotto" 
               [(ngModel)]="term">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" 
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" 
                 (click)="search()"
                 type="button">
                 <fa-icon [icon]="['fas', 'search']"></fa-icon>
-              </button>
-            </div>
-          </div> <!-- fine input group mb 1-->
-        </form>
+            </button>
+          </div>
+        </div> <!-- fine input group mb 1-->
+      </form>
       </div>
       <div class="col 1">
         <div class="cuorePrincipale">
           <div class="cuoreContainer">
              <app-summary-wishlist-comp> </app-summary-wishlist-comp>    
           </div>
-        </div>
+        </div>cd
       </div>
       <div class="col 1">
         <!-- si chiama cuore ma è riferito al login-->
@@ -43,16 +43,11 @@
         </div>
       </div>
       <div class="col ">
-        
         <div class="cartPrincipale">
           <div class="cartContainer">
-            
-              
-              <fa-icon [icon]="['fas', 'shopping-cart']" class=""></fa-icon>
-              <app-summary-list-comp>
-
-              </app-summary-list-comp>
-              <!-- <label class="cart" *ngIf = "cartService.getTotalItemsCart()" >
+            <div class="dropdown">
+              <fa-icon class="clickable" routerLink="/shopping-cart-comp" [icon]="['fas', 'shopping-cart']"></fa-icon>
+              <label class="cart" *ngIf = "cartService.getTotalItemsCart()" >
                 {{cartService.getTotalItemsCart()}}
               </label>
               <div class="dropdown-body" *ngFor ="let item of cartService.items"> 
@@ -67,11 +62,12 @@
                     <fa-icon class="dimIcon" (click)="cartService.decrementItemQuantityInCart(item)" 
                     [icon]="['fas', 'minus-square']"></fa-icon>
                     <fa-icon class="dimIcon" (click)="cartService.removeItemFromCart(item)"
-                    [icon]="['fas', 'trash']"></fa-icon></div>
-              </div> dropdown-body-->              
-               <!-- dropdown-->
-          </div> <!-- cartcontainer-->
-            </div> <!-- cartprincipale-->
+                    [icon]="['fas', 'trash']"></fa-icon>
+                  </div>        
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+    </div>
   </nav>
