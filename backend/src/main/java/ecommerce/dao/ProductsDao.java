@@ -13,6 +13,7 @@ import javax.ejb.Stateless;
 import javax.sql.DataSource;
 
 import ecommerce.dto.ProductsDto;
+import ecommerce.exceptions.EcommerceException;
 
 @Stateless
 public class ProductsDao {
@@ -20,23 +21,13 @@ public class ProductsDao {
 	@Resource(lookup = "java:/jdbc/ecommerce")
 	private DataSource ds;
 
-	public List<ProductsDto> selectAll() {
+	public List<ProductsDto> selectAll() throws EcommerceException {
 
 		List<ProductsDto> productsReg = new ArrayList<>();
 		try {
-				// select prices.isDiscounted from prices inner join products where prices.productID = products. prodcutsID
-			
+
 			Connection conn = ds.getConnection();
-			
-			//String sql = "";
-			
-			
-			
-			
-			
-			
-			
-			
+
 			String sql = "select products.* , prices.price, prices.isDiscounted, prices.discount, prices.discountedPrice from products inner join prices on products.productID = prices.productID ";
 			PreparedStatement select_stmt = conn.prepareStatement(sql);
 			ResultSet result = select_stmt.executeQuery();
@@ -53,7 +44,8 @@ public class ProductsDao {
 				double discount = result.getDouble(9);
 				double discountedPrice = result.getDouble(10);
 
-				productsReg.add(new ProductsDto(productID, name, price, template, brand, description, url, isDiscounted, discount, discountedPrice));
+				productsReg.add(new ProductsDto(productID, name, price, template, brand, description, url, isDiscounted,
+						discount, discountedPrice));
 			}
 
 			result.close();
@@ -61,14 +53,14 @@ public class ProductsDao {
 			conn.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
 
 		return productsReg;
 
 	}
 
-	public List<ProductsDto> selectByName(String cond) {
+	public List<ProductsDto> selectByName(String cond) throws EcommerceException {
 
 		List<ProductsDto> productsReg = new ArrayList<>();
 
@@ -93,7 +85,8 @@ public class ProductsDao {
 				double discount = result.getDouble(9);
 				double discountedPrice = result.getDouble(10);
 
-				productsReg.add(new ProductsDto(productID, name, price, template, brand, description, url, isDiscounted, discount, discountedPrice));
+				productsReg.add(new ProductsDto(productID, name, price, template, brand, description, url, isDiscounted,
+						discount, discountedPrice));
 			}
 
 			result.close();
@@ -101,14 +94,14 @@ public class ProductsDao {
 			conn.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
 
 		return productsReg;
 
 	}
 
-	public List<ProductsDto> selectById(String cond) {
+	public List<ProductsDto> selectById(String cond) throws EcommerceException {
 
 		List<ProductsDto> productsReg = new ArrayList<>();
 
@@ -133,7 +126,8 @@ public class ProductsDao {
 				double discount = result.getDouble(9);
 				double discountedPrice = result.getDouble(10);
 
-				productsReg.add(new ProductsDto(productID, name, price, template, brand, description, url, isDiscounted, discount, discountedPrice));
+				productsReg.add(new ProductsDto(productID, name, price, template, brand, description, url, isDiscounted,
+						discount, discountedPrice));
 			}
 
 			result.close();
@@ -141,20 +135,20 @@ public class ProductsDao {
 			conn.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
 
 		return productsReg;
 
 	}
 
-	public void insert(ProductsDto pdto) {
+	public int insert(ProductsDto pdto) throws EcommerceException {
 
+		int flag = 0;
 		try {
 
 			Connection conn = ds.getConnection();
-			String sql = " insert into products (name, template, brand, description, url)"
-					+ " values (?, ?, ?, ?, ?)";
+			String sql = " insert into products (name, template, brand, description, url)" + " values (?, ?, ?, ?, ?)";
 
 			PreparedStatement insert_statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			insert_statement.setString(1, pdto.getName());
@@ -163,7 +157,7 @@ public class ProductsDao {
 			insert_statement.setString(4, pdto.getDescription());
 			insert_statement.setString(5, pdto.getUrl());
 
-			insert_statement.executeUpdate();
+			flag = insert_statement.executeUpdate();
 
 			ResultSet result = insert_statement.getGeneratedKeys();
 			int id = -1;
@@ -187,30 +181,37 @@ public class ProductsDao {
 			conn.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
+
+		return flag;
 	}
 
-	public void delete(String cond) {
+	public int delete(String cond) throws EcommerceException {
 
+		int flag = 0;
 		try {
 			Connection conn = ds.getConnection();
 			String sql = "delete from products where productID = ?";
 
 			PreparedStatement delete_stmt = conn.prepareStatement(sql);
 			delete_stmt.setString(1, cond);
-			delete_stmt.execute();
+			flag = delete_stmt.executeUpdate();
 
 			delete_stmt.close();
 			conn.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
+
+		return flag;
 
 	}
 
-	public void update(ProductsDto pdto) {
+	public int update(ProductsDto pdto) throws EcommerceException {
+
+		int flag = 0;
 		try {
 
 			Connection conn = ds.getConnection();
@@ -224,14 +225,16 @@ public class ProductsDao {
 			update_statement.setString(5, pdto.getUrl());
 			update_statement.setInt(6, pdto.getProductID());
 
-			update_statement.executeUpdate();
+			flag = update_statement.executeUpdate();
 
 			update_statement.close();
 			conn.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
+
+		return flag;
 
 	}
 

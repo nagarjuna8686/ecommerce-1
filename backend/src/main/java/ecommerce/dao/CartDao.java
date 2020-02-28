@@ -12,6 +12,7 @@ import javax.ejb.Stateless;
 import javax.sql.DataSource;
 
 import ecommerce.dto.CartDto;
+import ecommerce.exceptions.EcommerceException;
 
 @Stateless
 public class CartDao {
@@ -19,7 +20,7 @@ public class CartDao {
 	@Resource(lookup = "java:/jdbc/ecommerce")
 	private DataSource ds;
 
-	public List<CartDto> selectAll() {
+	public List<CartDto> selectAll() throws EcommerceException {
 
 		List<CartDto> cartReg = new ArrayList<>();
 
@@ -43,13 +44,13 @@ public class CartDao {
 			conn.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
 		return cartReg;
 
 	}
 
-	public List<CartDto> selectById(String cond) {
+	public List<CartDto> selectById(String cond) throws EcommerceException {
 
 		List<CartDto> cartReg = new ArrayList<>();
 
@@ -75,14 +76,15 @@ public class CartDao {
 			conn.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
 		return cartReg;
 
 	}
 
-	public void insert(int usid, int prodid) {
+	public int insert(int usid, int prodid) throws EcommerceException {
 
+		int flag = 0;
 		try {
 
 			Connection conn = ds.getConnection();
@@ -111,18 +113,21 @@ public class CartDao {
 			insert_statement.setInt(1, usid);
 			insert_statement.setInt(2, prodid);
 
-			insert_statement.executeUpdate();
+			flag = insert_statement.executeUpdate();
 
 			insert_statement.close();
 			conn.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
+		
+		return flag;
 	}
 
-	public void delete(String cond) {
+	public int delete(String cond) throws EcommerceException {
 
+		int flag = 0;
 		try {
 
 			Connection conn = ds.getConnection();
@@ -130,14 +135,15 @@ public class CartDao {
 
 			PreparedStatement delete_stmt = conn.prepareStatement(sql);
 			delete_stmt.setString(1, cond);
-			delete_stmt.execute();
+			flag = delete_stmt.executeUpdate();
 
 			delete_stmt.close();
 			conn.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
+		return flag;
 
 	}
 
