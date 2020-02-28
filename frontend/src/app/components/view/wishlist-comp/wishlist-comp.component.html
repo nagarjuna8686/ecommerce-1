@@ -7,29 +7,23 @@
 <div class="container">
    <div class="card shopping-cart">
             <div class="card-header bg-dark text-light">
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                <i class="fa fa-shopping-cart " aria-hidden="true"></i>
                 Wishlist
                 <div class="clearfix"></div>
             </div>
             <div class="card-body">
                     <!-- PRODUCT -->
                     <div class="row">
-                        <div class="col-12 col-sm-12 col-md-2 text-center">
+                        <div class="col-12 col-sm-12 col-md-2 text-center" *ngFor="let product of WishlistService.products">
                                 <img class="img-responsive" src="http://placehold.it/120x80" alt="prewiew" width="120" height="80">
                         </div>
-                        <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
-                            <h4 class="product-name">
-                                <strong>
-                                    Product Name
-                                </strong>
-                            </h4>
-                            <h4>
-                                <small>Product description</small>
-                            </h4>
+                        <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">                
+                            <p class="textInfo"> {{product.name}}  </p>
+                            <h4><small>{{product.description}}</small></h4>
                         </div>
                         <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
                             <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
-                                <h6><strong>25.00$ <span class="text-muted"></span></strong></h6>
+                                <h6><strong>{{product.price}} <span class="text-muted"></span></strong></h6>
                             </div>
                         </div>
                     </div>
