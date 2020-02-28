@@ -38,6 +38,8 @@ public class CartDao {
 				cartReg.add(new CartDto(cartID, userID, productID));
 			}
 
+			result.close();
+			select_stmt.close();
 			conn.close();
 
 		} catch (SQLException e) {
@@ -57,7 +59,6 @@ public class CartDao {
 			String sql = "select  * from cart where cartID = ?";
 			PreparedStatement select_stmt = conn.prepareStatement(sql);
 			select_stmt.setString(1, cond);
-			
 
 			ResultSet result = select_stmt.executeQuery(sql);
 
@@ -69,6 +70,8 @@ public class CartDao {
 				cartReg.add(new CartDto(cartID, userID, productID));
 			}
 
+			result.close();
+			select_stmt.close();
 			conn.close();
 
 		} catch (SQLException e) {
@@ -83,9 +86,9 @@ public class CartDao {
 		try {
 
 			Connection conn = ds.getConnection();
-			
+
 //			eventuale query di select per recueprare userID e productID 
-			
+
 //			String sql = "select  * from users where userID = ?";
 //			PreparedStatement select_stmt = conn.prepareStatement(sql);
 //			select_stmt.setInt(1, usid);
@@ -101,7 +104,7 @@ public class CartDao {
 //			while (resultP.next()) {
 //			usid = resultP.getInt(1);
 //			}
-			
+
 			String sql = " insert into cart (userID, productID)" + " values (?, ?)";
 
 			PreparedStatement insert_statement = conn.prepareStatement(sql);
@@ -110,6 +113,7 @@ public class CartDao {
 
 			insert_statement.executeUpdate();
 
+			insert_statement.close();
 			conn.close();
 
 		} catch (SQLException e) {
@@ -127,6 +131,8 @@ public class CartDao {
 			PreparedStatement delete_stmt = conn.prepareStatement(sql);
 			delete_stmt.setString(1, cond);
 			delete_stmt.execute();
+
+			delete_stmt.close();
 			conn.close();
 
 		} catch (SQLException e) {
