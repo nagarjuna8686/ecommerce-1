@@ -11,6 +11,6 @@ import {
 
 export class AppComponent {
 
-  constructor(){}
+  constructor() {}
 
-} //fine totale
+} // fine totale

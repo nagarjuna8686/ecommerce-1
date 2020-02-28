@@ -1,0 +1,41 @@
+.footerContainer{
+    
+    background-color: #313036;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 100%;
+    margin-top: 15px;
+    height: 150px;
+
+}
+.elementInfo{
+    /* padding-bottom: 50px; */
+}
+p{  
+    margin-left: 15px;
+    margin-top: 5px;
+    color: white;
+    font-family: 'Noto Sans';
+}
+
+.textInfo{
+    height: 50%;
+}
+
+.bottomInfo{
+
+    background-color: #353a40;
+    width: 12000px;
+    height: 50px;
+}
+
+.link{
+    padding: 12px;
+    color:white;
+  
+}
+
+.iconGit{
+    font-size: 15pt;
+    color: aliceblue;
+}
