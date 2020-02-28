@@ -69,11 +69,22 @@ export class CartService {
     else if(item.quantity > 0)
       this.removeItemFromCart(item);
   }
-  /*
+      /*
         routing come fare pagine diverse in angular,
         pagina di login che si interfaccia, authentication service.
         angular chiamate rest e interfaccia api
       */
+
+      getCartTotalAmount = ():number => {
+        let t = 0;
+        // ciclo su ogni item di items  (documentazione array.forEach() => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
+          // se il prodotto dell'item ha un discountPrice  
+            // incremento t di quantità * discountprice del prodotto
+          // altrimenti
+            // incremento t di quantità * price del prodotto
+        // fine ciclo su ogni item
+        return t;
+      }
   }
 
 
