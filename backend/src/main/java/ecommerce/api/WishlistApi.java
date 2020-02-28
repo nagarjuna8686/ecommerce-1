@@ -36,7 +36,7 @@ import ecommerce.dto.WishlistDto;
 		@Path("/getWishByID/{wishlistID}")
 		public List<WishlistDto> getWishlistBYUserID(@PathParam("wishlistID") int id) {
 			List<WishlistDto> listaWishlist = new ArrayList<>();
-			listaWishlist = wishlistdao.selectByUserID(id);
+			listaWishlist = wishlistdao.selectByWishID(id);
 			return listaWishlist;
 		}
 		
