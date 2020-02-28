@@ -5,16 +5,17 @@
 
 <script src="https://use.fontawesome.com/c560c025cf.js"></script>
 <div class="container">
-   <div class="card shopping-cart">
+   <div class="card shopping-cart" *ngIf="wishlistService.getTotalItems()">
             <div class="card-header bg-dark text-light">
                 <i class="fa fa-shopping-cart " aria-hidden="true"></i>
                 Wishlist
                 <div class="clearfix"></div>
             </div>
-            <div class="card-body">
+            <div class="card-body" >
                     <!-- PRODUCT -->
-                    <div class="row">
-                        <div class="col-12 col-sm-12 col-md-2 text-center" *ngFor="let product of WishlistService.products">
+                    <div class="row" *ngFor="let product of wishlistService.products">
+                        <div class="col-12 col-sm-12 col-md-2 text-center" >
+                            Ciao
                                 <img class="img-responsive" src="http://placehold.it/120x80" alt="prewiew" width="120" height="80">
                         </div>
                         <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">                
