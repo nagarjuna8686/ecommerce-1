@@ -14,60 +14,32 @@
             </div>
             <div class="card-body">
                     <!-- PRODUCT -->
-                    <div class="row">
+                    <div class="row" *ngFor="let item of cartService.items ">
                         <div class="col-12 col-sm-12 col-md-2 text-center">
-                                <img class="img-responsive" src="http://placehold.it/120x80" alt="prewiew" width="120" height="80">
+                                <img class="img-responsive" src={{item.product.url}} alt="prewiew" width="120" height="80">
                         </div>
                         <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
                             <h4 class="product-name">
                                 <strong>
-                                    Product Name
+                                    {{item.product.name}}
                                 </strong>
                             </h4>
                             <h4>
-                                <small>Product description</small>
+                                <small>{{item.product.description}}</small>
                             </h4>
                         </div>
                         <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
                             <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
-                                <h6><strong>25.00$ <span class="text-muted"></span></strong></h6>
+                                <h6><strong>{{item.product.price}}$ <span class="text-muted"></span></strong></h6>
                             </div>
                             <div class="col-4 col-sm-4 col-md-4">
                                 <div class="quantity">
                                     <!--<input type="button" value="+" class="plus">-->
-                                    <input type="number" step="1" max="99" min="1" value="1" title="Qty" class="qty" size="4">
+                                    <input type="number" step="1" max="99" min="1" value={{item.quantity}} title="Qty" class="qty" size="4">
                                     <!--<input type="button" value="-" class="minus">-->
                                 </div>
                             </div>
                            
-                        </div>
-                    </div>
-                    <hr>
-                    <!-- END PRODUCT -->
-                    <!-- PROVA NGFOR SU PRODOTTI-->
-
-
-                    <!-- PRODUCT  da sostituire con un ngFor sui prodotti-->
-                    <div class="row">
-                        <div class="col-12 col-sm-12 col-md-2 text-center">
-                                <img class="img-responsive" src="http://placehold.it/120x80" alt="prewiew" width="120" height="80">
-                        </div>
-                        <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
-                            <h4 class="product-name"><strong>Product Name</strong></h4>
-                            <h4>
-                                <small>Product description</small>
-                            </h4>
-                        </div>
-                        <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
-                            <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
-                                <h6><strong>25.00$ <span class="text-muted"></span></strong></h6>
-                            </div>
-                            <div class="col-4 col-sm-4 col-md-4">
-                                <div class="quantity">
-                                    <input type="number" step="1" max="99" min="1" value="1" title="Qty" class="qty"
-                                           size="4">
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <hr>
@@ -92,7 +64,7 @@
                 <div class="pull-right" style="margin: 10px">
                     <a href="" class="btn btn-success pull-right">Checkout</a>
                     <div class="pull-right" style="margin: 5px">
-                        Totale: <b>50.00€</b>
+                        Totale: <b> {{cartService.getCartTotalAmount()}}€</b>
                     </div>
                 </div>
             </div>
