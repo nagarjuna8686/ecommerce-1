@@ -54,12 +54,26 @@ details[open] summary {
     
   }
   
-  .textInfo{
+  .textName{
     padding-left: 15px;
     padding-top: 5px;
-    
+    padding-right: 15px;
     font-size: 12pt;
-    font-family: 'Archivo Bold';
+    font-family: 'Roboto Black';
+  }
+  .textQta{
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-right: 15px;
+    font-size: 12pt;
+    font-family: 'Roboto Medium';
+  }
+  .textPrice{
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-right: 15px;
+    font-size: 12pt;
+    font-family: 'Roboto Medium';
   }
   
   .cuorePrincipale .colorLabel{
@@ -82,7 +96,7 @@ details[open] summary {
   
  
   .cart {
-    
+
     color:white;
     font-size: 12pt;
     font-family: 'Archivo Black';
@@ -93,16 +107,45 @@ details[open] summary {
     margin: 10px 10px 10px 10px;
 
   }
+
+  .colorIconPlus{
+    color: green;
+  }
+
+  .colorIconMinus{
+    color: crimson;
+  }
+
+  .angle{
+    
+    position: absolute;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 7px;
+    -moz-transform: skew(-45deg);
+    transform: (12px,30px);
+    -webkit-transform: skew(-45deg);
+    transform: translate(90px,-8px);
+    background-color: white;
+    height: 10px;
+    width: 10px;
+    box-shadow: 1px -7px 5px rgba(50, 50, 50, 0.7);
+    z-index: 2;
+
+  }
   
   .dropdown-body{
     display: none;
+    border-radius: 10px 10px 10px 10px;
     height:80%;
-    width: 100%;
+    width: 200px;
+    transform: translate(-80px,3px);
     background-color: white;
-    border-style: solid;
+    /* border-style: solid; */
+    box-shadow: 1px 0px 5px 2px rgb(12, 12, 12);
     border-color: black;
     font-size: 10pt;
     color:black;
+    z-index: 3;
   }
   
   .colorItem{
