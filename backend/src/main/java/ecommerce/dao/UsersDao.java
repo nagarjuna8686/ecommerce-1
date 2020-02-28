@@ -1,4 +1,5 @@
 package ecommerce.dao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +13,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import ecommerce.dto.PasswordsDto;
 import ecommerce.dto.UsersDto;
 import ecommerce.exceptions.EcommerceException;
+import mail.SendEmail;
 
 @Stateless
 public class UsersDao {
@@ -247,6 +249,29 @@ public class UsersDao {
 				throw new EcommerceException(e.getMessage());
 			}
 			return;
+		}
+	}
+
+	public void resetPAssword(UsersDto udto) {
+		Connection conn;
+		SendEmail se = new SendEmail();
+		String sql;
+		try {
+			conn = ds.getConnection();
+			sql = "select email from users where email = ?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, udto.getEmail());
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				se.mail(rs.getString(1));
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

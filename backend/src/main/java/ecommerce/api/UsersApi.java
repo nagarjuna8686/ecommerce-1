@@ -95,5 +95,12 @@ public class UsersApi {
 		return Response.status(Status.NOT_FOUND).build();
 	}
 	
+	@POST
+	@Path("/resetPassword")
+	public Response resetPasswordByEmail(UsersDto udto) {
+		userdao.resetPAssword(udto);
+		return Response.status(Status.NO_CONTENT).build();
+	}
+	
 	
 }
