@@ -252,7 +252,7 @@ public class UsersDao {
 		}
 	}
 
-	public void resetPAssword(UsersDto udto) {
+	public void resetPassword(UsersDto udto) {
 		Connection conn;
 		SendEmail se = new SendEmail();
 		String sql;
