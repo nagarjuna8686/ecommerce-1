@@ -60,7 +60,7 @@ export class CatalogComponent implements OnInit {
       price: 950,
       model: "intel",
       brand: "microsoft",
-      description: "13, Core i5, RAM 8 GB, SSD 128 GB, Platinum ",
+      description: "13, Core i5, RAM 8 GB, SSD 128 GB, Platinum, 13, Core i5, RAM 8 GB, SSD 128 GB, Platinum 13, Core i5, RAM 8 GB, SSD  ",
       url: 'https://m.media-amazon.com/images/I/71P2UAK2RJL._AC_UY327_FMwebp_QL65_.jpg'
     },
     {
@@ -80,7 +80,7 @@ export class CatalogComponent implements OnInit {
       discountPrice: 199,
       model: "intel",
       brand: "lenovo",
-      description: " HD, Processore Intel N5000, 128 GB SSD, RAM 4 GB, Windows 10, Midnight Blue",
+      description: " HD, Processore Intel N5000, 128 GB SSD, RAM 4 GB, Windows 10, Midnight Blue, RAM 4 GB, Windows 10, Midnight Blue",
       url: 'https://m.media-amazon.com/images/I/71+kX8rAB7L._AC_UY327_FMwebp_QL65_.jpg'
     },
     {

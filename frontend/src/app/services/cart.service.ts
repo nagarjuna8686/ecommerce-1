@@ -21,13 +21,12 @@ export class CartService {
   }
 
   
-  getTotPrice = (quantity,product,price) => {
+  getTotPrice = (quantity,product) => {
     const ci: CartItem = {
       quantity:quantity,
       product:product,
-      price:price
     }
-    this.items.find(i=>i.product.id !== product.id).price //da completare perché non so contare
+    this.items.find(i=>i.product.id !== product.id).product.price //da completare perché non so contare
   }
 
   addItemsToCart = (quantity,product,price) => {
