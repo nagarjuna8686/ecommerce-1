@@ -25,7 +25,20 @@
                             <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
                                 <h6><strong>{{product.price | currency:'EUR'}} <span class="text-muted"></span></strong></h6>
                             </div>
-                        </div>
+                       
+                        <fa-icon class="colorIconPlus" 
+                        (click)="cartService.incrementItemQuantityInCart(item)" 
+                        [icon]="['fas', 'plus-circle']">  
+                        </fa-icon>  
+                        <fa-icon class="colorIconMinus" 
+                        (click)="cartService.decrementItemQuantityInCart(item)" 
+                        [icon]="['fas', 'minus-circle']">
+                        </fa-icon>
+                        <fa-icon class="dimIcon" 
+                        (click)="cartService.removeItemFromCart(item)" 
+                        [icon]="['fas', 'trash-alt']">
+                        </fa-icon>
+                    </div>
                     </div>
                     <hr>
                     <!-- END PRODUCT -->
