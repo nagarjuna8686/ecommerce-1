@@ -16,22 +16,6 @@
             <app-product-thumbnail-comp
             [inputProduct]="product"> 
             </app-product-thumbnail-comp>
-            <!-- qui devo fare un collegamento della list con il component -->
-           <!-- <div class="product-thumbnail">
-            <div class="img-wrap" [ngStyle]="{ backgroundImage:'url(' + list.url + ')'}"></div>
-            <div class="favorite-button clickable" 
-              [ngClass]="{'added' : wishlistService.isItemInWishlist(list)}"
-              (click)="wishlistService.toogleItemInWishlist(list)">
-              
-              <fa-icon [icon]="['fas', 'heart']" ></fa-icon>
-            </div> 
-            <p>{{list.name}}</p>
-            <p class="descrizione dimDescr">{{list.description}}</p>
-            <p>{{list.price | currency:'EUR' }} </p>
-            <button type="button" class="btn btn-warning"
-            (click)="cartService.addItemsToCart(1,list,list.price)"
-            >Acquista</button>
-            </div> -->
           </div>
         </ng-container>
 

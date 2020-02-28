@@ -11,11 +11,41 @@
 .dropdown:hover .dropdown-body{
     display: block;
   }
+
+  .textName{
+      padding-left: 15px;
+      padding-top: 5px;
+      padding-right: 15px;
+      font-size: 12pt;
+      font-family: 'Roboto Black';
+    
+  }
+
+  .dropdown-body{
+    display: none;
+    border-radius: 10px 10px 10px 10px;
+    height:80%;
+    width: 200px;
+    transform: translate(-80px,3px);
+    background-color: white;
+    /* border-style: solid; */
+    box-shadow: 1px 0px 5px 2px rgb(12, 12, 12);
+    border-color: black;
+    font-size: 10pt;
+    color:black;
+    z-index: 3;
+  }
   
 .dropdown-menu {
     z-index: 2;
   }  
 
+.positionIcon{
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 15pt;
+  margin-bottom: 15px;
+}
 .wish {
   padding: 20px 20px 20px 20px;
   left: 0px;

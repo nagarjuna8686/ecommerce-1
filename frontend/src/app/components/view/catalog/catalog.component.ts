@@ -56,12 +56,21 @@ export class CatalogComponent implements OnInit {
     },
     {
       id: 2,
-      name: "Microsoft Surface Laptop 3",
+      name: "Asus ROG STRIX B450-F GAMING",
       price: 950,
-      model: "intel",
-      brand: "microsoft",
-      description: "13, Core i5, RAM 8 GB, SSD 128 GB, Platinum, 13, Core i5, RAM 8 GB, SSD 128 GB, Platinum 13, Core i5, RAM 8 GB, SSD  ",
-      url: 'https://m.media-amazon.com/images/I/71P2UAK2RJL._AC_UY327_FMwebp_QL65_.jpg'
+      model: "msi",
+      brand: "asus",
+      description: "Scheda Madre da Gioco con Supporto DDR4 a 3200 MHz, SATA 6 Gbps, HDMI 2.0, Doppia NVMe M.2, USB 3.1, Nero",
+      url: 'https://images-eu.ssl-images-amazon.com/images/I/51nydcx-hVL._AC_SY200_.jpg'
+    },
+    {
+      id: 10,
+      name: "DJI Ryze Tello Mini Drone ",
+      price: 89.99,
+      model: "minidrone",
+      brand: "dji",
+      description: "Ottimo per Creare Video con EZ Shots, Occhiali VR e Compatibilità con Controller di Gioco, Trasmissione HD a 720p e Raggio di 10",
+      url: 'https://images-eu.ssl-images-amazon.com/images/I/41JDK1EKRqL._AC_US300_FMwebp_QL65_.jpg'
     },
     {
       id: 3,
@@ -73,6 +82,7 @@ export class CatalogComponent implements OnInit {
       description: "Un bellissimo computer con 4GB di ram \n pronto a far laggare tutto testo di prova fantastico testo di prova fantastico ",
       url: 'https://m.media-amazon.com/images/I/417eOIvJS7L._AC_UY327_FMwebp_QL65_.jpg'
     },
+    
     {
       id: 4,
       name: "Lenovo Ideapad S130 Notebook, Display 14",
@@ -119,6 +129,7 @@ export class CatalogComponent implements OnInit {
       description: "Un bellissimo computer con 4GB di ram \n pronto a far laggare tutto testo di prova fantastico testo di prova fantastico ",
       url: 'https://m.media-amazon.com/images/I/61WXqkBAocL._AC_UY218_ML3_.jpg'
     },
+    
     
 
   ] 

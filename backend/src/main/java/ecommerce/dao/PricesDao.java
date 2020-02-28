@@ -14,6 +14,7 @@ import javax.ejb.Stateless;
 import javax.sql.DataSource;
 
 import ecommerce.dto.PricesDto;
+import ecommerce.exceptions.EcommerceException;
 
 @Stateless
 public class PricesDao {
@@ -21,7 +22,7 @@ public class PricesDao {
 	@Resource(lookup = "java:/jdbc/ecommerce")
 	private DataSource ds;
 
-	public List<PricesDto> selectAll() {
+	public List<PricesDto> selectAll() throws EcommerceException {
 
 		List<PricesDto> pricesReg = new ArrayList<>();
 
@@ -51,14 +52,14 @@ public class PricesDao {
 			conn.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
 
 		return pricesReg;
 
 	}
 
-	public List<PricesDto> selectByID(PricesDto prdto) {
+	public List<PricesDto> selectByID(PricesDto prdto) throws EcommerceException {
 
 		List<PricesDto> pricesReg = new ArrayList<>();
 
@@ -90,33 +91,39 @@ public class PricesDao {
 			conn.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
 
 		return pricesReg;
 
 	}
 
-	public void delete(PricesDto prdto) {
+	public int delete(PricesDto prdto) throws EcommerceException {
 
+		int flag = 0;
 		try {
 			Connection conn = ds.getConnection();
 			String sql = "delete from prices where priceID = ?";
 
 			PreparedStatement delete_stmt = conn.prepareStatement(sql);
 			delete_stmt.setInt(1, prdto.getPriceID());
-			delete_stmt.execute();
+			flag = delete_stmt.executeUpdate();
 
 			delete_stmt.close();
 			conn.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
+		
+		return flag;
 
 	}
 
-	public void updatePrice(PricesDto prdto) {
+	
+	
+	public int updatePrice(PricesDto prdto) throws EcommerceException {
+		int flag = 0;
 		try {
 
 			Connection conn = ds.getConnection();
@@ -159,7 +166,7 @@ public class PricesDao {
 			update_statement2.setDate(2, bDate);
 			update_statement2.setDate(3, eDate);
 
-			update_statement2.executeUpdate();
+			flag = update_statement2.executeUpdate();
 
 			update_statement2.close();
 
@@ -170,7 +177,7 @@ public class PricesDao {
 			update_statement3.setDate(2, bDate);
 			update_statement3.setDate(3, eDate);
 
-			update_statement3.executeUpdate();
+			flag = update_statement3.executeUpdate();
 
 			update_statement3.close();
 
@@ -199,7 +206,7 @@ public class PricesDao {
 				update_statement4.setDouble(3, prdto.getPrice());
 				update_statement4.setInt(4, prdto.getPriceID());
 
-				update_statement4.executeUpdate();
+				flag = update_statement4.executeUpdate();
 
 				update_statement4.close();
 
@@ -212,19 +219,22 @@ public class PricesDao {
 				// update_statement2.setDouble(2, prdto.getPrice());
 				update_statement5.setInt(2, prdto.getPriceID());
 
-				update_statement5.executeUpdate();
+				flag = update_statement5.executeUpdate();
 
 				update_statement5.close();
 				conn.close();
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
+		
+		return flag;
 
 	}
 
-	public void setDiscountDates(PricesDto prdto) {
+	public int setDiscountDates(PricesDto prdto) throws EcommerceException {
 
+		int flag = 0;
 		try {
 			Connection conn = ds.getConnection();
 
@@ -234,14 +244,16 @@ public class PricesDao {
 			update_statement.setString(1, prdto.getBeginDate());
 			update_statement.setString(2, prdto.getEndDate());
 			update_statement.setInt(3, prdto.getPriceID());
-			update_statement.executeUpdate();
+			flag = update_statement.executeUpdate();
 
 			update_statement.close();
 			conn.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
+		
+		return flag;
 	}
 
 //	METODO PRECEDENTE PER UPDATE DEL DISCOUNT (VEDI PricesApi)

@@ -12,6 +12,7 @@ import javax.ejb.Stateless;
 import javax.sql.DataSource;
 
 import ecommerce.dto.WishlistDto;
+import ecommerce.exceptions.EcommerceException;
 
 @Stateless
 public class WishlistDao {
@@ -19,7 +20,7 @@ public class WishlistDao {
 	@Resource(lookup = "java:/jdbc/ecommerce")
 	private DataSource ds;
 
-	public List<WishlistDto> selectAll() {
+	public List<WishlistDto> selectAll() throws EcommerceException {
 
 		List<WishlistDto> wishReg = new ArrayList<>();
 
@@ -42,14 +43,14 @@ public class WishlistDao {
 			conn.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
 
 		return wishReg;
 
 	}
 
-	public List<WishlistDto> selectByWishID(int wishlistID) {
+	public List<WishlistDto> selectByWishID(int wishlistID) throws EcommerceException {
 
 		List<WishlistDto> wishReg = new ArrayList<>();
 
@@ -73,15 +74,16 @@ public class WishlistDao {
 			conn.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
 
 		return wishReg;
 
 	}
 
-	public void insert(int userID, int prodID) {
+	public int insert(int userID, int prodID) throws EcommerceException {
 
+		int flag = 0;
 		try {
 			Connection conn = ds.getConnection();
 			String sql = " insert into wishlist ( userID, productID)" + " values (?, ?)";
@@ -89,17 +91,21 @@ public class WishlistDao {
 			PreparedStatement insert_statement = conn.prepareStatement(sql);
 			insert_statement.setInt(1, userID);
 			insert_statement.setInt(2, prodID);
-			insert_statement.executeUpdate();
+			flag = insert_statement.executeUpdate();
 
 			insert_statement.close();
 			conn.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
+		
+		return flag;
 	}
 
-	public void deleteWishlistByID(int wishlistID) {
+	public int deleteWishlistByID(int wishlistID) throws EcommerceException {
+		
+		int flag = 0;
 		try {
 
 			Connection conn = ds.getConnection();
@@ -107,14 +113,16 @@ public class WishlistDao {
 
 			PreparedStatement delete_stmt = conn.prepareStatement(sql);
 			delete_stmt.setInt(1, wishlistID);
-			delete_stmt.execute();
+			flag = delete_stmt.executeUpdate();
 
 			delete_stmt.close();
 			conn.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
+		
+		return flag;
 
 	}
 

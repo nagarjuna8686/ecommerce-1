@@ -10,8 +10,8 @@
   </div>
   <p class="textName"> {{item.product.name}} </p>
   <p class="textQta">Q.tà: {{item.quantity}} </p>
-  <p class="textPrice">Prezzo: {{item.product.price | currency:'EUR'}}</p>
-  
+  <p class="textPrice" *ngIf="item.product.discountPrice">Prezzo: {{item.product.discountPrice | currency:'EUR'}}</p>
+  <p class="textPrice" *ngIf="!item.product.discountPrice">Prezzo: {{item.product.price | currency:'EUR'}}</p>
   <div class="positionIcon">
     <fa-icon class="colorIconPlus" 
     (click)="cartService.incrementItemQuantityInCart(item)" 
