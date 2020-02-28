@@ -12,9 +12,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import ecommerce.dao.ProductsDao;
 import ecommerce.dto.ProductsDto;
+import ecommerce.exceptions.EcommerceException;
 
 @Path(value = "/products")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -25,44 +28,66 @@ public class ProductsApi {
 	ProductsDao productdao;
 
 	@GET
-	public List<ProductsDto> getAllProducts() {
+	public Response getAllProducts() throws EcommerceException{
 		List<ProductsDto> listaProdotti = productdao.selectAll();
-		return listaProdotti;
+		if(listaProdotti==null || listaProdotti.size()==0) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		return Response.ok(listaProdotti).build();
 
 	}
 
 	@GET
 	@Path(value = "/productsByName/{name}")
-	public List<ProductsDto> getProductByName(@PathParam("name") String cond) {
+	public Response getProductByName(@PathParam("name") String cond) throws EcommerceException{
 		List<ProductsDto> listaProdotti = productdao.selectByName(cond);
-		return listaProdotti;
+		if(listaProdotti==null || listaProdotti.size()==0) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		return Response.ok(listaProdotti).build();
+
 	}
 
 	@GET
 	@Path(value = "/productsByID/{productID}")
-	public List<ProductsDto> getProductByID(@PathParam("productID") String cond) {
+	public Response getProductByID(@PathParam("productID") String cond) throws EcommerceException {
 		List<ProductsDto> listaProdotti = productdao.selectById(cond);
-		return listaProdotti;
+		if(listaProdotti==null || listaProdotti.size()==0) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		return Response.ok(listaProdotti).build();
 	}
 
 	@DELETE
 	@Path(value = "/deleteProduct/{productID}")
-	public void deleteProductByID(@PathParam("productID") String cond) {
-		productdao.delete(cond);
+	public Response deleteProductByID(@PathParam("productID") String cond) throws EcommerceException {
+		if(productdao.delete(cond)>0) {
+			return Response.status(Status.NO_CONTENT).build();
+		}
+		return Response.status(Status.CONFLICT).build();
+	
 	}
 
 	@POST
 	@Path(value = "/regProduct")
-	public void registerProduct(ProductsDto pdto) {
-		productdao.insert(pdto);
+	public Response registerProduct(ProductsDto pdto) throws EcommerceException {
+		if(productdao.insert(pdto)>0) {
+			return Response.status(Status.NO_CONTENT).build();
+		}
+		return Response.status(Status.CONFLICT).build();
+	
 	}
 
 	
 	//PER UPDATE DEL PREZZO USARE IL METEODO DI UPDATE PRESENTE IN Prices.Api
 	@PUT
 	@Path(value = "/updateProduct")
-	public void updateProductByID(ProductsDto pdto) {
-		productdao.update(pdto);
+	public Response updateProductByID(ProductsDto pdto) throws EcommerceException {
+		if(productdao.update(pdto)>0) {
+			return Response.status(Status.NO_CONTENT).build();
+		}
+		return Response.status(Status.CONFLICT).build();
+	
 	}
 
 }

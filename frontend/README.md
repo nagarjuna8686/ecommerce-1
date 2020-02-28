@@ -1,3 +1,9 @@
 # ecommerce
 
-Ecommerce frontend 
+
+**Developer:**
+- twopill
+- Calamity1996
+
+**version:**
+  1
