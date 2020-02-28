@@ -25,9 +25,6 @@ public class UsersDto {
 		this.token = token;
 	}
 	
-	
-	
-	
 	public int getUserID() {
 		return userID;
 	}

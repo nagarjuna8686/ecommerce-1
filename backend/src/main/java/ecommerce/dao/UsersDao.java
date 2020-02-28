@@ -1,5 +1,4 @@
 package ecommerce.dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,9 +8,10 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.sql.DataSource;
-
-
+import org.apache.commons.lang3.RandomStringUtils;
+import ecommerce.dto.PasswordsDto;
 import ecommerce.dto.UsersDto;
+import ecommerce.exceptions.EcommerceException;
 
 @Stateless
 public class UsersDao {
@@ -19,12 +19,11 @@ public class UsersDao {
 	@Resource(lookup = "java:/jdbc/ecommerce")
 	private DataSource ds;
 
-	public List<UsersDto> selectAll() {
+	public List<UsersDto> selectAll() throws EcommerceException {
 
 		List<UsersDto> usersReg = new ArrayList<>();
 
 		try {
-
 			Connection conn = ds.getConnection();
 			String sql = "select  * from users";
 			PreparedStatement select_stmt = conn.prepareStatement(sql);
@@ -41,28 +40,24 @@ public class UsersDao {
 				String token = result.getString(8);
 				usersReg.add(new UsersDto(userID, email, password, name, surname, birthdate, phone, token));
 			}
-
+			result.close();
+			select_stmt.close();
 			conn.close();
-
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
-
 		return usersReg;
-
 	}
 
-	public List<UsersDto> selectByName(String n) {
+	public List<UsersDto> selectByName(String n) throws EcommerceException {
 
 		List<UsersDto> usersReg = new ArrayList<>();
 
 		try {
-
 			Connection conn = ds.getConnection();
 			String sql = "select  * from users where name = ?";
 			PreparedStatement select_stmt = conn.prepareStatement(sql);
 			select_stmt.setString(1, n);
-
 			ResultSet result = select_stmt.executeQuery();
 
 			while (result.next()) {
@@ -74,30 +69,26 @@ public class UsersDao {
 				String birthdate = result.getString(6);
 				String phone = result.getString(7);
 				String token = result.getString(8);
-
 				usersReg.add(new UsersDto(userID, email, password, name, surname, birthdate, phone, token));
 			}
-
+			result.close();
+			select_stmt.close();
 			conn.close();
-
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
-
 		return usersReg;
 	}
 
-	public List<UsersDto> selectByID(int id) {
+	public List<UsersDto> selectByID(int id) throws EcommerceException {
 
 		List<UsersDto> usersReg = new ArrayList<>();
 
 		try {
-
 			Connection conn = ds.getConnection();
 			String sql = "select  * from users where userID = ?";
 			PreparedStatement select_stmt = conn.prepareStatement(sql);
 			select_stmt.setInt(1, id);
-
 			ResultSet result = select_stmt.executeQuery();
 
 			while (result.next()) {
@@ -109,29 +100,27 @@ public class UsersDao {
 				String birthdate = result.getString(6);
 				String phone = result.getString(7);
 				String token = result.getString(8);
-
 				usersReg.add(new UsersDto(userID, email, password, name, surname, birthdate, phone, token));
 			}
-
+			result.close();
+			select_stmt.close();
 			conn.close();
-
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
-
 		return usersReg;
 	}
 
-	public void insert(UsersDto udto) {
+	public int insert(UsersDto udto) throws EcommerceException {
+		int flag = 0;
 		try {
-
 			Connection conn = ds.getConnection();
 			String sql = "select md5(?) from dual";
 			String pswMD5 = null;
 			PreparedStatement insert_statement = conn.prepareStatement(sql);
 			insert_statement.setString(1, udto.getPassword());
 			ResultSet result = insert_statement.executeQuery();
-			while(result.next()) {
+			while (result.next()) {
 				pswMD5 = result.getString(1);
 			}
 			sql = " insert into users (email, password, name,  surname, birthdate, phone, token)"
@@ -144,89 +133,120 @@ public class UsersDao {
 			insert_statement.setString(4, udto.getSurname());
 			insert_statement.setString(5, udto.getBirthdate());
 			insert_statement.setString(6, udto.getPhone());
-			insert_statement.setString(7, udto.getToken());
-			insert_statement.executeUpdate();
-
-			
+			insert_statement.setString(7, this.genToken());
+			flag = insert_statement.executeUpdate();
+			result.close();
+			insert_statement.close();
 			conn.close();
-
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
+		return flag;
 	}
-	
-	
 
-	public void deleteUser(int userID){
-
+	public int deleteUser(int userID) throws EcommerceException {
+		int flag = 0;
 		try {
-
 			Connection conn = ds.getConnection();
 			String sql = "delete from users where userID = ?";
-
 			PreparedStatement delete_stmt = conn.prepareStatement(sql);
 			delete_stmt.setInt(1, userID);
-			delete_stmt.execute();
+			flag = delete_stmt.executeUpdate();
+			delete_stmt.close();
 			conn.close();
-
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
-
+		return flag;
 	}
-	
-	public void updateUserByID(UsersDto udto) {
-		try {
 
-			Connection conn = ds.getConnection();
-			String sql = "UPDATE users SET email = ?, password = ?, name = ?, surname = ?, birthdate = ?, phone=?, token=? WHERE userID = ?";
-			
-			PreparedStatement insert_statement = conn.prepareStatement(sql);
-			insert_statement.setString(1, udto.getEmail());
-			insert_statement.setString(2, udto.getPassword());
-			insert_statement.setString(3, udto.getName());
-			insert_statement.setString(4, udto.getSurname());
-			insert_statement.setString(5, udto.getBirthdate());
-			insert_statement.setString(6, udto.getPhone());
-			insert_statement.setString(7, udto.getToken());
-			insert_statement.setInt(8, udto.getUserID());
-			insert_statement.executeUpdate();
-	
-			conn.close();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-	}
-	
-	
-
-	public void changeUserPassword(int userID, String password) {
+	public int updateUserByID(UsersDto udto) throws EcommerceException {
+		int flag = 0;
 		try {
 			Connection conn = ds.getConnection();
-			String sql = "select md5(?) from dual";
-			String pswMD5 = null;
-			PreparedStatement insert_statement = conn.prepareStatement(sql);
-			insert_statement.setString(1, password);
-			ResultSet result = insert_statement.executeQuery();
-			while(result.next()) {
-				pswMD5 = result.getString(1);
+			PreparedStatement update_insert;
+			String sql = "UPDATE users SET email = ?, name = ?, surname = ?, birthdate = ?, phone=? WHERE userID = ?";
+			update_insert = conn.prepareStatement(sql);
+			update_insert.setString(1, udto.getEmail());
+			update_insert.setString(2, udto.getName());
+			update_insert.setString(3, udto.getSurname());
+			update_insert.setString(4, udto.getBirthdate());
+			update_insert.setString(5, udto.getPhone());
+			update_insert.setInt(6, udto.getUserID());
+			flag = update_insert.executeUpdate();
+			update_insert.close();
+			conn.close();
+		} catch (SQLException e) {
+			throw new EcommerceException(e.getMessage());
+		}
+		return flag;
+	}
+
+	public int changeUserPassword(int userID, PasswordsDto passwords) throws EcommerceException {
+		int flag = 0;
+		String pswMD5 = null;
+		if (!passwords.getNewP().equals(passwords.getConfP())) {
+			System.out.println("Le password non coincidono");
+		} else {
+			try {
+				Connection conn = ds.getConnection();
+				String sql = "select md5(?) from dual";
+				PreparedStatement insert_statement = conn.prepareStatement(sql);
+				insert_statement.setString(1, passwords.getOldP());
+				ResultSet result = insert_statement.executeQuery();
+				while (result.next()) {
+					pswMD5 = result.getString(1);
+				}
+				sql = "update users set password = md5(?) where userID = ? and password = ?";
+				insert_statement = conn.prepareStatement(sql);
+				insert_statement.setString(1, passwords.getNewP());
+				insert_statement.setInt(2, userID);
+				insert_statement.setString(3, pswMD5);
+				flag = insert_statement.executeUpdate();
+				if (flag != 0) {
+					System.out.println("Password cambiata con successo");
+				} else {
+					System.out.println();
+					throw new EcommerceException("Last password is wrong");
+				}
+				result.close();
+				insert_statement.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				throw new EcommerceException(e.getMessage());
 			}
-			sql = "update users set password = ? where userID = ?";
-			insert_statement = conn.prepareStatement(sql);
-			insert_statement.setString(1, pswMD5);
-			insert_statement.setInt(2, userID);
-			insert_statement.executeUpdate();
-	
-			conn.close();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}
-		
-		
+		return flag;
 	}
 
+	private String genToken() {
+		return RandomStringUtils.randomAlphanumeric(45);
+	}
 
+	public void checkToken(String token) throws EcommerceException {
+		if (token != null) {
+			Connection conn;
+			try {
+				conn = ds.getConnection();
+				String sql = "select * from users where token = ?";
+				PreparedStatement select_stmt = conn.prepareStatement(sql);
+				select_stmt.setString(1, token);
+				ResultSet resultToken = select_stmt.executeQuery();
+				if (resultToken.next()) {
+					resultToken.close();
+					select_stmt.close();
+					conn.close();
+				} else {
+					resultToken.close();
+					select_stmt.close();
+					conn.close();
+					throw new EcommerceException("Token not found");
+				}
+			} catch (SQLException e) {
+				throw new EcommerceException(e.getMessage());
+			}
+			return;
+		}
+	}
 }

@@ -11,64 +11,88 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 import ecommerce.dao.UsersDao;
+import ecommerce.dto.PasswordsDto;
 import ecommerce.dto.UsersDto;
-
-
+import ecommerce.exceptions.EcommerceException;
 
 @Path(value = "/users")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-
 public class UsersApi {
 
 	@EJB
 	UsersDao userdao;
 
 	@GET
-	public List<UsersDto> getAllUsers() {
+	public Response getAllUsers() throws EcommerceException {
 		List<UsersDto> listaUtenti = new ArrayList<>();
 		listaUtenti = userdao.selectAll();
-		return listaUtenti;
+		if(listaUtenti==null || listaUtenti.size()==0) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		return Response.ok(listaUtenti).build();
 	}
 	
 	@GET
 	@Path("/usersByName/{name}")
-	public List<UsersDto> getUserByName(@PathParam("name") String n) {
+	public Response getUserByName(@PathParam("name") String n) throws EcommerceException {
 		List<UsersDto> listaUtenti = new ArrayList<>();
 		listaUtenti = userdao.selectByName(n);
-		return listaUtenti;
+		if(listaUtenti==null || listaUtenti.size()==0) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		return Response.ok(listaUtenti).build();
 	}
 	
 	@GET
 	@Path("/userByID/{userID}")
-	public List<UsersDto> getUserByName(@PathParam("userID") int id) {
-		return userdao.selectByID(id);
+	public Response getUserByID(@PathParam("userID") int id) throws EcommerceException {
+		List<UsersDto> listaUtenti = new ArrayList<>();
+		listaUtenti = userdao.selectByID(id);
+		if(listaUtenti==null || listaUtenti.size()==0) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		return Response.ok(listaUtenti).build();
 	}
 	
 	@POST
 	@Path("/regUser")
-	public void regUser( UsersDto udto) {
-		userdao.insert(udto);
-		return;
+	public Response regUser( UsersDto udto) throws EcommerceException {
+		if(userdao.insert(udto)>0) {
+			return Response.status(Status.NO_CONTENT).build();
+		}
+		return Response.status(Status.CONFLICT).build();
 	}
 	
 	@PUT
 	@Path("/updateUser")
-	public void updateUserByID(UsersDto udto) {
-		userdao.updateUserByID(udto);
+	public Response updateUserByID(UsersDto udto) throws EcommerceException {
+		if(userdao.updateUserByID(udto)>0) {
+			return Response.status(Status.NO_CONTENT).build();
+		}
+		return Response.status(Status.NOT_FOUND).build();
 	}
 	
 	@PUT
 	@Path("/changePassword/{userID}")
-	public void changePasswordByID(@PathParam("userID")int id, String psw) {
-		userdao.changeUserPassword(id,psw);
+	public Response changePasswordByID(@PathParam("userID")int id, PasswordsDto passwords) throws EcommerceException {
+		if(userdao.changeUserPassword(id,passwords)>0) {
+			return Response.status(Status.NO_CONTENT).build();
+		}
+		return Response.status(Status.NOT_FOUND).build();
 	}
+	
 	
 	@DELETE
 	@Path("/deleteUserByID/{userID}")
-	public void deleteUserByID(@PathParam("userID") int id) {
-		userdao.deleteUser(id);
+	public Response deleteUserByID(@PathParam("userID") int id) throws EcommerceException {
+		if(userdao.deleteUser(id)>0) {
+			return Response.status(Status.NO_CONTENT).build();
+		}
+		return Response.status(Status.NOT_FOUND).build();
 	}
 	
 	

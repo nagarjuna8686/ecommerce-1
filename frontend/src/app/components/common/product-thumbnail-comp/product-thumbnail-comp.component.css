@@ -1,4 +1,22 @@
 
+  .titleProduct{
+    
+    font-family: 'Roboto Black' ;
+    
+  }
+
+  .descProduct{
+
+    font-family: 'Roboto Regular' ;
+
+  }
+
+  .priceProduct{
+
+    font-family: 'Roboto Medium' ;
+    
+  }
+
   .favorite-button{
     position: absolute;
     top: 10px;

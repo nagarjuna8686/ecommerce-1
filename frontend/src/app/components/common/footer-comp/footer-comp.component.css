@@ -8,14 +8,12 @@
     height: 150px;
 
 }
-.elementInfo{
-    /* padding-bottom: 50px; */
-}
+
 p{  
     margin-left: 15px;
     margin-top: 5px;
     color: white;
-    font-family: 'Noto Sans';
+    font-family: 'Roboto Black';
 }
 
 .textInfo{
