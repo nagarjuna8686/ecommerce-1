@@ -46,13 +46,13 @@ export class CatalogComponent implements OnInit {
 
     {
       id: 1,
-      name: "HP 255 G7",
-      discountPrice: 249,
-      price: 250,
-      model: "amd",
-      brand: "hp",
-      description: "Un bellissimo computer con 4GB di ram \n pronto a far laggare tutto testo di prova fantastico testo di prova fantastico ",
-      url: 'https://m.media-amazon.com/images/I/61WXqkBAocL._AC_UY218_ML3_.jpg'
+      name: "Alienware 17",
+      discountPrice: 4021,
+      price: 9018,
+      model: "intel",
+      brand: "alienware",
+      description: "R4 2.9GHz i7-7820HK Intel® Core™ i7 di settima generazione 17.3 2560 x 1440 Pixel Nero, Argento Computer portatile",
+      url: 'https://m.media-amazon.com/images/I/81DiOTuL4vL._AC_UY327_FMwebp_QL65_.jpg'
     },
     {
       id: 2,
