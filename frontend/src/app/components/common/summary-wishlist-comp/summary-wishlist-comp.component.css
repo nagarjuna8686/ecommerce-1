@@ -1,0 +1,47 @@
+.dropdown-body{
+    display: none;
+    height:80%;
+    width: 100%;
+    background-color: white;
+    border-style: solid;
+    border-color: black;
+    font-size: 10pt;
+    color:black;
+  }
+.dropdown:hover .dropdown-body{
+    display: block;
+  }
+  
+.dropdown-menu {
+    z-index: 2;
+  }  
+
+.wish {
+  padding: 20px 20px 20px 20px;
+  left: 0px;
+  position: absolute;
+  bottom: -10px;
+  margin: 10px 10px 10px 10px;
+    
+  }
+.cuorePrincipale .colorLabel{
+    color: black;
+  }
+
+  .cuoreContainer {
+    position: relative;
+    width: auto;
+    height: auto;
+    bottom: 20px;
+  }
+  
+.cuorePrincipale .colorLabel{
+  color: black;
+}
+.cuorePrincipale label {
+
+  color: aliceblue;
+  font-size: 12pt;
+  font-family: 'Archivo Black';
+
+}

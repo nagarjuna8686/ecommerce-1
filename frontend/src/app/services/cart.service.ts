@@ -8,19 +8,32 @@ import { Product } from '../classes/Product';
 export class CartService {
 
   public items: CartItem[] = [];
-
+  
   constructor() { }
 
-  isItemInCart = (item) : boolean => {
+  isItemInCart= (item) : boolean => {
 
-
-    return this.items.find(i => i.product.id === item.product.id ) != null;
+    return this.items.find(i => i.product.id === item.product.id) != null;
    } 
 
-  addItemsToCart = (quantity,product) => {
+  getItems = () =>{
+    return this.items;
+  }
+
+  
+  getTotPrice = (quantity,product) => {
+    const ci: CartItem = {
+      quantity:quantity,
+      product:product,
+    }
+    this.items.find(i=>i.product.id !== product.id).product.price //da completare perché non so contare
+  }
+
+  addItemsToCart = (quantity,product,price) => {
     const ci : CartItem= {
       quantity:quantity,
-      product:product
+      product:product,
+      price: price
     } 
     // se non c'è lo aggiunge
     if(!this.isItemInCart(ci))
@@ -40,10 +53,38 @@ export class CartService {
     
   }
 
-  incrementItemQuantityInCart = (item:CartItem) => {
-    item.quantity ++
+  removeItemFromCart = (item : CartItem) => {
+    this.items = this.items.filter(i => i.product.id !== item.product.id ) ;
   }
-  //fare un metodo che mi dice se c'è l'ho già nel carrello
-  
 
-}
+  incrementItemQuantityInCart = (item:CartItem) => {
+    item.quantity ++;
+  }
+
+  //modifica : tolgo if e decremento a prescindere, if su una sola riga
+  decrementItemQuantityInCart = (item:CartItem) => {
+    if(item.quantity > 1)
+       item.quantity --;     
+    else if(item.quantity > 0)
+      this.removeItemFromCart(item);
+  }
+      /*
+        routing come fare pagine diverse in angular,
+        pagina di login che si interfaccia, authentication service.
+        angular chiamate rest e interfaccia api
+      */
+
+      getCartTotalAmount = ():number => {
+        let t = 0;
+        // ciclo su ogni item di items  (documentazione array.forEach() => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
+          // se il prodotto dell'item ha un discountPrice  
+            // incremento t di quantità * discountprice del prodotto
+          // altrimenti
+            // incremento t di quantità * price del prodotto
+        // fine ciclo su ogni item
+        return t;
+      }
+  }
+
+
+

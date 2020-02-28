@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Product } from '../classes/Product';
 
 @Injectable({
   providedIn: 'root'
@@ -6,40 +7,38 @@ import { Injectable } from '@angular/core';
 export class WishlistService {
 
 
-  private items: any[] = [];
+  public products: Product[] = [];
 
   constructor() { }
 
   getItems = ():any[] => {
-    return this.items;
+    return this.products;
   }
 
   getTotalItems = () => {
-    return this.items.length;
+    return this.products.length;
   }
 
-  addItemToWishlist = (item) => {
+  addItemToWishlist = (product) => {
     console.log('ho addato');
-    this.items.push(item);
+    this.products.push(product);
   }
 
-  isItemInWishlist = (item) : boolean => {
+  isItemInWishlist = (product) : boolean => {
 
-   return this.items.find(i => i.id === item.id) != null;
+   return this.products.find(i => i.id === product.id) != null;
   } 
 
-  toogleItemInWishlist = (item) =>{
-    if(this.isItemInWishlist(item)){
-      this.removeItemToWishlist(item);
+  toogleItemInWishlist = (product) =>{
+    if(this.isItemInWishlist(product)){
+      this.removeItemToWishlist(product);
     }else{
-      this.addItemToWishlist(item);
+      this.addItemToWishlist(product);
     }
   }
 
-  removeItemToWishlist = (item)=> {
-    
-    console.log('sono entrato');
-    this.items = this.items.filter(i => i.id !== item.id ) ;
+  removeItemToWishlist = (products)=> {
+    this.products = this.products.filter(i => i.id !== products.id ) ;
 
   }
 }

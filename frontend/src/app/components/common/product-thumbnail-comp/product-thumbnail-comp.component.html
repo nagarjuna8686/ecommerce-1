@@ -1,0 +1,18 @@
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Roboto:700&display=swap');
+  </style>
+<div class="product-thumbnail">
+    <div class="img-wrap" [ngStyle]="{ backgroundImage:'url(' + inputProduct.url + ')'}"></div>
+    <div class="favorite-button clickable" 
+      [ngClass]="{'added' : wishlistService.isItemInWishlist(inputProduct)}"
+      (click)="wishlistService.toogleItemInWishlist(inputProduct)">
+      <!-- Controllare quantity al posto di event-->
+      <fa-icon [icon]="['fas', 'heart']" ></fa-icon>
+    </div> 
+    <p class="titleProduct">{{inputProduct.name}}</p>
+    <p class="descProduct">{{inputProduct.description}}</p>
+    <p class="priceProduct" >{{inputProduct.price | currency:'EUR' }} </p>
+    <button type="button" class="btn btn-warning priceProduct"
+    (click)="cartService.addItemsToCart(1, inputProduct, inputProduct.price)"
+    >Acquista</button>
+</div>
