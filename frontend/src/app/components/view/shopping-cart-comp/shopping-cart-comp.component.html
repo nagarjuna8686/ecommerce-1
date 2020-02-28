@@ -29,16 +29,29 @@
                             </h4>
                         </div>
                         <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
-                            <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
-                                <h6><strong>{{item.product.price}}$ <span class="text-muted"></span></strong></h6>
+                            <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px" >
+                                <h6 *ngIf="item.product.discountPrice"><strong>{{item.product.discountPrice}}$ <span class="text-muted"></span></strong></h6>
+                                <h6 *ngIf="!item.product.discountPrice"><strong>{{item.product.price}}$ <span class="text-muted"></span></strong></h6>
                             </div>
                             <div class="col-4 col-sm-4 col-md-4">
-                                <div class="quantity">
+                               
                                     <!--<input type="button" value="+" class="plus">-->
-                                    <input type="number" step="1" max="99" min="1" value={{item.quantity}} title="Qty" class="qty" size="4">
-                                    <!--<input type="button" value="-" class="minus">-->
+                                    <!--<input type="number" step="1" max="99" min="1" value={{item.quantity}} title="Qty" class="qty" size="4">
+                                    <input type="button" value="-" class="minus">-->
+                                    <fa-icon class="colorIconPlus" 
+                                    (click)="cartService.incrementItemQuantityInCart(item)" 
+                                    [icon]="['fas', 'plus-circle']">  
+                                    </fa-icon>  
+                                    <fa-icon class="colorIconMinus" 
+                                    (click)="cartService.decrementItemQuantityInCart(item)" 
+                                    [icon]="['fas', 'minus-circle']">
+                                    </fa-icon>
+                                    <fa-icon class="dimIcon" 
+                                    (click)="cartService.removeItemFromCart(item)" 
+                                    [icon]="['fas', 'trash-alt']">
+                                    </fa-icon>
                                 </div>
-                            </div>
+                            
                            
                         </div>
                     </div>
@@ -46,7 +59,7 @@
                     <!-- END PRODUCT -->
                 <div class="pull-right">
                     <a href="" class="btn btn-outline-secondary pull-right">
-                        Aggiorna carrello
+                        Aggiungi al carrello
                     </a>
                 </div>
             </div>
