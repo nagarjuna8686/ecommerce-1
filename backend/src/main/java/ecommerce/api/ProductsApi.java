@@ -23,7 +23,6 @@ public class ProductsApi {
 
 	@EJB
 	ProductsDao productdao;
-	
 
 	@GET
 	public List<ProductsDto> getAllProducts() {
@@ -31,35 +30,37 @@ public class ProductsApi {
 		return listaProdotti;
 
 	}
-	
+
 	@GET
-	@Path(value = "/productsByName/{name}") 
-	public List<ProductsDto> getProductByName(@PathParam("name")String cond) {
+	@Path(value = "/productsByName/{name}")
+	public List<ProductsDto> getProductByName(@PathParam("name") String cond) {
 		List<ProductsDto> listaProdotti = productdao.selectByName(cond);
 		return listaProdotti;
 	}
-	
+
 	@GET
-	@Path(value = "/productsByID/{productID}") 
-	public List<ProductsDto> getProductByID(@PathParam("productID")String cond) {
+	@Path(value = "/productsByID/{productID}")
+	public List<ProductsDto> getProductByID(@PathParam("productID") String cond) {
 		List<ProductsDto> listaProdotti = productdao.selectById(cond);
 		return listaProdotti;
 	}
-	
+
 	@DELETE
 	@Path(value = "/deleteProduct/{productID}")
-	public void deleteProductByID(@PathParam("productID")String cond) {
+	public void deleteProductByID(@PathParam("productID") String cond) {
 		productdao.delete(cond);
 	}
-	
-	@POST 
-	@Path(value = "/regProduct") 
+
+	@POST
+	@Path(value = "/regProduct")
 	public void registerProduct(ProductsDto pdto) {
 		productdao.insert(pdto);
 	}
+
 	
+	//PER UPDATE DEL PREZZO USARE IL METEODO DI UPDATE PRESENTE IN Prices.Api
 	@PUT
-	@Path(value = "/updateProduct") 
+	@Path(value = "/updateProduct")
 	public void updateProductByID(ProductsDto pdto) {
 		productdao.update(pdto);
 	}

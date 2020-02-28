@@ -37,6 +37,8 @@ public class WishlistDao {
 				wishReg.add(new WishlistDto(wishlistID, userID, productID));
 			}
 
+			result.close();
+			select_stmt.close();
 			conn.close();
 
 		} catch (SQLException e) {
@@ -47,7 +49,7 @@ public class WishlistDao {
 
 	}
 
-	public List<WishlistDto> selectByUserID(int wishlistID) {
+	public List<WishlistDto> selectByWishID(int wishlistID) {
 
 		List<WishlistDto> wishReg = new ArrayList<>();
 
@@ -66,6 +68,8 @@ public class WishlistDao {
 				wishReg.add(new WishlistDto(wishlistID, wishID, productID));
 			}
 
+			result.close();
+			select_stmt.close();
 			conn.close();
 
 		} catch (SQLException e) {
@@ -86,14 +90,14 @@ public class WishlistDao {
 			insert_statement.setInt(1, userID);
 			insert_statement.setInt(2, prodID);
 			insert_statement.executeUpdate();
+
+			insert_statement.close();
 			conn.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-
-	
 
 	public void deleteWishlistByID(int wishlistID) {
 		try {
@@ -104,12 +108,14 @@ public class WishlistDao {
 			PreparedStatement delete_stmt = conn.prepareStatement(sql);
 			delete_stmt.setInt(1, wishlistID);
 			delete_stmt.execute();
+
+			delete_stmt.close();
 			conn.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }
