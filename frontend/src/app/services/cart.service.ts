@@ -82,6 +82,13 @@ export class CartService {
           // altrimenti
             // incremento t di quantità * price del prodotto
         // fine ciclo su ogni item
+        this.items.forEach( (item) =>
+          {
+            if(item.product.discountPrice)
+              t+=item.product.discountPrice*item.quantity;
+            else
+              t+=item.price*item.quantity;
+          })
         return t;
       }
   }
