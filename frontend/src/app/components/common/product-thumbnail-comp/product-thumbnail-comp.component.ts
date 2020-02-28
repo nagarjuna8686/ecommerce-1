@@ -20,8 +20,7 @@ export class ProductThumbnailCompComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   
 }

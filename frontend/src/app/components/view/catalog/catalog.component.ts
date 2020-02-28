@@ -47,6 +47,7 @@ export class CatalogComponent implements OnInit {
     {
       id: 1,
       name: "HP 255 G7",
+      discountPrice: 249,
       price: 250,
       model: "amd",
       brand: "hp",
@@ -66,6 +67,7 @@ export class CatalogComponent implements OnInit {
       id: 3,
       name: "HP - PC Pavilion 15",
       price: 750,
+      discountPrice: 650,
       model: "amd",
       brand: "hp",
       description: "Un bellissimo computer con 4GB di ram \n pronto a far laggare tutto testo di prova fantastico testo di prova fantastico ",
@@ -75,6 +77,7 @@ export class CatalogComponent implements OnInit {
       id: 4,
       name: "Lenovo Ideapad S130 Notebook, Display 14",
       price: 250,
+      discountPrice: 199,
       model: "intel",
       brand: "lenovo",
       description: " HD, Processore Intel N5000, 128 GB SSD, RAM 4 GB, Windows 10, Midnight Blue",
