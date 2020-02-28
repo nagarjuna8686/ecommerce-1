@@ -26,14 +26,13 @@ export class CartService {
       product:product,
       price: price
     } 
+    console.log(quantity,product,price);
     // se non c'è lo aggiunge
     if(!this.isItemInCart(ci))
       this.items.push(ci);
       // find ritorna l'oggetto item
-    else  {
-      console.log("SONO ENTRATO CAZZO!");
+    else  
       this.items.find(i => i.product.id === product.id ).quantity += quantity;
-    }
   }
 
   getTotalItemsCart = () =>{
