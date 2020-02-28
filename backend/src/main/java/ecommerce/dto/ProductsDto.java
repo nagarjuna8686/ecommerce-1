@@ -9,11 +9,15 @@ public class ProductsDto {
 	private String brand;
 	private String description;
 	private String url;
+	private boolean isDiscounted;
+	private double discount;
+	private double discountedPrice;
+	
 	
 	public ProductsDto() {}
 
 	public ProductsDto(int productID, String name, double price, String template, String brand, String description,
-			String url) {
+			String url, boolean isDiscounted, double discount, double discountedPrice) {
 
 		this.productID = productID;
 		this.name = name;
@@ -22,7 +26,34 @@ public class ProductsDto {
 		this.brand = brand;
 		this.description = description;
 		this.url = url;
+		this.isDiscounted = isDiscounted;
+		this.discount = discount;
+		this.discountedPrice = discountedPrice;
 
+	}
+
+	public double getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(double discount) {
+		this.discount = discount;
+	}
+
+	public double getDiscountedPrice() {
+		return discountedPrice;
+	}
+
+	public void setDiscountedPrice(double discountedPrice) {
+		this.discountedPrice = discountedPrice;
+	}
+
+	public boolean isDiscounted() {
+		return isDiscounted;
+	}
+
+	public void setDiscounted(boolean isDiscounted) {
+		this.isDiscounted = isDiscounted;
 	}
 
 	public int getProductID() {

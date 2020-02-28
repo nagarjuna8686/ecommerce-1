@@ -19,16 +19,7 @@ export class CartService {
   getItems = () =>{
     return this.items;
   }
-
   
-  getTotPrice = (quantity,product) => {
-    const ci: CartItem = {
-      quantity:quantity,
-      product:product,
-    }
-    this.items.find(i=>i.product.id !== product.id).product.price //da completare perché non so contare
-  }
-
   addItemsToCart = (quantity,product,price) => {
     const ci : CartItem= {
       quantity:quantity,
@@ -76,12 +67,6 @@ export class CartService {
 
       getCartTotalAmount = ():number => {
         let t = 0;
-        // ciclo su ogni item di items  (documentazione array.forEach() => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
-          // se il prodotto dell'item ha un discountPrice  
-            // incremento t di quantità * discountprice del prodotto
-          // altrimenti
-            // incremento t di quantità * price del prodotto
-        // fine ciclo su ogni item
         this.items.forEach( (item) =>
           {
             if(item.product.discountPrice)
