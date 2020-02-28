@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { WishlistService } from '../../../services/wishlist.service';
+import { Component,Input, OnInit, Output } from '@angular/core';
+import { WishlistService } from 'src/app/services/wishlist.service';
+import { Product } from 'src/app/classes/Product';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-wishlist-comp',
@@ -8,6 +10,7 @@ import { WishlistService } from '../../../services/wishlist.service';
 })
 export class WishlistCompComponent implements OnInit {
 
+  //@Input() inputProduct : Product;
   constructor(
     public wishlistService: WishlistService
   ) { }
