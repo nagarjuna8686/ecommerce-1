@@ -227,28 +227,29 @@ public class UsersDao {
 	}
 
 	public void checkToken(String token) throws EcommerceException {
-		if (token != null) {
-			Connection conn;
-			try {
-				conn = ds.getConnection();
-				String sql = "select * from users where token = ?";
-				PreparedStatement select_stmt = conn.prepareStatement(sql);
-				select_stmt.setString(1, token);
-				ResultSet resultToken = select_stmt.executeQuery();
-				if (resultToken.next()) {
-					resultToken.close();
-					select_stmt.close();
-					conn.close();
-				} else {
-					resultToken.close();
-					select_stmt.close();
-					conn.close();
-					throw new EcommerceException("Token not found");
-				}
-			} catch (SQLException e) {
-				throw new EcommerceException(e.getMessage());
+		if (token == null) {
+			throw new EcommerceException("Token is missing");
+		}
+
+		Connection conn;
+		try {
+			conn = ds.getConnection();
+			String sql = "select * from users where token = ?";
+			PreparedStatement select_stmt = conn.prepareStatement(sql);
+			select_stmt.setString(1, token);
+			ResultSet resultToken = select_stmt.executeQuery();
+			if (resultToken.next()) {
+				resultToken.close();
+				select_stmt.close();
+				conn.close();
+			} else {
+				resultToken.close();
+				select_stmt.close();
+				conn.close();
+				throw new EcommerceException("Token not found");
 			}
-			return;
+		} catch (SQLException e) {
+			throw new EcommerceException(e.getMessage());
 		}
 	}
 
