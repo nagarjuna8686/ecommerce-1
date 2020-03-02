@@ -18,7 +18,7 @@
      </p>
     <p class="priceProduct" *ngIf="!inputProduct.discountPrice">
       {{inputProduct.price | currency:'EUR' }} </p>
-    <button type="button" class="btn btn-warning priceProduct"
+    <button type="button" class="btn btn-warning priceProductButton"
     (click)="cartService.addItemsToCart(1, inputProduct, inputProduct.price)"
-    >Aggiungi al carrello</button>
+    >ADD TO CART</button>
 </div>
