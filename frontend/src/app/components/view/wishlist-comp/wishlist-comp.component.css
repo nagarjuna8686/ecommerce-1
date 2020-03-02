@@ -7,6 +7,21 @@
     width: 80px;
     overflow: hidden
 }
+.priceProductButton{
+    font-size: 10pt;
+    align-items: center;
+    color: white;
+    font-family: 'Roboto Medium' ;
+    
+  }
+  .btn-warning{
+    margin-top: 10%;
+    background: rgb(250,186,60);
+    background: linear-gradient(90deg, rgba(250,186,60,1) 0%, rgba(248,131,78,1) 60%, rgba(237,67,78,1) 100%);
+    border-radius: 25px;
+    width: 45%;
+    height: 35%;
+  }
 
 .quantity input {
     margin: 0;
@@ -64,4 +79,8 @@
 .shopping-cart {
     margin-top: 20px;
     font-size: 25px;
+}
+.dimIcon {
+    padding-left: 10%;
+    margin-top: 10%;
 }
