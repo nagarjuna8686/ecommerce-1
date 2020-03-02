@@ -3,6 +3,7 @@
   
 <label class="cart" *ngIf="cartService.getTotalItemsCart()">
   {{cartService.getTotalItemsCart()}}
+  
 </label>
 <div class="dropdown-body" *ngFor="let item of cartService.items">
   <div class="angle">
@@ -12,6 +13,7 @@
   <p class="textQta">Q.tà: {{item.quantity}} </p>
   <p class="textPrice" *ngIf="item.product.discountPrice">Prezzo: {{item.product.discountPrice | currency:'EUR'}}</p>
   <p class="textPrice" *ngIf="!item.product.discountPrice">Prezzo: {{item.product.price | currency:'EUR'}}</p>
+
   <div class="positionIcon">
     <fa-icon class="colorIconPlus" 
     (click)="cartService.incrementItemQuantityInCart(item)" 
@@ -27,4 +29,5 @@
   </div>
   
 </div>
+ <div class="dropdown-body"> Totale: {{cartService.getCartTotalAmount() | currency: 'EUR'}}</div>
 </div>
