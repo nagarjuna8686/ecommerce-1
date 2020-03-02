@@ -1,11 +1,9 @@
 .footerContainer{
-    
     background-color: #313036;
     margin-left: 0px;
     margin-right: 0px;
     width: 100%;
     margin-top: 15px;
-    height: 150px;
 
 }
 
@@ -21,11 +19,13 @@ p{
     height: 50%;
 }
 
-.bottomInfo{
+.row {
+    background-color: #313036;
+}
 
+.bottomInfo{
     background-color: #353a40;
-    width: 12000px;
-    height: 50px;
+     height: 50px;
 }
 
 .link{
