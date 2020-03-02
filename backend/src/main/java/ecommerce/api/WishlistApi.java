@@ -1,18 +1,9 @@
 package ecommerce.api;
 
-<<<<<<< HEAD
-=======
-//import java.awt.PageAttributes.MediaType; import errato
->>>>>>> 6430958a01f14bf5497ac9eacf319ad982f01da2
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
-<<<<<<< HEAD
-=======
-//import javax.net.ssl.SSLEngineResult.Status; import errato
-import javax.ws.rs.core.MediaType;
->>>>>>> 6430958a01f14bf5497ac9eacf319ad982f01da2
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -20,11 +11,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-<<<<<<< HEAD
 import javax.ws.rs.core.MediaType;
-=======
-//import javax.xml.ws.Response; import errato
->>>>>>> 6430958a01f14bf5497ac9eacf319ad982f01da2
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
