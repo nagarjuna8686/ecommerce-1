@@ -14,3 +14,5 @@ buildNumber.properties
 **/.settings/
 **/bin/
 **/.DS_Store
+**/bin/
+
