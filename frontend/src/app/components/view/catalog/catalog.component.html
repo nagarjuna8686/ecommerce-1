@@ -1,24 +1,24 @@
 <div class="row">
-    <div class="col-3">
-      <!-- nav bar cancellata si trovava qui-->
-      <app-navbar-comp
-      (sortUpdate)="orderBy($event)"
-      [sortOptions] = "sortOptions" 
-      ></app-navbar-comp>
-      
-    </div>
-    <div class="col-9">
-      <div class="row">
-        <!--Oggetti di immagini-->
-        <ng-container class="immaginiDimensione" 
-        *ngFor="let product of getFilteredProducts() ">
-          <div class="col-4 "> 
-            <app-product-thumbnail-comp
-            [inputProduct]="product"> 
-            </app-product-thumbnail-comp>
-          </div>
-        </ng-container>
+  <div class="col-3">
+    <!-- nav bar cancellata si trovava qui-->
+    <app-navbar-comp
+    (sortUpdate)="orderBy($event)"
+    [sortOptions] = "sortOptions" 
+    ></app-navbar-comp>
+    
+  </div>
+  <div class="col-9">
+    <div class="row">
+      <!--Oggetti di immagini-->
+      <ng-container class="immaginiDimensione" 
+      *ngFor="let product of getFilteredProducts() ">
+        <div class="col-4 "> 
+          <app-product-thumbnail-comp
+          [inputProduct]="product"> 
+          </app-product-thumbnail-comp>
+        </div>
+      </ng-container>
 
-      </div>
     </div>
   </div>
+</div>
