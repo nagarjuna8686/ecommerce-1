@@ -253,7 +253,7 @@ public class UsersDao {
 		}
 	}
 
-	public void resetPassword(UsersDto udto) {
+	public void resetPassword(UsersDto udto) throws EcommerceException {
 		Connection conn;
 		SendEmail se = new SendEmail();
 		String sql;
@@ -272,7 +272,7 @@ public class UsersDao {
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new EcommerceException(e.getMessage());
 		}
 	}
 }
