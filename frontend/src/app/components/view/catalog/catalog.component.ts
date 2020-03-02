@@ -16,8 +16,6 @@ export class CatalogComponent implements OnInit {
 
   public term: string = '';
 
-  public selected: { name:string, field:string, ascending: boolean };
-
   public sortOptions: any[] = [
     {
       label: "Prezzo Decrescente", 
@@ -41,6 +39,9 @@ export class CatalogComponent implements OnInit {
        }
      }
   ]
+
+  public selected: { name:string, field:string, ascending: boolean }  = this.sortOptions[0].value;
+
 
   public products: Product[] = [
 
