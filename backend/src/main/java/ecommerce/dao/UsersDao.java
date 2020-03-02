@@ -1,5 +1,8 @@
 package ecommerce.dao;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -275,4 +278,59 @@ public class UsersDao {
 			throw new EcommerceException(e.getMessage());
 		}
 	}
+	
+	public List<UsersDto> usersCSV() throws EcommerceException {
+
+		List<UsersDto> usersReg = new ArrayList<>();
+
+		PrintWriter pw = null;
+
+		try {
+			Connection conn = ds.getConnection();
+			String sql = "select  * from users";
+			PreparedStatement select_stmt = conn.prepareStatement(sql);
+			ResultSet result = select_stmt.executeQuery(sql);
+			
+			try {
+			    pw = new PrintWriter(new File("usersAnagrafica.csv"));
+			} catch (FileNotFoundException e) {
+			    e.printStackTrace();
+			}
+
+			while (result.next()) {
+				StringBuilder builder = new StringBuilder();
+				String ColumnNamesList = "userID, email, password, name, surname, birthdate, phone, token";
+				// No need give the headers Like: id, Name on builder.append
+				builder.append(ColumnNamesList +"\n");
+				builder.append(result.getInt(1) + ",");
+				builder.append(result.getString(2) + ",");
+				builder.append(result.getString(3) + ",");
+				builder.append(result.getString(4) + ",");
+				builder.append(result.getString(5) + ",");
+				builder.append(result.getString(6) + ",");
+				builder.append(result.getString(7) + ",");
+				builder.append(result.getString(8) + ",");
+				pw.write(builder.toString());
+				
+				
+				int userID = result.getInt(1);
+				String email = result.getString(2);
+				String password = result.getString(3);
+				String name = result.getString(4);
+				String surname = result.getString(5);
+				String birthdate = result.getString(6);
+				String phone = result.getString(7);
+				String token = result.getString(8);
+				usersReg.add(new UsersDto(userID, email, password, name, surname, birthdate, phone, token));
+			}
+			result.close();
+			select_stmt.close();
+			conn.close();
+			pw.close();
+		} catch (SQLException e) {
+			throw new EcommerceException(e.getMessage());
+		}
+		return usersReg;
+	}
+	
 }
