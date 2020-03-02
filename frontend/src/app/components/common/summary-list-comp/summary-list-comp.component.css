@@ -44,13 +44,15 @@ details[open] summary {
   
     color: aliceblue;
     font-size: 12pt;
-    font-family: 'Archivo Black';
+    font-family: 'Archivo';
+    font-weight: 900;
   
   }
   .textQuantity{
   
     font-size: 12pt;
-    font-family: 'Archivo Black';
+    font-family: 'Archivo';
+    font-weight: 900;
     
   }
   
@@ -59,21 +61,24 @@ details[open] summary {
     padding-top: 5px;
     padding-right: 15px;
     font-size: 12pt;
-    font-family: 'Roboto Black';
+    font-family: 'Roboto';
+    font-weight: 900;
   }
   .textQta{
     padding-left: 15px;
     padding-top: 5px;
     padding-right: 15px;
     font-size: 12pt;
-    font-family: 'Roboto Medium';
+    font-family: 'Roboto';
+    font-weight: 500;
   }
   .textPrice{
     padding-left: 15px;
     padding-top: 5px;
     padding-right: 15px;
     font-size: 12pt;
-    font-family: 'Roboto Medium';
+    font-family: 'Roboto';
+    font-weight: 500;
   }
   
   .cuorePrincipale .colorLabel{
@@ -99,7 +104,8 @@ details[open] summary {
 
     color:grey;
     font-size: 12pt;
-    font-family: 'Archivo Black';
+    font-family: 'Archivo';
+    font-weight: 900;
     position: absolute;
     padding: 20px 20px 20px 20px;
     left: 0px;

@@ -41,4 +41,6 @@ export class WishlistService {
     this.products = this.products.filter(i => i.id !== products.id ) ;
 
   }
+
+  
 }

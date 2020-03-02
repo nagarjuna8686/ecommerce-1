@@ -1,13 +1,15 @@
 
   .titleProduct{
     
-    font-family: 'Roboto Black' ;
+    font-family: 'Roboto' ;
+    font-weight: 900;
     
   }
 
   .descProduct{
 
-    font-family: 'Roboto Regular' ;
+    font-family: 'Roboto' ;
+    font-weight: 400;
 
   }
 
@@ -22,13 +24,15 @@
     font-size: 10pt;
     align-items: center;
     color: white;
-    font-family: 'Roboto Medium' ;
+    font-family: 'Roboto' ;
+    font-weight: 500;
     
   }
 
   .priceProduct{
     
-    font-family: 'Roboto Medium' ;
+    font-family: 'Roboto' ;
+    font-weight: 500;
   }
 
   
