@@ -19,10 +19,19 @@
 .colorTesto {
     color: #343A40;
     font-family: 'Roboto';
-    font-weight: 900;
+    font-weight: 200;
     text-align: center;
     font-size: medium;
   }
+
+   
+.colorTestoOrder {
+  color: #343A40;
+  font-family: 'Roboto';
+  font-weight: 800;
+  text-align: center;
+  font-size: medium;
+}
 
 .show-menu-arrow{
   width: 60%;
