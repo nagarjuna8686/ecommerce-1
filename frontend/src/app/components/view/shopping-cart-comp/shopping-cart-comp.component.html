@@ -77,7 +77,7 @@
                 <div class="pull-right" style="margin: 10px">
                     <a href="" class="btn btn-success pull-right">Checkout</a>
                     <div class="pull-right" style="margin: 5px">
-                        Totale: <b> {{cartService.getCartTotalAmount()}}€</b>
+                        Totale: <b> {{cartService.getCartTotalAmount() | currency: 'EUR'}}</b>
                     </div>
                 </div>
             </div>

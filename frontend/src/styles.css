@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Roboto:100i,300,300i,400,400i,700,700i,900,900i&display=swap');
 
-html {
+html{
     font-family: 'Roboto' ;
 }
 
@@ -12,3 +13,39 @@ body {
 .clickable{
     cursor: pointer;
 }
+
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 20px;
+    
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #ffffff00; 
+    
+}
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 30px;
+    background: rgb(250,186,60);
+    background: linear-gradient(90deg, rgba(250,186,60,1) 0%, rgba(248,131,78,1) 60%, rgba(237,67,78,1) 100%);
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(250,186,60);
+    opacity: 60%;
+    background: linear-gradient(0deg, rgba(250,186,60,1) 0%, rgba(248,131,78,1) 60%, rgba(237,67,78,1) 100%);
+  }
+
+  app-header-comp, app-footer-comp{
+    display: block;
+  }
+
+  .container-fluid{
+    min-height: calc( 100vh - 65px - 165px)
+  }

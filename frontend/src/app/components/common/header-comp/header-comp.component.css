@@ -19,16 +19,16 @@
 }
 
 input[type="text"]::placeholder{
-  font-family: 'Roboto Medium';
+  font-family: 'Roboto';
+  font-weight: 500;
   opacity: 70%;
 }
 
 
 .btn-outline-secondary {
   width: 50px;
-  background-color: #ffc107;
+  background-color: rgb(251, 167, 118);
   border-radius: 0px 10px 10px 0px;
-
 }
 
 
@@ -39,7 +39,16 @@ input[type="text"]::placeholder{
 
 .cuorePrincipale {
 
-  color: red;
+  color: #FFC154;
+  font-size: 25px;
+  position: absolute;
+  
+
+}
+
+.loginPrincipale {
+
+  color: #FF9B61;
   font-size: 25px;
   position: absolute;
   
@@ -49,7 +58,7 @@ input[type="text"]::placeholder{
 
 .cartPrincipale {
 
-  color: red;
+  color: #FF6154;
   font-size: 25px;
   position: absolute;
   z-index: 3;

@@ -16,6 +16,7 @@ export class NavbarCompComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.selected = this.sortOptions[0].value
   }
 
   emitSortUpdate = (s:string) => {

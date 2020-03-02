@@ -97,8 +97,8 @@ public class UsersApi {
 	
 	@POST
 	@Path("/resetPassword")
-	public Response resetPasswordByEmail(UsersDto udto) {
-		userdao.resetPAssword(udto);
+	public Response resetPasswordByEmail(UsersDto udto) throws EcommerceException {
+		userdao.resetPassword(udto);
 		return Response.status(Status.NO_CONTENT).build();
 	}
 	
