@@ -41,3 +41,11 @@ body {
     opacity: 60%;
     background: linear-gradient(0deg, rgba(250,186,60,1) 0%, rgba(248,131,78,1) 60%, rgba(237,67,78,1) 100%);
   }
+
+  app-header-comp, app-footer-comp{
+    display: block;
+  }
+
+  .container-fluid{
+    min-height: calc( 100vh - 65px - 165px)
+  }
