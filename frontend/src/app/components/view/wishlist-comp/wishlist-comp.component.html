@@ -22,9 +22,9 @@
                             <h4><small>{{product.description}}</small></h4>
                         </div>
                         <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
-                         <button class="btn btn-outline-secondary pull-right"
+                         <button class="btn btn-warning priceProductButton"
                             (click)="cartService.addItemsToCart(1,product,product.price)">
-                                Aggiungi al carrello
+                                ADD TO CART
                         </button>
                         <fa-icon class="dimIcon" 
                         (click)="wishlistService.removeItemToWishlist(product)" 

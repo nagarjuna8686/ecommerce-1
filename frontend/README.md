@@ -1,7 +1,7 @@
 # ecommerce
 
 
-**Developer:**
+**Developers:**
 - twopill
 - Calamity1996
 

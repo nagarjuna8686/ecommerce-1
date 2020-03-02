@@ -10,6 +10,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import ecommerce.dao.UsersDao;
 import ecommerce.exceptions.EcommerceException;
@@ -46,9 +47,10 @@ public class TokenFilter implements Filter {
 		try {
 			udao.checkToken(token);
 		} catch (EcommerceException e) {
-			e.printStackTrace();
+			((HttpServletResponse)response).sendError(500);
+			throw new ServletException();
 		}
-		chain.doFilter(request, response);			
+		chain.doFilter(request, response);	
 	}
 
 	@Override

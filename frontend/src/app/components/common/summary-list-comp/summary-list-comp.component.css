@@ -34,7 +34,7 @@ details[open] summary {
   
   .cartPrincipale label {
   
-    color: aliceblue;
+    color: grey;
     font-size: 12pt;
     font-family: 'Archivo Black';
   
@@ -97,7 +97,7 @@ details[open] summary {
  
   .cart {
 
-    color:white;
+    color:grey;
     font-size: 12pt;
     font-family: 'Archivo Black';
     position: absolute;

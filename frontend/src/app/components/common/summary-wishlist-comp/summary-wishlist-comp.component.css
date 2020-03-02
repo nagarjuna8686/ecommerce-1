@@ -47,6 +47,7 @@
   margin-bottom: 15px;
 }
 .wish {
+  color:grey;
   padding: 20px 20px 20px 20px;
   left: 0px;
   position: absolute;
@@ -70,7 +71,7 @@
 }
 .cuorePrincipale label {
 
-  color: aliceblue;
+  color: grey;
   font-size: 12pt;
   font-family: 'Archivo Black';
 
