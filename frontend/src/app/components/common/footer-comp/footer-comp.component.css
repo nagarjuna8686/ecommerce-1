@@ -13,7 +13,8 @@ p{
     margin-left: 15px;
     margin-top: 5px;
     color: white;
-    font-family: 'Roboto Black';
+    font-family: 'Roboto';
+    font-weight: 900;
 }
 
 .textInfo{
