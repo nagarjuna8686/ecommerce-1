@@ -13,8 +13,9 @@
     <p class="descProduct">{{inputProduct.description}}</p>
 
     <p class="priceProduct" *ngIf="inputProduct.discountPrice">
-      <del>{{inputProduct.price | currency:'EUR' }} </del></p>
-    <p class="priceProduct" >{{inputProduct.discountPrice | currency:'EUR' }} </p>
+      {{inputProduct.discountPrice | currency:'EUR' }}
+      <del>{{inputProduct.price | currency:'EUR' }} </del>
+     </p>
     <p class="priceProduct" *ngIf="!inputProduct.discountPrice">
       {{inputProduct.price | currency:'EUR' }} </p>
     <button type="button" class="btn btn-warning priceProduct"
