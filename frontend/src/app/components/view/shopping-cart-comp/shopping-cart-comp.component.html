@@ -30,8 +30,10 @@
                         </div>
                         <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
                             <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px" >
-                                <h6 *ngIf="item.product.discountPrice"><strong>{{item.product.discountPrice | currency:'EUR'}} <span class="text-muted"></span></strong></h6>
-                                <h6 *ngIf="!item.product.discountPrice"><strong>{{item.product.price | currency:'EUR'}} <span class="text-muted"></span></strong></h6>
+                                <h6 *ngIf="item.product.discountPrice"><strong>{{item.product.discountPrice | currency:'EUR'}}
+                                    x{{item.quantity}} Tot. {{item.quantity * item.product.discountPrice | currency:'EUR'}} <span class="text-muted"></span></strong></h6>
+                                <h6 *ngIf="!item.product.discountPrice"><strong>{{item.product.price | currency:'EUR'}} 
+                                    x{{item.quantity}} Tot. {{item.quantity * item.product.price | currency:'EUR'}}<span class="text-muted"></span></strong></h6>
                             </div>
                             <div class="col-4 col-sm-4 col-md-4">
                                
@@ -56,12 +58,6 @@
                         </div>
                     </div>
                     <hr>
-                    <!-- END PRODUCT -->
-                <div class="pull-right">
-                    <a href="" class="btn btn-outline-secondary pull-right">
-                        Aggiungi al carrello
-                    </a>
-                </div>
             </div>
             <div class="card-footer">
                 <div class="coupon col-md-5 col-sm-5 no-padding-left pull-left">
