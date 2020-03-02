@@ -19,14 +19,14 @@
                 type="button"><fa-icon [icon]="['fas', 'search']"></fa-icon>
             </button>
           </div>
-        </div> <!-- fine input group mb 1-->
+        </div> 
       </form>
       </div>
       <div class="col 1">
         <div class="cuorePrincipale">
           <div class="cuoreContainer">
               
-            <fa-icon class="clickable heartIcon" routerLink="/wishlist-comp" [icon]="['fas', 'heart']" >
+            <fa-icon class="clickable heartIcon" class="clickable" routerLink="/wishlist-comp" [icon]="['fas', 'heart']" >
             </fa-icon>
             
             <label class="wish" *ngIf="wishlistService.getTotalItems()" >
@@ -37,7 +37,6 @@
         </div>
       </div>
       <div class="col 1">
-        <!-- si chiama cuore ma è riferito al login-->
         <div class="loginPrincipale">
           <div class="loginContainer">
            <fa-icon class="clickable" routerLink="/login" [icon]="['fas', 'user']"></fa-icon>
@@ -49,9 +48,10 @@
           <div class="cartContainer">  
             
             <fa-icon [icon]="['fas', 'shopping-cart']" class="clickable" routerLink="/shopping-cart-comp"></fa-icon>
-            <app-summary-list-comp>
-              
-            </app-summary-list-comp>
+            <label class="cart" *ngIf="cartService.getTotalItemsCart()">
+              {{cartService.getTotalItemsCart()}}
+            </label>
+            <app-summary-list-comp class="cart-summary"></app-summary-list-comp>
 
              </div> <!-- cartcontainer-->
             </div> <!-- cartprincipale-->
