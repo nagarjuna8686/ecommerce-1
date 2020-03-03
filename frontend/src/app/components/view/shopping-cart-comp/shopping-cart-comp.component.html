@@ -31,15 +31,11 @@
                         <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
                             <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px" >
                                 <h6 *ngIf="item.product.discountPrice"><strong>{{item.product.discountPrice | currency:'EUR'}}
-                                    x{{item.quantity}} Tot. {{item.quantity * item.product.discountPrice | currency:'EUR'}} <span class="text-muted"></span></strong></h6>
+                                    x{{item.quantity}}Tot. {{item.quantity * item.product.discountPrice | currency:'EUR'}} <span class="text-muted"></span></strong></h6>
                                 <h6 *ngIf="!item.product.discountPrice"><strong>{{item.product.price | currency:'EUR'}} 
                                     x{{item.quantity}} Tot. {{item.quantity * item.product.price | currency:'EUR'}}<span class="text-muted"></span></strong></h6>
                             </div>
                             <div class="col-4 col-sm-4 col-md-4">
-                               
-                                    <!--<input type="button" value="+" class="plus">-->
-                                    <!--<input type="number" step="1" max="99" min="1" value={{item.quantity}} title="Qty" class="qty" size="4">
-                                    <input type="button" value="-" class="minus">-->
                                     <fa-icon class="colorIconPlus" 
                                     (click)="cartService.incrementItemQuantityInCart(item)" 
                                     [icon]="['fas', 'plus-circle']">  
