@@ -1,5 +1,5 @@
 export class Product{
-    public id: number;
+    public productID: number;
     public name: string;
     public price: number;
     public discountPrice?: number;

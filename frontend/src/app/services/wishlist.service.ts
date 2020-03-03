@@ -26,7 +26,7 @@ export class WishlistService {
 
   isItemInWishlist = (product) : boolean => {
 
-   return this.products.find(i => i.id === product.id) != null;
+   return this.products.find(i => i.productID === product.productID) != null;
   } 
 
   toogleItemInWishlist = (product) =>{
@@ -38,7 +38,7 @@ export class WishlistService {
   }
 
   removeItemToWishlist = (products)=> {
-    this.products = this.products.filter(i => i.id !== products.id ) ;
+    this.products = this.products.filter(i => i.productID !== products.productID ) ;
 
   }
 

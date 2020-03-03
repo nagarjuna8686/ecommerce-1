@@ -9,11 +9,13 @@ export class CartService {
 
   public items: CartItem[] = [];
   
-  constructor() { }
+  constructor() { 
+    
+  }
 
   isItemInCart= (item) : boolean => {
 
-    return this.items.find(i => i.product.id === item.product.id) != null;
+    return this.items.find(i => i.product.productID === item.product.productID) != null;
    } 
 
   getItems = () =>{
@@ -31,7 +33,7 @@ export class CartService {
       this.items.push(ci);
       // find ritorna l'oggetto item
     else  
-      this.items.find(i => i.product.id === product.id ).quantity += quantity;
+      this.items.find(i => i.product.productID === product.productID ).quantity += quantity;
   }
 
   getTotalItemsCart = () =>{
@@ -43,7 +45,7 @@ export class CartService {
   }
 
   removeItemFromCart = (item : CartItem) => {
-    this.items = this.items.filter(i => i.product.id !== item.product.id ) ;
+    this.items = this.items.filter(i => i.product.productID !== item.product.productID ) ;
   }
 
   incrementItemQuantityInCart = (item:CartItem) => {
