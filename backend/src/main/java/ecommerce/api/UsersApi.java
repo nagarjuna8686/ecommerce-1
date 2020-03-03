@@ -104,5 +104,16 @@ public class UsersApi {
 		return Response.status(Status.NOT_FOUND).build();
 	}
 	
+	@GET
+	@Path("/usersCSV")
+	public Response usersCSV() throws EcommerceException {
+		List<UsersDto> listaUtenti = new ArrayList<>();
+		listaUtenti = userdao.usersCSV();
+		if(listaUtenti==null || listaUtenti.size()==0) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		return Response.ok(listaUtenti).build();
+	}
+	
 	
 }

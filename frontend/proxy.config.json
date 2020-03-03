@@ -1,0 +1,8 @@
+{
+    "/ecomm/api/*": {
+      "target": "http://10.166.16.57:8080/",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    }
+}

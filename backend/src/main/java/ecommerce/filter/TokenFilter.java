@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import ecommerce.dao.UsersDao;
 import ecommerce.exceptions.EcommerceException;
 
-@WebFilter("/*")
+@WebFilter("/resetPassword")
 public class TokenFilter implements Filter {
 
 	private static final int URL_INDEX_USER = 16;

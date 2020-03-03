@@ -19,12 +19,11 @@ export class CartService {
   getItems = () =>{
     return this.items;
   }
-  
+
   addItemsToCart = (quantity,product,price) => {
     const ci : CartItem= {
       quantity:quantity,
-      product:product,
-      price: price
+      product:product
     } 
     console.log(quantity,product,price);
     // se non c'è lo aggiunge
@@ -71,7 +70,7 @@ export class CartService {
             if(item.product.discountPrice)
               t+=item.product.discountPrice*item.quantity;
             else
-              t+=item.price*item.quantity;
+              t+=item.product.price*item.quantity;
           })
         return t;
       }

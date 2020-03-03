@@ -18,8 +18,23 @@
 
 }
 
+
+
+.wish {
+  font-family: 'Roboto';
+  font-weight: 900;
+  color:grey;
+  padding: 20px 20px 20px 20px;
+  left: 0px;
+  position: absolute;
+  bottom: -10px;
+  margin: 10px 10px 10px 10px;
+    
+  }
+
 input[type="text"]::placeholder{
-  font-family: 'Roboto Medium';
+  font-family: 'Roboto';
+  font-weight: 500;
   opacity: 70%;
 }
 
@@ -40,8 +55,7 @@ input[type="text"]::placeholder{
 
   color: #FFC154;
   font-size: 25px;
-  position: absolute;
-  
+  position: fixed;
 
 }
 
@@ -50,7 +64,6 @@ input[type="text"]::placeholder{
   color: #FF9B61;
   font-size: 25px;
   position: absolute;
-  
 
 }
 
@@ -63,31 +76,35 @@ input[type="text"]::placeholder{
   z-index: 3;
 
 }
-/*
-.dropdown-menu {
-  z-index: 2;
-}
-*/
+
 .cartPrincipale label {
 
-  color: aliceblue;
+  color:grey;
+  padding: 20px 20px 20px 20px;
+  left: 0px;
+  position: absolute;
+  bottom: -10px;
+  margin: 10px 10px 10px 10px;
+  font-family: 'Roboto';
+  font-weight: 900;
   font-size: 12pt;
-  font-family: 'Archivo Black';
 
 }
 
 .cuorePrincipale label {
 
-  color: aliceblue;
+  color: grey;
   font-size: 12pt;
-  font-family: 'Archivo Black';
+  font-family: 'Roboto';
+  font-weight: 900;
 
 }
 
 .textQuantity{
 
   font-size: 12pt;
-  font-family: 'Archivo Black';
+  font-family: 'Roboto';
+  font-weight: 900;
   
 }
 
@@ -96,7 +113,8 @@ input[type="text"]::placeholder{
   padding-top: 5px;
   
   font-size: 12pt;
-  font-family: 'Archivo Bold';
+  font-family: 'Roboto';
+  font-weight: 900;
 }
 
 .cuorePrincipale .colorLabel{
@@ -123,39 +141,6 @@ input[type="text"]::placeholder{
   height: auto;
   bottom: 20px;
 }
-/*
-.wish {
-  position: absolute;
-  right: 20;
-  left: 20;
-  font-size: 25px;
-  z-index: 3;
-}
-/*
-.cart {
-  position: fixed;
-  right: 20;
-}
-
-.dropdown-body{
-  display: none;
-  height:80%;
-  width: 100%;
-  background-color: white;
-  border-style: solid;
-  border-color: black;
-  font-size: 10pt;
-  color:black;
-}*/
-
-.colorItem{
-  color:black;
-}
-/*
-.dropdown:hover .dropdown-body{
-  display: block;
-}*/
-
 
 .positionIcon{
   display: flex;
@@ -176,3 +161,19 @@ input[type="text"]::placeholder{
   color: darkgrey;
 }
 
+
+.wishlist-summary{
+  display:none;
+}
+
+.cuoreContainer:hover .wishlist-summary{
+  display:block;
+}
+
+.cart-summary{
+  display:none;
+}
+
+.cartContainer:hover .cart-summary{
+  display:block;
+}
