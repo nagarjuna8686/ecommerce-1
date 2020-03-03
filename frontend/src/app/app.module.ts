@@ -25,6 +25,7 @@ import { LoginComponent } from './components/view/login/login.component';
 import { SummaryWishlistCompComponent } from './components/common/summary-wishlist-comp/summary-wishlist-comp.component';
 import { ShoppingCartCompComponent } from './components/view/shopping-cart-comp/shopping-cart-comp.component';
 import { WishlistCompComponent } from './components/view/wishlist-comp/wishlist-comp.component';
+import { RegisterComponent } from './components/view/register/register/register.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { WishlistCompComponent } from './components/view/wishlist-comp/wishlist-
     LoginComponent,
     SummaryWishlistCompComponent,
     ShoppingCartCompComponent,
-    WishlistCompComponent
+    WishlistCompComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

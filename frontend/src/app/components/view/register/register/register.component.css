@@ -1,0 +1,92 @@
+.yellowBlock{
+    margin-top: 35px;
+    /*background-color: #faba3c;*/
+    background: rgb(250,186,60);
+    background: linear-gradient(90deg, rgba(250,186,60,1) 0%, rgba(248,131,78,1) 60%, rgba(237,67,78,1) 100%);
+    border-radius: 20px 0px 0px 20px;
+    height: 500px;
+    
+
+}
+
+.colTot{
+    padding-top: 25px;
+    justify-content: center;
+}
+
+.whiteBlock{
+    margin-top: 35px;
+    background-color: #f8f9fa;
+}
+.avatarDim{
+    display:flex;
+    justify-content: center;
+    
+    margin-left: 35%;
+    height: 150px;
+    width: 150px;
+    margin-right: 0px;
+    right: 50%;
+}
+
+.inputUser{
+    
+    margin-top: 60px;
+}
+
+.rowOption{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 10px;
+    margin-right: 10px;
+}
+
+.rowInput{
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-right: 10px;
+    margin-right: 10px;
+}
+
+label{
+    padding-right: 30px;
+    font-family: 'Roboto';
+    font-weight: 900;
+}
+
+input{
+    border-radius: 9px;
+    border: 3px solid;
+    border-color: rgba(128, 128, 128, 0.315);
+    background-color: white;
+    height: 40px;
+    width: 250px;
+}
+
+.information{
+    
+    font-family: 'Roboto';
+    font-weight: 900;
+    color:white;
+    display: flex;
+    justify-content: center;
+}
+
+.desc{
+
+        font-size: 14pt;
+        margin-left: 15px;
+        margin-right: 15px;
+        font-family: 'Roboto';
+        font-weight: 300;
+        color: white;
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-pack: center;
+    
+}
+
+.colDown{
+    margin-top: 30px;
+    
+}
