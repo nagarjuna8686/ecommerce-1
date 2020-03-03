@@ -40,7 +40,7 @@ export class CatalogComponent implements OnInit {
      }
   ]
 
-  public selected: { name:string, field:string, ascending: boolean }  = this.sortOptions[0].value;
+  public selected: { name: string, field: string, ascending: boolean }  = this.sortOptions[0].value;
 
 
   public products: Product[] = [];
@@ -149,6 +149,9 @@ export class CatalogComponent implements OnInit {
       products => {
         console.log("GOT THESE PRODUCTS", products)
         this.products = products;
+      },
+      error => {
+        console.log("error", error)
       });
 
     this.productService.search.subscribe( term => {
