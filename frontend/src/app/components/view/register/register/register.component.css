@@ -54,7 +54,7 @@ label{
     font-weight: 900;
 }
 
-input{
+input[type=text], infoUser{
     border-radius: 9px;
     border: 3px solid;
     border-color: rgba(128, 128, 128, 0.315);
@@ -88,5 +88,26 @@ input{
 
 .colDown{
     margin-top: 30px;
-    
+}
+
+.styleButton{
+    border-radius: 9px;
+    border: 3px none;
+    background: rgb(250,186,60);
+    background: linear-gradient(90deg, rgba(250,186,60,1) 0%, rgba(248,131,78,1) 60%, rgba(237,67,78,1) 100%);
+    color: white;
+    font-family: 'Roboto';
+    font-weight: 700;
+    height: 50px;
+    width: 150px;
+    justify-content: center;
+    display: flex;
+}
+
+.maxWidth{
+    width: 600px;
+}
+
+.col-8{
+    margin-left: 40%;
 }
