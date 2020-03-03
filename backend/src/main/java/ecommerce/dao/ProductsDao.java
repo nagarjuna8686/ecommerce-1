@@ -237,5 +237,79 @@ public class ProductsDao {
 		return flag;
 
 	}
+	
+	public List<ProductsDto> selectSearch(String cond) throws EcommerceException {
+
+		List<ProductsDto> productsReg = new ArrayList<>();
+		String sql = "select products.* , prices.price, prices.isDiscounted, prices.discount, prices.discountedPrice from products inner join prices on products.productID = prices.productID ";
+		
+		
+		try {
+			
+			if (cond.equals("empty")) {
+
+			Connection conn = ds.getConnection();
+
+			PreparedStatement select_stmt = conn.prepareStatement(sql);
+			ResultSet result = select_stmt.executeQuery();
+
+			while (result.next()) {
+				int productID = result.getInt(1);
+				String name = result.getString(2);
+				String template = result.getString(3);
+				String brand = result.getString(4);
+				String description = result.getString(5);
+				String url = result.getString(6);
+				double price = result.getDouble(7);
+				boolean isDiscounted = result.getBoolean(8);
+				double discount = result.getDouble(9);
+				double discountedPrice = result.getDouble(10);
+
+				productsReg.add(new ProductsDto(productID, name, price, template, brand, description, url, isDiscounted,
+						discount, discountedPrice));
+			}
+
+			result.close();
+			select_stmt.close();
+			conn.close();
+			
+			}else {
+				Connection conn = ds.getConnection();
+
+				sql = "select products.* , prices.price, prices.isDiscounted, prices.discount, prices.discountedPrice from products inner join prices on products.productID = prices.productID where products.name like ? or products.description like ?";
+				PreparedStatement select_stmt1 = conn.prepareStatement(sql);
+				select_stmt1.setString(1,"%" + cond + "%");
+				select_stmt1.setString(2,"%" + cond + "%");
+				ResultSet result1 = select_stmt1.executeQuery();
+
+				while (result1.next()) {
+					int productID = result1.getInt(1);
+					String name = result1.getString(2);
+					String template = result1.getString(3);
+					String brand = result1.getString(4);
+					String description = result1.getString(5);
+					String url = result1.getString(6);
+					double price = result1.getDouble(7);
+					boolean isDiscounted = result1.getBoolean(8);
+					double discount = result1.getDouble(9);
+					double discountedPrice = result1.getDouble(10);
+
+					productsReg.add(new ProductsDto(productID, name, price, template, brand, description, url, isDiscounted,
+							discount, discountedPrice));
+				}
+
+				result1.close();
+				select_stmt1.close();
+				conn.close();
+				
+			}
+
+		} catch (SQLException e) {
+			throw new EcommerceException(e.getMessage());
+		}
+
+		return productsReg;
+
+	}
 
 }

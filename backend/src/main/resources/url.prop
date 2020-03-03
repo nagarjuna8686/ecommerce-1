@@ -1,0 +1,1 @@
+url=/resetPassword,/updateUser,/changePassword/{userID},/deleteUserByID/{userID}

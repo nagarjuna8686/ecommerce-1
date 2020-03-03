@@ -89,5 +89,16 @@ public class ProductsApi {
 		return Response.status(Status.CONFLICT).build();
 	
 	}
+	
+	@GET
+	@Path(value = "/productsSearch/{cond}")
+	public Response selectSearch(@PathParam("cond") String cond) throws EcommerceException{
+		List<ProductsDto> listaProdotti = productdao.selectSearch(cond);
+		if(listaProdotti==null || listaProdotti.size()==0) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		return Response.ok(listaProdotti).build();
+
+	}
 
 }
