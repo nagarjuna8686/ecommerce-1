@@ -223,7 +223,9 @@ public class UsersDao {
 	}
 
 	private String genToken() {
-		return RandomStringUtils.randomAlphanumeric(45);
+		String s =RandomStringUtils.randomAlphanumeric(45);
+		System.out.println(s);
+		return s;
 	}
 
 	public void checkToken(String token) throws EcommerceException {
@@ -253,9 +255,10 @@ public class UsersDao {
 		}
 	}
 
-	public void resetPassword(UsersDto udto) throws EcommerceException {
+	public int resetPassword(UsersDto udto) throws EcommerceException {
 		Connection conn;
 		SendEmail se = new SendEmail();
+		int flag=0;
 		String sql;
 		try {
 			conn = ds.getConnection();
@@ -264,6 +267,7 @@ public class UsersDao {
 			pstmt.setString(1, udto.getEmail());
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next()) {
+				flag++;
 				se.mail(rs.getString(1));
 			}
 			rs.close();
@@ -271,8 +275,8 @@ public class UsersDao {
 			conn.close();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			throw new EcommerceException(e.getMessage());
 		}
+		return flag;
 	}
 }
