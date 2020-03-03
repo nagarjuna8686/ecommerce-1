@@ -336,5 +336,32 @@ public class UsersDao {
 		}
 		return usersReg;
 	}
+
+	public int login(UsersDto udto) throws EcommerceException{
+		
+		Connection conn;
+		int flag = 0;
+		try {
+			conn = ds.getConnection();
+			String sql = "select * from users where userID = ? and email = ?";
+			PreparedStatement select_stmt = conn.prepareStatement(sql);
+			select_stmt.setInt(1, udto.getUserID());
+			select_stmt.setString(2, udto.getEmail());
+			ResultSet resultToken = select_stmt.executeQuery();
+			if(resultToken.next()) {
+				sql = "update users SET token = ? where email = ?";
+				select_stmt = conn.prepareStatement(sql);
+				select_stmt.setString(1, this.genToken());
+				select_stmt.setString(2, udto.getEmail());
+				flag = select_stmt.executeUpdate();
+			}
+			resultToken.close();
+			select_stmt.close();
+			conn.close();
+		}catch (SQLException e){
+			throw new EcommerceException("User non trovato");
+		}
+		return flag;
+	}
 	
 }
