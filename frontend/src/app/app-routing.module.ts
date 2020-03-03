@@ -5,6 +5,7 @@ import { LoginComponent } from './components/view/login/login.component';
 import { SummaryWishlistCompComponent } from './components/common/summary-wishlist-comp/summary-wishlist-comp.component';
 import { ShoppingCartCompComponent } from './components/view/shopping-cart-comp/shopping-cart-comp.component';
 import { WishlistCompComponent } from './components/view/wishlist-comp/wishlist-comp.component';
+import { RegisterComponent } from './components/view/register/register/register.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'sum-wishlist', component: SummaryWishlistCompComponent},
   { path: 'shopping-cart-comp', component: ShoppingCartCompComponent},
   { path: 'wishlist-comp', component: WishlistCompComponent},
+  { path: 'register', component: RegisterComponent },
   { path: '', redirectTo:'catalog', pathMatch:'full'}
 ];
 

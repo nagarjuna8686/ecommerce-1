@@ -1,7 +1,8 @@
 
 <div class="dropdown">
+  <div class="dropdown-body"> Totale: {{cartService.getCartTotalAmount() | currency: 'EUR'}}</div>
 <div class="dropdown-body" *ngFor="let item of cartService.items">
-  <div class="angle">
+  <div class="">
   
   </div>
   <p class="textName"> {{item.product.name}} </p>
@@ -24,5 +25,5 @@
   </div>
   
 </div>
- <div class="dropdown-body"> Totale: {{cartService.getCartTotalAmount() | currency: 'EUR'}}</div>
+ 
 </div>

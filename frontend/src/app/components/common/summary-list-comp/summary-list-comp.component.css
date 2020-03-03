@@ -19,6 +19,13 @@ details[open] summary {
     margin-bottom: .5em;
 }
 
+
+.positionIcon{
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 15pt;
+}
+
 .cartPrincipale {
 
     color: red;
@@ -101,10 +108,12 @@ details[open] summary {
   }
 
   .colorIconPlus{
+   
     color: green;
   }
 
   .colorIconMinus{
+    
     color: crimson;
   }
 

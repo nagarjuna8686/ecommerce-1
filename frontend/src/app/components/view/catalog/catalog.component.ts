@@ -159,6 +159,7 @@ export class CatalogComponent implements OnInit {
     })
   }
 
+ 
   getFilteredProducts = (): Product[] => {
 
  
