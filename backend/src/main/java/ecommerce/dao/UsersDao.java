@@ -294,7 +294,7 @@ public class UsersDao {
 			try {
 			    pw = new PrintWriter(new File("usersAnagrafica.csv"));
 			} catch (FileNotFoundException e) {
-			    e.printStackTrace();
+				throw new EcommerceException(e.getMessage());
 			}
 
 			while (result.next()) {

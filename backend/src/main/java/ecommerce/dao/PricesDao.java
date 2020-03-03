@@ -209,6 +209,7 @@ public class PricesDao {
 				flag = update_statement4.executeUpdate();
 
 				update_statement4.close();
+				conn.close();
 
 			} else {
 
@@ -216,7 +217,6 @@ public class PricesDao {
 
 				PreparedStatement update_statement5 = conn.prepareStatement(sql);
 				update_statement5.setDouble(1, prdto.getPrice());
-				// update_statement2.setDouble(2, prdto.getPrice());
 				update_statement5.setInt(2, prdto.getPriceID());
 
 				flag = update_statement5.executeUpdate();
