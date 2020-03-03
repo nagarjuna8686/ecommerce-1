@@ -26,6 +26,9 @@ export class ProductService {
     ) as Observable<Product[]>;
   }
 
+  // insertProducts = (productID: number,name: string,price: number,discountPrice?: number,template: string,brand: string,description: string,url: string) => {
+
+  // }
 
 
   searchProduct = (term:string) => {
