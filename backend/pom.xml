@@ -32,7 +32,6 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.9</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.jboss.spec</groupId>
 			<artifactId>jboss-javaee-7.0</artifactId>
@@ -40,6 +39,7 @@
 			<type>pom</type>
 			<scope>provided</scope>
 		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>
