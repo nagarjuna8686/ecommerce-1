@@ -100,5 +100,16 @@ public class ProductsApi {
 		return Response.ok(listaProdotti).build();
 
 	}
+	
+	@GET
+	@Path(value = "/productsOrd/{filterField}/{filterValue}/{sortField}/{sortDir}")
+	public Response selectOrd(@PathParam("filterField") String filterField, @PathParam("filterValue") String filterValue, @PathParam("sortField") String sortField, @PathParam("sortDir") String sortDir) throws EcommerceException{
+		List<ProductsDto> listaProdotti = productdao.selectOrd(filterField, filterValue, sortField, sortDir);
+		if(listaProdotti==null || listaProdotti.size()==0) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		return Response.ok(listaProdotti).build();
+
+	}
 
 }
