@@ -40,11 +40,11 @@ export class CatalogComponent implements OnInit {
      }
   ]
 
-  public selected: { name:string, field:string, ascending: boolean }  = this.sortOptions[0].value;
+  public selected: { name: string, field: string, ascending: boolean }  = this.sortOptions[0].value;
 
 
-  public products: Product[] = [
-
+  public products: Product[] = [];
+  /*[
     {
       id: 1,
       name: "Alienware 17",
@@ -130,11 +130,8 @@ export class CatalogComponent implements OnInit {
       description: "Un bellissimo computer con 4GB di ram \n pronto a far laggare tutto testo di prova fantastico testo di prova fantastico ",
       url: 'https://m.media-amazon.com/images/I/61WXqkBAocL._AC_UY218_ML3_.jpg'
     },
-    
-    
-
   ] 
-
+*/
 
   constructor(
     public wishlistService: WishlistService,
@@ -143,6 +140,20 @@ export class CatalogComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    this.productService.getProducts(
+      this.term, 
+      this.selected.field, 
+      this.selected.ascending ? 'asc' : 'desc' 
+      ).subscribe(
+      products => {
+        console.log("GOT THESE PRODUCTS", products)
+        this.products = products;
+      },
+      error => {
+        console.log("error", error)
+      });
+
     this.productService.search.subscribe( term => {
       this.term = term;
     })

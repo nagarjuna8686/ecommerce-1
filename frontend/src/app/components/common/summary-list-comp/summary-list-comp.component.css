@@ -32,13 +32,6 @@ details[open] summary {
     z-index: 2;
   }
   
-  .cartPrincipale label {
-  
-    color: grey;
-    font-size: 12pt;
-    font-family: 'Archivo Black';
-  
-  }
   
   .cuorePrincipale label {
   
@@ -92,13 +85,6 @@ details[open] summary {
     bottom: 20px;
   }
   
-  .cuoreContainer {
-    position: relative;
-    width: auto;
-    height: auto;
-    bottom: 20px;
-  }
-  
  
   .cart {
 
@@ -140,7 +126,6 @@ details[open] summary {
   }
   
   .dropdown-body{
-    display: none;
     border-radius: 10px 10px 10px 10px;
     height:80%;
     width: 200px;
@@ -154,20 +139,7 @@ details[open] summary {
     z-index: 3;
   }
   
-  .colorItem{
-    color:black;
-  }
-  
-  .dropdown:hover .dropdown-body{
-    display: block;
-  }
-  
-  
-  .positionIcon{
-    display: flex;
-    justify-content: space-evenly;
-    font-size: 15pt;
-  }
+
   
   .plus-icon{
     color: black;

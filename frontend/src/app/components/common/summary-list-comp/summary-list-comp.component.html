@@ -1,10 +1,5 @@
 
 <div class="dropdown">
-  
-<label class="cart" *ngIf="cartService.getTotalItemsCart()">
-  {{cartService.getTotalItemsCart()}}
-  
-</label>
 <div class="dropdown-body" *ngFor="let item of cartService.items">
   <div class="angle">
   
