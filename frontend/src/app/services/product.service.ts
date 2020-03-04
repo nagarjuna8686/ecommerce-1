@@ -36,6 +36,11 @@ export class ProductService {
 
   // }
 
+  filterProducts = (searchTerm:string, sortField:string, sortDirection:string) : Observable<Product[]> => {
+    return this.httpClient.get(
+      environment.apiEndpoint + 'products/'+ searchTerm +'/'+ sortField + '/' + sortDirection ,
+    ) as Observable<Product[]>;
+  }
 
   searchProduct = (term:string) => {
     if (this.router.url.indexOf('/catalog') === -1) {
