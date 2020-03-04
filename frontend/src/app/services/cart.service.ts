@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { CartItem } from '../classes/CartItem';
 import { Product } from '../classes/Product';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { BehaviorSubject, Observable, forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators'
+import { ProductService } from './product.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +14,11 @@ export class CartService {
 
   public items: CartItem[] = [];
   
-  constructor() { 
-    
+  constructor(
+    public httpClient: HttpClient,
+    public productService: ProductService
+  ) { 
+    this.updateCartInfo()
   }
 
   isItemInCart= (item) : boolean => {
@@ -67,6 +75,8 @@ export class CartService {
 
       getCartTotalAmount = ():number => {
         let t = 0;
+        
+        
         this.items.forEach( (item) =>
           {
             if(item.product.discountPrice)
@@ -74,9 +84,45 @@ export class CartService {
             else
               t+=item.product.price*item.quantity;
           })
-        return t;
+        
+          return t;
       }
+  
+
+  loadCart = () : Observable<CartItem[]> => {
+    return this.httpClient.get(
+      environment.apiEndpoint + 'cart',
+      { headers: { 'x-token' : 'LpbYigPE4PZ0Uv9fH5fHhm5lFJbF15VpLsPEz1k98l3NX'} }
+    ) as Observable<CartItem[]>;
   }
 
+  updateCartInfo = () => {
+    this.loadCart().subscribe( items => {
+      let calls = [];
+      items.forEach( (item, index) => {
+          calls.push(this.productService.getProduct(item['productID'])); 
+        }
+      );
+      forkJoin(calls).subscribe( products  => {
+        products.forEach( (product, index) => {
+          items[index]['product'] = product[0] as Product;
+          items[index]['quantity'] = 1; 
+        })
+        this.items = items;
+        console.log('CartItems', this.items);
+      })
+    })
+  }
 
+  insertIntoCart = (idUser : number, idItem : number) => {
+    return this.httpClient.post(
+      environment.apiEndpoint + 'cart/'+ idUser +'/'+ idItem ,
+      //environment.apiEndpoint + 'cart/4/'+ idItem ,
+      {idUser: idUser, idItem: idItem},
+      {headers: {'Content-Type': 'appplication/json'}}
+    )
+    this.updateCartInfo();
+  }
+
+}
 

@@ -1,6 +1,3 @@
-<style>
-  @import url('https://fonts.googleapis.com/css?family=Roboto:700&display=swap');
-  </style>
 <div class="product-thumbnail">
     <div class="img-wrap" [ngStyle]="{ backgroundImage:'url(' + inputProduct.url + ')'}"></div>
     <div class="favorite-button clickable" 
@@ -18,7 +15,8 @@
      </p>
     <p class="priceProduct" *ngIf="!inputProduct.discountPrice">
       {{inputProduct.price | currency:'EUR' }} </p>
+      <!--(click)="cartService.addItemsToCart(1, inputProduct, inputProduct.price)" -->
     <button type="button" class="btn btn-warning priceProductButton"
-    (click)="cartService.addItemsToCart(1, inputProduct, inputProduct.price)"
+    (click)="cartService.insertIntoCart(4, inputProduct.productID)"
     >ADD TO CART</button>
 </div>

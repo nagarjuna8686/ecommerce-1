@@ -157,6 +157,7 @@ export class CatalogComponent implements OnInit {
     this.productService.search.subscribe( term => {
       this.term = term;
     })
+    
   }
 
  

@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
         console.log('UTENTE REGISTRATO CON SUCCESSO (SPERO)');
       },
       error => {
-        console.log('ERRORE REGISTRAZIONE', this.registerUser.name);
+        console.log('ERRORE REGISTRAZIONE',this.registerUser.name, error);
       }
     )
   }
