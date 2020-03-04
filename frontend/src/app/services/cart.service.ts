@@ -119,7 +119,7 @@ export class CartService {
       environment.apiEndpoint + 'cart/'+ idUser +'/'+ idItem ,
       //environment.apiEndpoint + 'cart/4/'+ idItem ,
       {idUser: idUser, idItem: idItem},
-      {headers: {'Content Type': 'appplication/json'}}
+      {headers: {'Content-Type': 'appplication/json'}}
     )
     this.updateCartInfo();
   }
