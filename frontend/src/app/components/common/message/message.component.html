@@ -1,0 +1,24 @@
+<div class="modal messages" [ngClass]="messages.length ? 'show fade' : 'hide'" (click)="clearMessages($event)">
+  <div class="modal-dialog appear-slide-down" (click)="stopPropagation($event)">
+    <div class="modal-content">
+
+      <div class="message" [ngClass]="'message-' + message.severity" *ngFor="let message of messages">
+
+        <div class="bar">
+          {{ message.header }}
+          <div class="close-btn" *ngIf="allMessagesAreCloseable()" (click)="clearMessages($event)">✖</div>
+        </div>
+
+        <div class="message-body">{{ message.body }}</div>
+
+        <div class="end-buttons" *ngIf="message.buttons">
+          <div class="btn" *ngFor="let b of message.buttons" [ngClass]="b.class ? b.class : 'btn-secondary'"
+            (click)="b.args ? b.action(b.args) : b.action()">
+            {{ b.label }}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
