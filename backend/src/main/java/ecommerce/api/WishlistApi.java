@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response.Status;
 
 import ecommerce.dao.WishProdDto;
 import ecommerce.dao.WishlistDao;
+import ecommerce.dto.UsersDto;
 import ecommerce.dto.WishlistDto;
 import ecommerce.exceptions.EcommerceException;
 
@@ -54,9 +55,9 @@ import ecommerce.exceptions.EcommerceException;
     }
     
     @POST
-    @Path("/regWish/{userID}/{productID}")
-    public Response regUser( @PathParam("userID") int userID,  @PathParam("productID") int prodID) throws EcommerceException {
-      if(wishlistdao.insert(userID,prodID)>0) {
+    @Path("/regWish/{productID}")
+    public Response regWish(@PathParam("productID") int prodID, UsersDto udto) throws EcommerceException {
+      if(wishlistdao.insert(prodID,udto)>0) {
         return Response.status(Status.NO_CONTENT).build();
       }
       return Response.status(Status.CONFLICT).build();
@@ -65,20 +66,29 @@ import ecommerce.exceptions.EcommerceException;
     
     
     @DELETE
-    @Path("/deleteWishByID/{wishlistID}")
-    public Response deleteWishlistByID(@PathParam("wishlistID") int id) throws EcommerceException {
-      if(wishlistdao.deleteWishlistByID(id)>0) {
+    @Path("/deleteWishByID")
+    public Response deleteWishlistByID(UsersDto udto) throws EcommerceException {
+      if(wishlistdao.deleteWishlistByID(udto)>0) {
         return Response.status(Status.NO_CONTENT).build();
       }
       return Response.status(Status.CONFLICT).build();
     
     }
     
+    @DELETE
+    @Path("/deleteProd/{wishlistID}")
+    public Response deleteProd(@PathParam("wishlistID") int wishlistID) throws EcommerceException {
+      if(wishlistdao.deleteProd(wishlistID)>0) {
+        return Response.status(Status.NO_CONTENT).build();
+      }
+      return Response.status(Status.CONFLICT).build();
+    }
+    
     
     @GET
-	@Path(value = "/wishSearch/{cond}/{offset}/{pageSize}")
-	public Response cartSearch(@PathParam("cond") String cond, @PathParam("offset")String offset, @PathParam("pageSize")String pageSize) throws EcommerceException{
-		List<WishProdDto> listaWish = wishlistdao.wishSearch(cond,offset,pageSize);
+	@Path(value = "/searchWishByID/{offset}/{pageSize}")
+	public Response wishSearch(@PathParam("offset")String offset, @PathParam("pageSize")String pageSize, UsersDto udto) throws EcommerceException{
+		List<WishProdDto> listaWish = wishlistdao.wishSearch(offset,pageSize,udto);
 		if(listaWish==null || listaWish.size()==0) {
 			return Response.status(Status.NOT_FOUND).build();
 		}
@@ -87,11 +97,11 @@ import ecommerce.exceptions.EcommerceException;
 	}
 	
 	@GET
-	@Path(value = "/wishOrd/{filterField}/{filterValue}/{sortField}/{sortDir}/{offset}/{pageSize}")
-	public Response selectOrd(@PathParam("filterField") String filterField, @PathParam("filterValue") String filterValue, 
-			@PathParam("sortField") String sortField, @PathParam("sortDir") String sortDir,
-			@PathParam("offset")String offset, @PathParam("pageSize")String pageSize) throws EcommerceException{
-		List<WishProdDto> listaWish = wishlistdao.selectOrd(filterField, filterValue, sortField, sortDir,offset,pageSize);
+	@Path(value = "/wishOrd/{sortField}/{sortDir}/{offset}/{pageSize}")
+	public Response selectOrd(@PathParam("sortField") String sortField, @PathParam("sortDir") String sortDir,
+			@PathParam("offset")String offset, @PathParam("pageSize")String pageSize,
+			UsersDto udto) throws EcommerceException{
+		List<WishProdDto> listaWish = wishlistdao.selectOrd(sortField, sortDir,offset,pageSize, udto);
 		if(listaWish==null || listaWish.size()==0) {
 			return Response.status(Status.NOT_FOUND).build();
 		}
