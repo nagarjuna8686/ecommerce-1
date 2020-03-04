@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators'
 export class AuthService {
 
   public loggedUser: User;
-  public token: string;
+  public token: string = 'LpbYigPE4PZ0Uv9fH5fHhm5lFJbF15VpLsPEz1k98l3NX'; // temporary
 
   constructor(
     public httpClient: HttpClient
@@ -32,5 +32,9 @@ export class AuthService {
       })
     )
 
+  }
+
+  getToken = () => {
+    return this.token;
   }
 }

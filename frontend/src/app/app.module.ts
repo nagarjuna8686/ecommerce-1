@@ -29,6 +29,7 @@ import { RegisterComponent } from './components/view/register/register/register.
 import { SpinnerInterceptor } from './intervceptors/spinner-interceptor';
 import { BusyService } from './services/busy.service';
 import { SpinnerComponent } from './components/common/spinner/spinner.component';
+import { TokenInterceptor } from './intervceptors/token.interceptor';
 
 
 @NgModule({
@@ -63,6 +64,11 @@ import { SpinnerComponent } from './components/common/spinner/spinner.component'
     {
       provide: HTTP_INTERCEPTORS,
       useClass: SpinnerInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
       multi: true
     }
   ],
