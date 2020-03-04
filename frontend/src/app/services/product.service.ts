@@ -47,5 +47,6 @@ export class ProductService {
       this.router.navigate(['/catalog']);
     }
     this.search.next(term);
+    
   }
 }
