@@ -18,14 +18,14 @@ export class RegisterComponent implements OnInit {
     email: '',
     phone: '',
     password: ''
-  }
+  };
 
   constructor(
     public authService: AuthService,
     public messageService: MessageService
   ) {
     this.show = false;
-   }
+  }
 
   ngOnInit(): void {
   }
@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
       ).subscribe(
       response => {
         this.messageService.success('SUCCESSO', 'Utente creato con successo');
-        console.log('UTENTE REGISTRATO CON SUCCESSO (SPERO) ');
+        console.log('UTENTE REGISTRATO CON SUCCESSO (SPERO)');
       },
       error => {
         this.messageService.error('ERRORE', 'Errore: ' + JSON.stringify(error));
