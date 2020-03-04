@@ -57,7 +57,7 @@ export class AuthService {
         password: pwd
       }, {
         headers: {
-          'Content Type': 'application/json'
+          'Content-Type': 'application/json'
         }
       }
     ).pipe(
