@@ -22,22 +22,20 @@ export class LoginComponent implements OnInit {
 
   login = () => {
 
-    let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
     if (this.loginUser.email.match(mailformat)) {
 
       this.authService.login(this.loginUser.email, this.loginUser.password).subscribe(
         response => {
-          alert('UTENTE LOGGATO CON SUCCESSO')
+          alert('UTENTE LOGGATO CON SUCCESSO');
         },
         error => {
-          alert('ERRORE LOGIN')
+          alert('ERRORE LOGIN');
         }
       )
+    } else {
+      alert('FORMATO MAIL ERRATO');
     }
-    else {
-      alert('FORMATO MAIL ERRATO')
-    }
-  } 
-
+  }
 }

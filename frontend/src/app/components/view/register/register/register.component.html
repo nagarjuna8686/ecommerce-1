@@ -55,40 +55,40 @@
               </div>
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-6" >
             <div class="row rowInput">
               <div class="col">
-                <input type="text" required>
+                <input [(ngModel)]="registerUser.name" type="text" name="name" required>
               </div>
             </div>
             <div class="row rowInput">
               <div class="col">
-                <input type="text" required>
+                <input [(ngModel)]="registerUser.surname" type="text" required>
               </div>
             </div>
             <div class="row rowInput">
               <div class="col">
-                <input type="text" required />
+                <input [(ngModel)]="registerUser.birthdate" type="text" required />
               </div>
             </div>
             <div class="row rowInput">
               <div class="col">
-                <input type="text" required />
+                <input [(ngModel)]="registerUser.email" type="text" required />
               </div>
             </div>
             <div class="row rowInput">
               <div class="col">
-                <input type="text" class="infoUser" required />
-              </div>
-            </div>
-            <div class="row rowInput">
-              <div class="col">
-                <input [type]="show ? 'text' : 'password'" />
+                <input [(ngModel)]="registerUser.phone" type="text" class="infoUser" required />
               </div>
             </div>
             <div class="row rowInput">
               <div class="col">
                 <input [type]="show ? 'text' : 'password'" />
+              </div>
+            </div>
+            <div class="row rowInput">
+              <div class="col">
+                <input [(ngModel)]="registerUser.password" [type]="show ? 'text' : 'password'" />
                 <label>Show pass</label><input type="checkbox" (click)=passwordView() />
               </div>
             </div>
@@ -97,7 +97,7 @@
             <div class="col-2">
             </div>
             <div class="col-8">
-              <input type="submit" class="styleButton" value="SEND" />
+              <input (click)=addUser() type="submit" class="styleButton" value="SEND" />
             </div>
             <div class="col-2">
             </div>

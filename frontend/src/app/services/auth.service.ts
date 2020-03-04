@@ -1,8 +1,18 @@
-import { Injectable } from '@angular/core';
-import { User } from '../classes/User';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { map } from 'rxjs/operators'
+import {
+  Injectable
+} from '@angular/core';
+import {
+  User
+} from '../classes/User';
+import {
+  HttpClient
+} from '@angular/common/http';
+import {
+  environment
+} from 'src/environments/environment';
+import {
+  map
+} from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
@@ -14,20 +24,43 @@ export class AuthService {
 
   constructor(
     public httpClient: HttpClient
-  ) { }
+  ) {}
 
-  createUser = () => {
+  createUser = (
+      name: string,
+      surname: string,
+      birthdate: string,
+      email: string,
+      phone: string,
+      password: string
+    ) =>
+    this.httpClient.post(environment.apiEndpoint + 'users/regUser',
+    {
+      name: name,
+      surname: surname,
+      birthdate: birthdate,
+      email: email,
+      phone: phone,
+      password: password
+    }, {
+      headers: {
+        'Content Type': 'application/json'
+      }
+    })
 
-  }
-
-  login = (email:string, pwd:string) => {
+  login = (email: string, pwd: string) => {
 
     return this.httpClient.post(
-      environment.apiEndpoint + 'users/login',
-      {email: email, password: pwd},
-      {headers: {'Content Type': 'appplication/json'}}
+      environment.apiEndpoint + 'users/login', {
+        email: email,
+        password: pwd
+      }, {
+        headers: {
+          'Content Type': 'application/json'
+        }
+      }
     ).pipe(
-      map( response => {
+      map(response => {
         this.token = response['token']
       })
     )
