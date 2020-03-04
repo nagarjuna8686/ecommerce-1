@@ -17,13 +17,11 @@ export class RegisterComponent implements OnInit {
     email: '',
     phone: '',
     password: ''
-  }
+  };
 
-  constructor(
-    public authService: AuthService
-  ) {
+  constructor( public authService: AuthService ) {
     this.show = false;
-   }
+  }
 
   ngOnInit(): void {
   }
@@ -38,10 +36,10 @@ export class RegisterComponent implements OnInit {
       this.registerUser.password
       ).subscribe(
       response => {
-        console.log('UTENTE REGISTRATO CON SUCCESSO (SPERO) ');
+        console.log('UTENTE REGISTRATO CON SUCCESSO (SPERO)');
       },
       error => {
-        console.log('ERRORE REGISTRAZIONE',this.registerUser.name);
+        console.log('ERRORE REGISTRAZIONE', this.registerUser.name);
       }
     )
   }
