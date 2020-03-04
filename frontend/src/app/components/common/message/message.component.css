@@ -1,0 +1,130 @@
+.message {
+  position: relative;
+}
+
+.message .icon {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  color: white;
+  background-color: #666;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -25px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.message .icon::after {
+  display: flex;
+}
+
+.message.message-error .bar { }
+
+.message .title {
+  margin: 0 0 5px 0;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.message .button-row {
+  text-align: right;
+}
+
+.modal {
+  box-shadow: 0px 1px 20px 0px rgba(90, 103, 114, 0.1);
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal .title {
+  margin: 0 0 10px 0;
+}
+
+.modal-dialog {
+  overflow-y: auto;
+  max-height: calc(100% - 100px);
+  margin-top: 150px;
+  border-radius: 1px;
+  z-index: 99;
+}
+
+.modal-dialog {
+  min-width: auto;
+  max-width: auto;
+  width: 500px;
+}
+
+.bar {
+  background-color: #2e465e;
+  padding: 10px;
+  color: white;
+  padding-left: 52px;
+  font-size: 24px;
+}
+
+.message-body{
+  margin: 20px;
+}
+
+.modal-content {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.modal-header {
+  font-size: 24px;
+}
+
+.modal-body.extended {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.modal-body.extended .table {
+  margin: 0;
+}
+
+.modal-body.extended .table td:first-child {
+  padding-left: 30px;
+  width: 20px;
+}
+
+.modal-body .text {
+  width: 100%;
+  float: left;
+  padding: 0 0 20px 15px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+.modal .close-btn {
+  position: absolute;
+  top: 14px;
+  left: 13px;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+.modal.show {
+  display: initial;
+  opacity: 1;
+}
+
+.modal.hide {
+  display: none;
+  opacity: 0;
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +21,8 @@ export class RegisterComponent implements OnInit {
   }
 
   constructor(
-    public authService: AuthService
+    public authService: AuthService,
+    public messageService: MessageService
   ) {
     this.show = false;
    }
@@ -38,9 +40,11 @@ export class RegisterComponent implements OnInit {
       this.registerUser.password
       ).subscribe(
       response => {
+        this.messageService.success('SUCCESSO', 'Utente creato con successo');
         console.log('UTENTE REGISTRATO CON SUCCESSO (SPERO) ');
       },
       error => {
+        this.messageService.error('ERRORE', 'Errore: ' + JSON.stringify(error));
         console.log('ERRORE REGISTRAZIONE',this.registerUser.name, error);
       }
     )

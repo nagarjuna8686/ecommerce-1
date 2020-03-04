@@ -26,10 +26,12 @@ import { SummaryWishlistCompComponent } from './components/common/summary-wishli
 import { ShoppingCartCompComponent } from './components/view/shopping-cart-comp/shopping-cart-comp.component';
 import { WishlistCompComponent } from './components/view/wishlist-comp/wishlist-comp.component';
 import { RegisterComponent } from './components/view/register/register/register.component';
-import { SpinnerInterceptor } from './intervceptors/spinner-interceptor';
+import { SpinnerInterceptor } from './interceptors/spinner-interceptor';
 import { BusyService } from './services/busy.service';
 import { SpinnerComponent } from './components/common/spinner/spinner.component';
-import { TokenInterceptor } from './intervceptors/token.interceptor';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+import { MessageComponent } from './components/common/message/message.component';
+import { MessageService } from './services/message.service';
 
 
 @NgModule({
@@ -46,7 +48,8 @@ import { TokenInterceptor } from './intervceptors/token.interceptor';
     ShoppingCartCompComponent,
     WishlistCompComponent,
     RegisterComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +64,7 @@ import { TokenInterceptor } from './intervceptors/token.interceptor';
     WishlistService,
     CartService,
     BusyService,
+    MessageService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: SpinnerInterceptor,
