@@ -34,7 +34,8 @@ export class AuthService {
       phone: string,
       password: string
     ) =>
-    this.httpClient.post(environment.apiEndpoint + 'users/regUser',
+    this.httpClient.post(
+      environment.apiEndpoint + 'users/regUser',
     {
       name: name,
       surname: surname,
@@ -44,7 +45,7 @@ export class AuthService {
       password: password
     }, {
       headers: {
-        'Content Type': 'application/json'
+        'Content-Type': 'application/json'
       }
     })
 
@@ -56,7 +57,7 @@ export class AuthService {
         password: pwd
       }, {
         headers: {
-          'Content Type': 'application/json'
+          'Content-Type': 'application/json'
         }
       }
     ).pipe(
