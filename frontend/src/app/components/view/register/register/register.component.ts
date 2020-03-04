@@ -11,6 +11,8 @@ export class RegisterComponent implements OnInit {
 
   show: boolean;
 
+  confirmedPassword: string = '';
+
   public registerUser = {
     name: '',
     surname: '',
@@ -34,7 +36,8 @@ export class RegisterComponent implements OnInit {
 
     const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-    if (this.registerUser.email.match(mailformat)) {
+    if (this.registerUser.email.match(mailformat) && this.registerUser.password === this.confirmedPassword) {
+
     this.authService.createUser(
       this.registerUser.name,
       this.registerUser.surname,
@@ -53,7 +56,9 @@ export class RegisterComponent implements OnInit {
       }
     )
     }else{
+      this.messageService.success('MI DISPIACE', 'La tua password/email è sbagliata');
       console.log('formato mail sbagliata');
+      console.log('password non uguale')
     }
   }
 
