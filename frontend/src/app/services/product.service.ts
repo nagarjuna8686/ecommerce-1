@@ -18,6 +18,13 @@ export class ProductService {
     public httpClient: HttpClient 
   ) {}
 
+    getProduct = (productId : string) => {
+      return this.httpClient.get(
+        environment.apiEndpoint + 'products/productsByID' + '/' + productId,
+        { headers: { 'x-token' : 'LpbYigPE4PZ0Uv9fH5fHhm5lFJbF15VpLsPEz1k98l3NX'} }
+      ) as Observable<Product[]>;
+    }
+
   getProducts = (searchTerm:string, sortField:string, sortDirection:string): Observable<Product[]> => {
     return this.httpClient.get(
       // environment.apiEndpoint + 'products/'+ searchTerm +'/'+ sortField + '/' + sortDirection + '/1/12',

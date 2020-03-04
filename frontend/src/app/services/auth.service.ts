@@ -25,7 +25,7 @@ export class AuthService {
     return this.httpClient.post(
       environment.apiEndpoint + 'users/login',
       {email: email, password: pwd},
-      {headers: {'Content Type': 'appplication/json'}}
+      {headers: {'Content Type': 'application/json'}}
     ).pipe(
       map( response => {
         this.token = response['token']
