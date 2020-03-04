@@ -21,8 +21,7 @@ export class ProductService {
   getProducts = (searchTerm:string, sortField:string, sortDirection:string): Observable<Product[]> => {
     return this.httpClient.get(
       // environment.apiEndpoint + 'products/'+ searchTerm +'/'+ sortField + '/' + sortDirection + '/1/12',
-      environment.apiEndpoint + 'products',
-      { headers: { 'x-token' : 'LpbYigPE4PZ0Uv9fH5fHhm5lFJbF15VpLsPEz1k98l3NX'} }
+      environment.apiEndpoint + 'products'
     ) as Observable<Product[]>;
   }
 

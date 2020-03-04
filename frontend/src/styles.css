@@ -53,3 +53,38 @@ body {
   input.ng-invalid.ng-touched{
     border: 1px solid red;
   }
+
+  /* ---|    MODAL    |---*/
+
+.modal.show {
+  display: flex;
+  display: -ms-flexbox;
+}
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.2);
+  align-items: center;
+}
+
+.modal-content {
+  border-radius: 2px;
+  border: 0;
+  padding: 20px;
+  animation: fadeZoomIn 0.2s;
+}
+
+.messages .modal-content {
+  padding: 0;
+}
+
+.modal.operative .modal-dialog,
+.modal.navigation .modal-dialog {
+  max-width: 1366px;
+  min-width: 1200px;
+  width: 90%;
+}
+
+.modal.loading .modal-dialog{
+  width: 60px;
+  text-align: center;
+}
