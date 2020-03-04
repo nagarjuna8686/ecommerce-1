@@ -151,6 +151,7 @@ html {
   
   /* Simple CSS3 Fade-in-down Animation */
   .fadeInDown {
+    
     -webkit-animation-name: fadeInDown;
     animation-name: fadeInDown;
     -webkit-animation-duration: 1s;
@@ -263,3 +264,11 @@ html {
     width:60%;
   }
   
+  .linkColor{
+    color: black;
+  }
+
+  p:hover{
+  
+    color: rgb(209, 145, 16);
+  }

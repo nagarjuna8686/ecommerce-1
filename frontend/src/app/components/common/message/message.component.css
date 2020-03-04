@@ -62,15 +62,22 @@
 }
 
 .bar {
-  background-color: #2e465e;
+  /* background-color: #2e465e; */
+  background: rgb(250,186,60);
+  background: linear-gradient(90deg, rgba(250,186,60,1) 0%, rgba(248,131,78,1) 60%, rgba(237,67,78,1) 100%);
+  
   padding: 10px;
   color: white;
   padding-left: 52px;
   font-size: 24px;
+  font-family: 'Roboto';
+  font-weight: 700;
 }
 
 .message-body{
   margin: 20px;
+  font-family: 'Roboto';
+  font-weight: 400;
 }
 
 .modal-content {
