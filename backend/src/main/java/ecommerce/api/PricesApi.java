@@ -63,7 +63,6 @@ public class PricesApi {
 			return Response.status(Status.NO_CONTENT).build();
 		}
 		return Response.status(Status.CONFLICT).build();
-	
 	}
 
 	@PUT

@@ -1,1 +1,1 @@
-url=/resetPassword,/updateUser,/changePassword/{userID},/deleteUserByID/{userID}
+url=/users/resetPassword,/users/updateUser,/users/changePassword,/users/deleteUserByID,/cart/cartSearch,/cart/regCart,/cart/deleteCart

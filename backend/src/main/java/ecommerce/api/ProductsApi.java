@@ -91,7 +91,7 @@ public class ProductsApi {
 	}
 	
 	@GET
-	@Path(value = "/productsSearch/{cond}")
+	@Path(value = "/productsSearch/{cond}/{offset}/{pageSize}")
 	public Response selectSearch(@PathParam("cond") String cond) throws EcommerceException{
 		List<ProductsDto> listaProdotti = productdao.selectSearch(cond);
 		if(listaProdotti==null || listaProdotti.size()==0) {
@@ -102,7 +102,7 @@ public class ProductsApi {
 	}
 	
 	@GET
-	@Path(value = "/productsOrd/{filterField}/{filterValue}/{sortField}/{sortDir}")
+	@Path(value = "/productsOrd/{filterField}/{filterValue}/{sortField}/{sortDir}/{offset}/{pageSize}")
 	public Response selectOrd(@PathParam("filterField") String filterField, @PathParam("filterValue") String filterValue, @PathParam("sortField") String sortField, @PathParam("sortDir") String sortDir) throws EcommerceException{
 		List<ProductsDto> listaProdotti = productdao.selectOrd(filterField, filterValue, sortField, sortDir);
 		if(listaProdotti==null || listaProdotti.size()==0) {

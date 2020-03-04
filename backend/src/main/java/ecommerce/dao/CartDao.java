@@ -6,12 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.sql.DataSource;
-
 import ecommerce.dto.CartDto;
+import ecommerce.dto.CartProdDto;
+import ecommerce.dto.UsersDto;
 import ecommerce.exceptions.EcommerceException;
 
 @Stateless
@@ -50,93 +50,54 @@ public class CartDao {
 
 	}
 
-	public List<CartDto> selectById(String cond) throws EcommerceException {
-
-		List<CartDto> cartReg = new ArrayList<>();
-
-		try {
-
-			Connection conn = ds.getConnection();
-			String sql = "select  * from cart where cartID = ?";
-			PreparedStatement select_stmt = conn.prepareStatement(sql);
-			select_stmt.setString(1, cond);
-
-			ResultSet result = select_stmt.executeQuery(sql);
-
-			while (result.next()) {
-				int cartID = result.getInt(1);
-				int userID = result.getInt(2);
-				int productID = result.getInt(3);
-
-				cartReg.add(new CartDto(cartID, userID, productID));
-			}
-
-			result.close();
-			select_stmt.close();
-			conn.close();
-
-		} catch (SQLException e) {
-			throw new EcommerceException(e.getMessage());
-		}
-		return cartReg;
-
-	}
-
-	public int insert(int usid, int prodid) throws EcommerceException {
+	@SuppressWarnings("resource")
+	public int insert(int prodid, int quantity, UsersDto udto) throws EcommerceException {
 
 		int flag = 0;
 		try {
-
 			Connection conn = ds.getConnection();
-
-//			eventuale query di select per recueprare userID e productID 
-
-//			String sql = "select  * from users where userID = ?";
-//			PreparedStatement select_stmt = conn.prepareStatement(sql);
-//			select_stmt.setInt(1, usid);
-//			ResultSet resultU = select_stmt.executeQuery();
-//			
-//			while (resultU.next()) {
-//			usid = resultU.getInt(1);
-//			}
-//			
-//			sql = "select  * from products where name = ?";
-//			select_stmt.setInt(1, prodid);
-//			ResultSet resultP = select_stmt.executeQuery();
-//			while (resultP.next()) {
-//			usid = resultP.getInt(1);
-//			}
-
-			String sql = " insert into cart (userID, productID)" + " values (?, ?)";
-
-			PreparedStatement insert_statement = conn.prepareStatement(sql);
-			insert_statement.setInt(1, usid);
-			insert_statement.setInt(2, prodid);
-
-			flag = insert_statement.executeUpdate();
-
-			insert_statement.close();
+			String sql = "select * from cart where userID = ? and productID = ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, udto.getUserID());
+			stmt.setInt(2, prodid);
+			ResultSet resQ = stmt.executeQuery();
+			if (resQ.next()) {
+				sql = "update cart set quantity = ? where userID = ? and productID = ?";
+				stmt = conn.prepareStatement(sql);
+				stmt.setInt(1, quantity + resQ.getInt(1));
+				stmt.setInt(2, udto.getUserID());
+				stmt.setInt(3, prodid);
+				flag = stmt.executeUpdate();
+			} else {
+				sql = " insert into cart (userID, productID, quantity)" + " values (?, ?, ?)";
+				stmt = conn.prepareStatement(sql);
+				stmt.setInt(1, udto.getUserID());
+				stmt.setInt(2, prodid);
+				stmt.setInt(3, quantity);
+				flag = stmt.executeUpdate();
+			}
+			resQ.close();
+			stmt.close();
 			conn.close();
 
 		} catch (SQLException e) {
 			throw new EcommerceException(e.getMessage());
 		}
-		
+
 		return flag;
 	}
 
-	public int delete(String cond) throws EcommerceException {
+	public int delete(UsersDto udto) throws EcommerceException {
 
 		int flag = 0;
 		try {
 
 			Connection conn = ds.getConnection();
-			String sql = "delete from cart where cartID = ?";
+			String sql = "delete from cart where userID = ?";
 
 			PreparedStatement delete_stmt = conn.prepareStatement(sql);
-			delete_stmt.setString(1, cond);
+			delete_stmt.setInt(1, udto.getUserID());
 			flag = delete_stmt.executeUpdate();
-
 			delete_stmt.close();
 			conn.close();
 
@@ -144,6 +105,162 @@ public class CartDao {
 			throw new EcommerceException(e.getMessage());
 		}
 		return flag;
+
+	}
+
+	@SuppressWarnings("resource")
+	public int changeQuantity(int productID, int quantity, UsersDto udto) throws EcommerceException {
+
+		int flag = 0;
+		try {
+
+			Connection conn = ds.getConnection();
+			String sql = "select * from cart where userID = ? and productID = ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, udto.getUserID());
+			stmt.setInt(2, productID);
+			ResultSet resQ = stmt.executeQuery();
+			if(resQ.next()) {
+				int totQuantity = resQ.getInt(4) + quantity;
+				System.out.println(totQuantity);
+				if(totQuantity>0) {
+					sql = "update cart set quantity = ? where userID = ? and productID = ?";
+					stmt = conn.prepareStatement(sql);
+					stmt.setInt(1, totQuantity);
+					stmt.setInt(2, udto.getUserID());
+					stmt.setInt(3, productID);
+					flag = stmt.executeUpdate();
+				}else {
+					sql = "delete from cart where userID = ? and productID = ?";
+					stmt = conn.prepareStatement(sql);
+					stmt.setInt(1, udto.getUserID());
+					stmt.setInt(2, productID);
+					flag = stmt.executeUpdate();
+				}
+			}
+		} catch (SQLException e) {
+			throw new EcommerceException(e.getMessage());
+		}
+		return flag;
+	}
+	
+	
+
+	public List<CartProdDto> cartSearch(String offset, String pageSize, UsersDto udto) throws EcommerceException {
+
+		List<CartProdDto> cartReg = new ArrayList<>();
+		String sql = null;
+		Connection conn;
+		PreparedStatement select_stmt;
+		try {
+			ResultSet result;
+			if (udto.getUserID() == 0) {
+				sql = "select cart.quantity, products.* from cart inner join products on cart.productID = products.productID "
+						+ " limit " + pageSize + " offset " + offset;
+				conn = ds.getConnection();
+				select_stmt = conn.prepareStatement(sql);
+				result = select_stmt.executeQuery();
+				while (result.next()) {
+					int quantity = result.getInt(1);
+					int productID = result.getInt(2);
+					String name = result.getString(3);
+					String template = result.getString(4);
+					String brand = result.getString(5);
+					String description = result.getString(6);
+					String url = result.getString(7);
+					cartReg.add(new CartProdDto(quantity, productID, name, template, brand, description, url));
+				}
+
+			} else {
+				conn = ds.getConnection();
+
+				sql = "select cart.quantity, products.* from cart inner join products on cart.productID = products.productID where cart.userID like "
+						+ "'%" + udto.getUserID() + "%'" + " limit " + pageSize + " offset " + offset;
+				select_stmt = conn.prepareStatement(sql);
+				result = select_stmt.executeQuery();
+
+				while (result.next()) {
+					int quantity = result.getInt(1);
+					int productID = result.getInt(2);
+					String name = result.getString(3);
+					String template = result.getString(4);
+					String brand = result.getString(5);
+					String description = result.getString(6);
+					String url = result.getString(7);
+					cartReg.add(new CartProdDto(quantity, productID, name, template, brand, description, url));
+				}
+			}
+			result.close();
+			select_stmt.close();
+			conn.close();
+
+		} catch (SQLException e) {
+			throw new EcommerceException(e.getMessage());
+		}
+
+		return cartReg;
+
+	}
+
+	public List<CartProdDto> selectOrd(String sortField, String sortDir, String offset, String pageSize, UsersDto udto)
+			throws EcommerceException {
+
+		List<CartProdDto> cartProdReg = new ArrayList<>();
+		String sql = null;
+		ResultSet result;
+		Connection conn;
+		PreparedStatement select_stmt;
+		try {
+
+			if (udto.getUserID() == 0) {
+				sql = "select cart.quantity, products.* from cart inner join products on cart.productID = products.productID "
+						+ "order by " + sortField + " " + sortDir + " limit " + pageSize + " offset " + offset;
+				conn = ds.getConnection();
+				select_stmt = conn.prepareStatement(sql);
+				result = select_stmt.executeQuery();
+
+				while (result.next()) {
+					int quantity = result.getInt(1);
+					int productID = result.getInt(2);
+					String name = result.getString(3);
+					String template = result.getString(4);
+					String brand = result.getString(5);
+					String description = result.getString(6);
+					String url = result.getString(7);
+
+					cartProdReg.add(new CartProdDto(quantity, productID, name, template, brand, description, url));
+				}
+
+			} else {
+				conn = ds.getConnection();
+				sql = "select cart.quantity, products.* from cart inner join products on cart.productID = products.productID where "
+						+ "userID like '%" + udto.getUserID() + "%' order by " + sortField + " " + sortDir + " limit "
+						+ pageSize + " offset " + offset;
+				select_stmt = conn.prepareStatement(sql);
+				result = select_stmt.executeQuery();
+
+				while (result.next()) {
+					int quantity = result.getInt(1);
+					int productID = result.getInt(2);
+					String name = result.getString(3);
+					String template = result.getString(4);
+					String brand = result.getString(5);
+					String description = result.getString(6);
+					String url = result.getString(7);
+
+					cartProdReg.add(new CartProdDto(quantity, productID, name, template, brand, description, url));
+				}
+
+			}
+			result.close();
+			select_stmt.close();
+			conn.close();
+
+		} catch (SQLException e) {
+			throw new EcommerceException(e.getMessage());
+		}
+
+		return cartProdReg;
 
 	}
 

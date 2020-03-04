@@ -16,10 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 import ecommerce.dao.UsersDao;
 import ecommerce.exceptions.EcommerceException;
 
-@WebFilter("/resetPassword")
+@WebFilter("/*")
 public class TokenFilter implements Filter {
 
-	private static final int URL_INDEX_USER = 16;
+	private static final int URL_INDEX = 10;
 	@EJB
 	private UsersDao udao;
 
@@ -56,11 +56,10 @@ public class TokenFilter implements Filter {
 
 		}
 		String[] arrayURL = url.split(",");
-
 		HttpServletRequest req = (HttpServletRequest) request;
-		String subURI = req.getRequestURI().substring(URL_INDEX_USER);
+		String subURI = req.getRequestURI().substring(URL_INDEX);
 		for (int i = 0; i < arrayURL.length; i++) {
-			if (arrayURL[i].equals(subURI)) {
+			if (subURI.contains(arrayURL[i])) {
 				String token = req.getHeader("x-token");
 				try {
 					udao.checkToken(token);

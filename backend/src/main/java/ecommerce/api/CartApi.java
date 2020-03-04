@@ -17,6 +17,8 @@ import javax.ws.rs.core.Response.Status;
 
 import ecommerce.dao.CartDao;
 import ecommerce.dto.CartDto;
+import ecommerce.dto.CartProdDto;
+import ecommerce.dto.UsersDto;
 import ecommerce.exceptions.EcommerceException;
 
 @Path(value = "/cart")
@@ -39,22 +41,23 @@ public class CartApi {
 	
 	}
 	
-	@GET
-	@Path(value = "/cartByID/{cartID}") 
-	public Response getProductByName(@PathParam("cartID")String cond) throws EcommerceException {
-		List<CartDto> listaCarrello = cartdao.selectById(cond);
-		if(listaCarrello==null || listaCarrello.size()==0) {
-			return Response.status(Status.NOT_FOUND).build();
+	
+	
+	@POST
+	@Path(value = "/regCart/{productID}/{quantity}")
+	public Response registerCart(@PathParam("productID")int prodID, @PathParam("quantity") int quantity, UsersDto udto) throws EcommerceException {
+		if(cartdao.insert(prodID, quantity, udto)>0) {
+			return Response.status(Status.NO_CONTENT).build();
 		}
-		return Response.ok(listaCarrello).build();
-
+		return Response.status(Status.CONFLICT).build();
+	
 	
 	}
 	
 	@POST
-	@Path(value = "/regCart/{userID}/{productID}")
-	public Response registerCart(@PathParam("userID")int userID, @PathParam("productID")int prodID) throws EcommerceException {
-		if(cartdao.insert(userID, prodID)>0) {
+	@Path(value = "/changeQuantityProduct/{productID}/{quantity}")
+	public Response changeQuantityProduct(@PathParam("productID")int productID, @PathParam("quantity") int quantity, UsersDto udto) throws EcommerceException {
+		if(cartdao.changeQuantity(productID, quantity, udto)>0) {
 			return Response.status(Status.NO_CONTENT).build();
 		}
 		return Response.status(Status.CONFLICT).build();
@@ -63,15 +66,39 @@ public class CartApi {
 	}
 	
 	@DELETE
-	@Path(value = "/deleteCart/{cartID}")
-	public Response deleteCartByID(@PathParam("cartID")String cond) throws EcommerceException {
-		if(cartdao.delete(cond)>0) {
+	@Path(value = "/deleteCart")
+	public Response deleteCartByID(UsersDto udto) throws EcommerceException {
+		if(cartdao.delete(udto)>0) {
 			return Response.status(Status.NO_CONTENT).build();
 		}
 		return Response.status(Status.CONFLICT).build();
 	
 	}
 	
+	@GET
+	@Path(value = "/cartSearch/{offset}/{pageSize}")
+	public Response cartSearch(@PathParam("offset")String offset, @PathParam("pageSize")String pageSize,
+			UsersDto udto) throws EcommerceException{
+		List<CartProdDto> listaCarrello = cartdao.cartSearch(offset,pageSize,udto);
+		if(listaCarrello==null || listaCarrello.size()==0) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		return Response.ok(listaCarrello).build();
+
+	}
+	
+	@GET
+	@Path(value = "/orderCart/{sortField}/{sortDir}/{offset}/{pageSize}")
+	public Response orderCart(@PathParam("filterValue") String filterValue,
+			@PathParam("sortField") String sortField, @PathParam("sortDir") String sortDir,
+			@PathParam("offset")String offset, @PathParam("pageSize")String pageSize, UsersDto udto) throws EcommerceException{
+		List<CartProdDto> listaCart = cartdao.selectOrd(sortField, sortDir, offset, pageSize,udto);
+		if(listaCart==null || listaCart.size()==0) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		return Response.ok(listaCart).build();
+
+	}
 	
 	
 

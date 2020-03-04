@@ -251,7 +251,7 @@ public class UsersDao {
 				resultToken.close();
 				select_stmt.close();
 				conn.close();
-				throw new EcommerceException("Token not found");
+				throw new EcommerceException("Token incorrect");
 			}
 		} catch (SQLException e) {
 			throw new EcommerceException(e.getMessage());
@@ -343,9 +343,9 @@ public class UsersDao {
 		int flag = 0;
 		try {
 			conn = ds.getConnection();
-			String sql = "select * from users where userID = ? and email = ?";
+			String sql = "select * from users where password = md5(?) and email = ?";
 			PreparedStatement select_stmt = conn.prepareStatement(sql);
-			select_stmt.setInt(1, udto.getUserID());
+			select_stmt.setString(1, udto.getPassword());
 			select_stmt.setString(2, udto.getEmail());
 			ResultSet resultToken = select_stmt.executeQuery();
 			if(resultToken.next()) {

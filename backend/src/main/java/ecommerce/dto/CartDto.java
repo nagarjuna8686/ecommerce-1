@@ -6,7 +6,8 @@ public class CartDto {
 	private int productID;
 	
 	public CartDto () {}
-	
+		
+
 	public CartDto (int cartID, int userID, int productID) {
 		
 		this.cartID = cartID;
@@ -37,5 +38,7 @@ public class CartDto {
 	public void setProductID(int productID) {
 		this.productID = productID;
 	}
+	
+	
 
 }

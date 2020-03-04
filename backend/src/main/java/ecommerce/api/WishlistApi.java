@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import ecommerce.dao.WishProdDto;
 import ecommerce.dao.WishlistDao;
 import ecommerce.dto.WishlistDto;
 import ecommerce.exceptions.EcommerceException;
@@ -72,6 +73,31 @@ import ecommerce.exceptions.EcommerceException;
       return Response.status(Status.CONFLICT).build();
     
     }
+    
+    
+    @GET
+	@Path(value = "/wishSearch/{cond}/{offset}/{pageSize}")
+	public Response cartSearch(@PathParam("cond") String cond, @PathParam("offset")String offset, @PathParam("pageSize")String pageSize) throws EcommerceException{
+		List<WishProdDto> listaWish = wishlistdao.wishSearch(cond,offset,pageSize);
+		if(listaWish==null || listaWish.size()==0) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		return Response.ok(listaWish).build();
+
+	}
+	
+	@GET
+	@Path(value = "/wishOrd/{filterField}/{filterValue}/{sortField}/{sortDir}/{offset}/{pageSize}")
+	public Response selectOrd(@PathParam("filterField") String filterField, @PathParam("filterValue") String filterValue, 
+			@PathParam("sortField") String sortField, @PathParam("sortDir") String sortDir,
+			@PathParam("offset")String offset, @PathParam("pageSize")String pageSize) throws EcommerceException{
+		List<WishProdDto> listaWish = wishlistdao.selectOrd(filterField, filterValue, sortField, sortDir,offset,pageSize);
+		if(listaWish==null || listaWish.size()==0) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		return Response.ok(listaWish).build();
+
+	}
     
   }
   
