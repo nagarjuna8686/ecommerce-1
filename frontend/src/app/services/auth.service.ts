@@ -35,19 +35,19 @@ export class AuthService {
       password: string
     ) => {
     return this.httpClient.post(environment.apiEndpoint + 'users/regUser',
-    {
+    { 
       name: name,
       surname: surname,
       birthdate: birthdate,
       email: email,
       phone: phone,
       password: password
-    }, {
-      headers: {
+    }, {  
+      headers: {  
         'Content-Type': 'application/json'
-      }
-    })
-  }
+      } 
+    })  
+  } 
 
   login = (email: string, pwd: string) => {
 
