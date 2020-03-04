@@ -119,10 +119,43 @@ export class CartService {
       environment.apiEndpoint + 'cart/'+ idUser +'/'+ idItem ,
       //environment.apiEndpoint + 'cart/4/'+ idItem ,
       {idUser: idUser, idItem: idItem},
-      {headers: {'Content-Type': 'appplication/json'}}
+      {headers: {'Content-Type': 'application/json'}}
     )
     this.updateCartInfo();
   }
 
-}
 
+  deleteAllFromCart = (idUser : number) => {
+    return this.httpClient.request(
+      'DELETE',
+      environment.apiEndpoint + 'cart/deleteCart/'+ idUser ,
+      {headers: {'Content-Type': 'application/json'}, body:{ idUser : idUser }}
+    )
+  }
+
+  removeSingleItemFromCart = (idUser : number, idItem : number) => {
+    return this.httpClient.request(
+      'DELETE',
+      environment.apiEndpoint + 'cart/nonancoradisp/'+ idUser +'/'+ idItem ,
+      {headers: {'Content-Type': 'application/json'},
+         body:{ idUser : idUser ,
+                idItem : idItem}
+      })
+  }
+
+  changeQuantityItemsFromCart = (idUser : number, idItem : number,quantity : number) => {
+    if(quantity>0)
+      return this.httpClient.post(
+        environment.apiEndpoint + 'cart/aggiungi'+ idUser +'/'+ idItem ,
+        {idUser: idUser, idItem: idItem},
+        {headers: {'Content-Type': 'application/json'}}
+      )
+    else
+      return this.httpClient.post(
+      environment.apiEndpoint + 'cart/togli'+ idUser +'/'+ idItem ,
+      {idUser: idUser, idItem: idItem},
+      {headers: {'Content-Type': 'application/json'}}
+    )
+  }
+
+}
