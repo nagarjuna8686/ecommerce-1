@@ -36,15 +36,15 @@
                                     x{{item.quantity}} Tot. {{item.quantity * item.product.price | currency:'EUR'}}<span class="text-muted"></span></strong></h6>
                             </div>
                             <div class="col-4 col-sm-4 col-md-4">
-                                    <fa-icon class="colorIconPlus" 
-                                    (click)="cartService.incrementItemQuantityInCart(item)" 
+                                    <fa-icon class="colorIconPlus clickable" 
+                                    (click)="cartService.insertIntoCart(4,item)" 
                                     [icon]="['fas', 'plus-circle']">  
                                     </fa-icon>  
-                                    <fa-icon class="colorIconMinus" 
+                                    <fa-icon class="colorIconMinus clickable" 
                                     (click)="cartService.decrementItemQuantityInCart(item)" 
                                     [icon]="['fas', 'minus-circle']">
                                     </fa-icon>
-                                    <fa-icon class="dimIcon" 
+                                    <fa-icon class="dimIcon clickable" 
                                     (click)="cartService.removeItemFromCart(item)" 
                                     [icon]="['fas', 'trash-alt']">
                                     </fa-icon>
