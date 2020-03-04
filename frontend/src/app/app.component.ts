@@ -1,6 +1,7 @@
 import {
   Component
 } from '@angular/core';
+import { BusyService } from './services/busy.service';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,14 @@ import {
 
 export class AppComponent {
 
-  constructor() {}
+  public spinner = false;
 
-} // fine totale
+  constructor(
+    public busy:BusyService
+  ) {
+    busy.events.subscribe(e => {
+      this.spinner = e;
+    });
+  }
+
+} 

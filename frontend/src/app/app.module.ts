@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +26,10 @@ import { SummaryWishlistCompComponent } from './components/common/summary-wishli
 import { ShoppingCartCompComponent } from './components/view/shopping-cart-comp/shopping-cart-comp.component';
 import { WishlistCompComponent } from './components/view/wishlist-comp/wishlist-comp.component';
 import { RegisterComponent } from './components/view/register/register/register.component';
+import { SpinnerInterceptor } from './intervceptors/spinner-interceptor';
+import { BusyService } from './services/busy.service';
+import { SpinnerComponent } from './components/common/spinner/spinner.component';
+import { TokenInterceptor } from './intervceptors/token.interceptor';
 
 
 @NgModule({
@@ -41,7 +45,8 @@ import { RegisterComponent } from './components/view/register/register/register.
     SummaryWishlistCompComponent,
     ShoppingCartCompComponent,
     WishlistCompComponent,
-    RegisterComponent
+    RegisterComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +59,18 @@ import { RegisterComponent } from './components/view/register/register/register.
   ],
   providers: [
     WishlistService,
-    CartService
+    CartService,
+    BusyService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SpinnerInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
