@@ -113,7 +113,6 @@ public class CartDao {
 
 		int flag = 0;
 		try {
-
 			Connection conn = ds.getConnection();
 			String sql = "select * from cart where userID = ? and productID = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
@@ -143,7 +142,6 @@ public class CartDao {
 		}
 		return flag;
 	}
-	
 	
 
 	public List<CartProdDto> cartSearch(String offset, String pageSize, UsersDto udto) throws EcommerceException {
@@ -261,7 +259,6 @@ public class CartDao {
 		}
 
 		return cartProdReg;
-
 	}
 
 }
