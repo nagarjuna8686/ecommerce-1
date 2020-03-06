@@ -44,7 +44,7 @@ public class WishlistDao {
 			conn.close();
 
 		} catch (SQLException e) {
-			throw new EcommerceException(e.getMessage());
+			throw new EcommerceException("Error: failed select all wushlists");
 		}
 
 		return wishReg;
@@ -75,7 +75,7 @@ public class WishlistDao {
 			conn.close();
 
 		} catch (SQLException e) {
-			throw new EcommerceException(e.getMessage());
+			throw new EcommerceException("Error: failed select wishlist by id");
 		}
 
 		return wishReg;
@@ -104,7 +104,7 @@ public class WishlistDao {
 			conn.close();
 			flag = 1;
 		} catch (SQLException e) {
-			throw new EcommerceException(e.getMessage());
+			throw new EcommerceException("Error: failed insert product into wishlist");
 		}
 
 		return flag;
@@ -123,7 +123,7 @@ public class WishlistDao {
 			conn.close();
 
 		} catch (SQLException e) {
-			throw new EcommerceException(e.getMessage());
+			throw new EcommerceException("Error: failed delete wishlist by user");
 		}
 
 		return flag;
@@ -163,7 +163,7 @@ public class WishlistDao {
 			conn.close();
 
 		} catch (SQLException e) {
-			throw new EcommerceException(e.getMessage());
+			throw new EcommerceException("Error: failed ordered selection on wishlist");
 		}
 
 		return wishReg;
@@ -205,7 +205,7 @@ public class WishlistDao {
 		} catch (
 
 		SQLException e) {
-			throw new EcommerceException(e.getMessage());
+			throw new EcommerceException("Error: failed ordered selection on wishlist by user");
 		}
 
 		return wishProdReg;
@@ -224,7 +224,7 @@ public class WishlistDao {
 			conn.close();
 
 		} catch (SQLException e) {
-			throw new EcommerceException(e.getMessage());
+			throw new EcommerceException("Error: failed delete product from wishlist");
 		}
 
 		return flag;

@@ -16,7 +16,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import ecommerce.dto.PasswordsDto;
 import ecommerce.dto.UsersDto;
 import ecommerce.exceptions.EcommerceException;
-import mail.SendEmail;
+import ecommerce.mail.SendEmail;
 
 @Stateless
 public class UsersDao {

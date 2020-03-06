@@ -51,39 +51,39 @@ public class CartDao {
 	}
 
 	@SuppressWarnings("resource")
-	public int insert(int prodid, int quantity, UsersDto udto) throws EcommerceException {
+	public int insert(int productID, UsersDto udto) throws EcommerceException {
 
 		int flag = 0;
-		try {
-			Connection conn = ds.getConnection();
-			String sql = "select * from cart where userID = ? and productID = ?";
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, udto.getUserID());
-			stmt.setInt(2, prodid);
-			ResultSet resQ = stmt.executeQuery();
-			if (resQ.next()) {
-				sql = "update cart set quantity = ? where userID = ? and productID = ?";
-				stmt = conn.prepareStatement(sql);
-				stmt.setInt(1, quantity + resQ.getInt(1));
-				stmt.setInt(2, udto.getUserID());
-				stmt.setInt(3, prodid);
-				flag = stmt.executeUpdate();
-			} else {
-				sql = " insert into cart (userID, productID, quantity)" + " values (?, ?, ?)";
-				stmt = conn.prepareStatement(sql);
+		
+			try {
+				Connection conn = ds.getConnection();
+				String sql = "select * from cart where userID = ? and productID = ?";
+				PreparedStatement stmt = conn.prepareStatement(sql);
 				stmt.setInt(1, udto.getUserID());
-				stmt.setInt(2, prodid);
-				stmt.setInt(3, quantity);
-				flag = stmt.executeUpdate();
+				stmt.setInt(2, productID);
+				ResultSet resQ = stmt.executeQuery();
+				if (resQ.next()) {
+					sql = "update cart set quantity = ? where userID = ? and productID = ?";
+					stmt = conn.prepareStatement(sql);
+					stmt.setInt(1, 1 + resQ.getInt(4));
+					stmt.setInt(2, udto.getUserID());
+					stmt.setInt(3, productID);
+					flag = stmt.executeUpdate();
+				} else {
+					sql = " insert into cart (userID, productID, quantity)" + " values (?, ?, 1)";
+					stmt = conn.prepareStatement(sql);
+					stmt.setInt(1, udto.getUserID());
+					stmt.setInt(2, productID);
+					flag = stmt.executeUpdate();
+				}
+				resQ.close();
+				stmt.close();
+				conn.close();
+
+			} catch (SQLException e) {
+				throw new EcommerceException(e.getMessage());
 			}
-			resQ.close();
-			stmt.close();
-			conn.close();
-
-		} catch (SQLException e) {
-			throw new EcommerceException(e.getMessage());
-		}
-
+		
 		return flag;
 	}
 
@@ -110,7 +110,8 @@ public class CartDao {
 
 	@SuppressWarnings("resource")
 	public int changeQuantity(int productID, int quantity, UsersDto udto) throws EcommerceException {
-
+		// quantity è un flag per incrementare o decrementare un prodotto nel carrello abbinato al bottone + e -.
+		//i valori consentiti sono 1 e -1
 		int flag = 0;
 		try {
 			Connection conn = ds.getConnection();
@@ -119,17 +120,16 @@ public class CartDao {
 			stmt.setInt(1, udto.getUserID());
 			stmt.setInt(2, productID);
 			ResultSet resQ = stmt.executeQuery();
-			if(resQ.next()) {
-				int totQuantity = resQ.getInt(4) + quantity;
-				System.out.println(totQuantity);
-				if(totQuantity>0) {
+			if (resQ.next()) {
+				int totQuantity = resQ.getInt(4) ;
+				if (totQuantity > 0) {
 					sql = "update cart set quantity = ? where userID = ? and productID = ?";
 					stmt = conn.prepareStatement(sql);
 					stmt.setInt(1, totQuantity);
 					stmt.setInt(2, udto.getUserID());
 					stmt.setInt(3, productID);
 					flag = stmt.executeUpdate();
-				}else {
+				} else {
 					sql = "delete from cart where userID = ? and productID = ?";
 					stmt = conn.prepareStatement(sql);
 					stmt.setInt(1, udto.getUserID());
@@ -142,7 +142,6 @@ public class CartDao {
 		}
 		return flag;
 	}
-	
 
 	public List<CartProdDto> cartSearch(String offset, String pageSize, UsersDto udto) throws EcommerceException {
 
@@ -259,6 +258,28 @@ public class CartDao {
 		}
 
 		return cartProdReg;
+	}
+
+	public int deleteProd(UsersDto udto, int productID) throws EcommerceException {
+
+		int flag = 0;
+		try {
+
+			Connection conn = ds.getConnection();
+			String sql = "delete from cart where userID = ? and productID = ?";
+
+			PreparedStatement delete_stmt = conn.prepareStatement(sql);
+			delete_stmt.setInt(1, udto.getUserID());
+			delete_stmt.setInt(2, productID);
+			flag = delete_stmt.executeUpdate();
+			delete_stmt.close();
+			conn.close();
+
+		} catch (SQLException e) {
+			throw new EcommerceException(e.getMessage());
+		}
+		return flag;
+
 	}
 
 }

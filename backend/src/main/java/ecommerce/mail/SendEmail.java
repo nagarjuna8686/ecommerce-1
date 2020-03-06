@@ -1,4 +1,4 @@
-package mail;
+package ecommerce.mail;
 
 import java.util.*;
 import javax.mail.*;

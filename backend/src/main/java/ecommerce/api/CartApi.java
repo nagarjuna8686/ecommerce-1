@@ -44,9 +44,9 @@ public class CartApi {
 	
 	
 	@POST
-	@Path(value = "/regCart/{productID}/{quantity}")
-	public Response registerCart(@PathParam("productID")int prodID, @PathParam("quantity") int quantity, UsersDto udto) throws EcommerceException {
-		if(cartdao.insert(prodID, quantity, udto)>0) {
+	@Path(value = "/regCart/{productID}/")
+	public Response registerCart(@PathParam("productID")int productID, UsersDto udto) throws EcommerceException {
+		if(cartdao.insert(productID, udto)>0) {
 			return Response.status(Status.NO_CONTENT).build();
 		}
 		return Response.status(Status.CONFLICT).build();
@@ -100,6 +100,15 @@ public class CartApi {
 
 	}
 	
+	@DELETE
+	@Path(value = "/deleteProdInCart/{productID}")
+	public Response deleteProdByID(UsersDto udto, @PathParam("productID") int productID) throws EcommerceException {
+		if(cartdao.deleteProd(udto, productID)>0) {
+			return Response.status(Status.NO_CONTENT).build();
+		}
+		return Response.status(Status.CONFLICT).build();
+	
+	}
 	
 
 }
