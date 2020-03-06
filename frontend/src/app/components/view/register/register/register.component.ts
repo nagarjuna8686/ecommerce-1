@@ -9,6 +9,7 @@ import { MessageService } from 'src/app/services/message.service';
 })
 export class RegisterComponent implements OnInit {
 
+
   show: boolean;
 
   confirmedPassword: string = '';
@@ -30,6 +31,20 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  rotate=()=>{
+    console.log('ciao');
+    let f=document.getElementById('f1_card');
+    f.style.cssText = 'transform: rotateY(180deg)';
+    //fare un if che torna indietro dai basta ciao
+  }
+
+  rotate2=()=>{
+    console.log('ciao');
+    let f=document.getElementById('f1_card');
+    f.style.cssText = 'transform: rotateY(360deg)';
+    //fare un if che torna indietro dai basta ciao
   }
 
   addUser = () => {

@@ -1,8 +1,8 @@
-<div class="modal messages" [ngClass]="messages.length ? 'show fade' : 'hide'" (click)="clearMessages($event)">
+<div class="modal messages" [ngClass]="messages.length ? 'show fade' : 'hide'" (click)="clearMessages($event)" >
   <div class="modal-dialog appear-slide-down" (click)="stopPropagation($event)">
     <div class="modal-content">
 
-      <div class="message" [ngClass]="'message-' + message.severity" *ngFor="let message of messages">
+      <div class="message" [ngClass]="'message-' + message.severity" *ngFor="let message of messages" >
 
         <div class="bar">
           {{ message.header }}

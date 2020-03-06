@@ -1,122 +1,166 @@
-.yellowBlock{
-    margin-top: 35px;
-    /*background-color: #faba3c;*/
-    background: rgb(250,186,60);
-    background: linear-gradient(90deg, rgba(250,186,60,1) 0%, rgba(248,131,78,1) 60%, rgba(237,67,78,1) 100%);
-    border-radius: 20px 0px 0px 20px;
-    height: 500px;
-    
+.yellowBlock {
+  margin-top: 15px;
+  background: rgb(250, 186, 60);
+  background: linear-gradient(90deg, rgba(250, 186, 60, 1) 0%, rgba(248, 131, 78, 1) 60%, rgba(237, 67, 78, 1) 100%);
+  border-radius: 20px 0px 0px 20px;
+
+
 
 }
 
-.colTot{
-    padding-top: 25px;
-    justify-content: center;
+.colTot {
+  padding-top: 25px;
+  justify-content: center;
 }
 
-.whiteBlock{
-    margin-top: 35px;
-    background-color: #f8f9fa;
-}
-.avatarDim{
-    display:flex;
-    justify-content: center;
-    
-    margin-left: 35%;
-    height: 150px;
-    width: 150px;
-    margin-right: 0px;
-    right: 50%;
+.whiteBlock {
+  margin-top: 15px;
+  background-color: #f8f9fa;
+  height: 100%;
 }
 
-.inputUser{
-    
-    margin-top: 60px;
+
+
+.inputUser {
+
+  margin-top: 30px;
 }
 
-.rowOption{
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-right: 10px;
-    margin-right: 10px;
+.rowOption {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 10px;
+  margin-right: 10px;
 }
 
-.rowInput{
-    padding-top: 10px;
-    padding-bottom: 20px;
-    padding-right: 10px;
-    margin-right: 10px;
+.rowInput {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-right: 10px;
+  margin-right: 10px;
 }
 
-label{
-    padding-right: 30px;
-    font-family: 'Roboto';
-    font-weight: 900;
+label {
+  padding-right: 30px;
+  font-family: 'Roboto';
+  font-weight: 900;
 }
 
-input[type=text], infoUser{
-    border-radius: 9px;
-    border: 3px solid;
-    border-color: rgba(128, 128, 128, 0.315);
-    background-color: white;
-    height: 40px;
-    width: 250px;
+input[type=text],
+infoUser {
+  border-radius: 9px;
+  border: 3px solid;
+  border-color: rgba(128, 128, 128, 0.315);
+  background-color: white;
+  height: 40px;
+  width: 100%;
 }
 
-input[type=password], infoUser{
-    border-radius: 9px;
-    border: 3px solid;
-    border-color: rgba(128, 128, 128, 0.315);
-    background-color: white;
-    height: 40px;
-    width: 250px;
+input[type=password],
+infoUser {
+  border-radius: 4px;
+  border: 3px solid;
+  border-color: rgba(128, 128, 128, 0.315);
+  background-color: white;
+  height: 40px;
+  width: 100%;
 }
 
-.information{
-    
-    font-family: 'Roboto';
-    font-weight: 900;
-    color:white;
+.information {
+
+  font-family: 'Roboto';
+  font-weight: 900;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.desc {
+
+  font-size: 14pt;
+  margin-left: 15px;
+  margin-right: 15px;
+  font-family: 'Roboto';
+  font-weight: 300;
+  color: white;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+
+}
+
+.colDown {
+  margin-top: 30px;
+}
+
+.styleButton {
+  border-radius: 9px;
+  border: 3px none;
+  background: rgb(250, 186, 60);
+  background: linear-gradient(90deg, rgba(250, 186, 60, 1) 0%, rgba(248, 131, 78, 1) 60%, rgba(237, 67, 78, 1) 100%);
+  color: white;
+  font-family: 'Roboto';
+  font-weight: 700;
+  height: 50px;
+  width: 150px;
+  justify-content: center;
+  display: flex;
+}
+
+.maxWidth {
+  width: 600px;
+}
+
+.col-8 {
+  margin-left: 40%;
+}
+
+.avatarDim {
+  height: 150px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  margin-right: 0px;
+  right: 50%;
+}
+
+
+
+#f1_container {
     display: flex;
     justify-content: center;
 }
 
-.desc{
-
-        font-size: 14pt;
-        margin-left: 15px;
-        margin-right: 15px;
-        font-family: 'Roboto';
-        font-weight: 300;
-        color: white;
-        display: -webkit-box;
-        display: flex;
-        -webkit-box-pack: center;
-    
+#f1_card {
+  height: 150px;
+  width: 150px;
+  transform-style: preserve-3d;
+  transition: all 0.5s cubic-bezier(0.92, 0.13, 0.17, 1.11);
 }
 
-.colDown{
-    margin-top: 30px;
+/* #f1_container:hover  #f1_card {
+  transform: rotateY(180deg);
+} */
+
+
+.face {
+  position: absolute;
+
+  backface-visibility: hidden;
 }
 
-.styleButton{
-    border-radius: 9px;
-    border: 3px none;
-    background: rgb(250,186,60);
-    background: linear-gradient(90deg, rgba(250,186,60,1) 0%, rgba(248,131,78,1) 60%, rgba(237,67,78,1) 100%);
-    color: white;
-    font-family: 'Roboto';
-    font-weight: 700;
-    height: 50px;
-    width: 150px;
-    justify-content: center;
-    display: flex;
+.face.back {
+
+  display: block;
+  transform: rotateY(180deg);
+  box-sizing: border-box;
+
 }
 
-.maxWidth{
-    width: 600px;
-}
-
-.col-8{
-    margin-left: 40%;
+.styleIcon{
+  color: #ffffff;
+  font-size: 34pt;
+  display: flex;
+  float:right;
+  margin-right: 30%;
 }

@@ -3,17 +3,32 @@
     <div class="col-5 yellowBlock">
       <div class="row">
         <div class="col colTot">
-          <img class="avatarDim" src="../../../../../assets/img/avatar.png" />
+          <div id="f1_container">
+            <div id="f1_card">
+               <div class="front face">
+                <img class="avatarDim" src="../../../../../assets/img/avatar.png" />
+      
+             </div> 
+            <div class="back face">
+              <img class="avatarDim back face" src="../../../../../assets/img/avatar_woman.png" />
+            </div>
+            </div>
+          </div>
           <div class="row">
             <div class="col colDown">
               <h1 class="information">Let's get your set up</h1>
-              <h2 class="desc">it should only take a couple of minutes to pair with your cart</h2>
+              
+            </div>
+          </div>
+          <div class="row">
+            <div class="col colDown">
+              <fa-icon [icon]="['fas', 'venus']" (click)='rotate()' class="styleIcon clickable"></fa-icon>
+              <fa-icon [icon]="['fas', 'mars']" (click)='rotate2()' class="styleIcon clickable"></fa-icon>
+          
             </div>
           </div>
         </div>
       </div>
-
-
     </div>
     <div class="col-7 whiteBlock ">
       <div class="container inputUser">
@@ -55,7 +70,7 @@
               </div>
             </div>
           </div>
-          <div class="col-6" >
+          <div class="col-6">
             <div class="row rowInput">
               <div class="col">
                 <input [(ngModel)]="registerUser.name" type="text" name="name" required>
@@ -97,13 +112,13 @@
             <div class="col-2">
             </div>
             <div class="col-8">
-              <input (click)=addUser() type="submit" class="styleButton" value="SEND" />
+              <!-- <input (click)=addUser() type="submit" class="styleButton" value="SEND" /> -->
+              <!-- <app-message class="alert"></app-message> -->
             </div>
             <div class="col-2">
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
