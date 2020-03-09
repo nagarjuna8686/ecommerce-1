@@ -53,7 +53,6 @@ public class TokenFilter implements Filter {
 				throw new IOException();
 			}
 			url = (String) newProperties.get("url");
-
 		}
 		String[] arrayURL = url.split(",");
 		HttpServletRequest req = (HttpServletRequest) request;
