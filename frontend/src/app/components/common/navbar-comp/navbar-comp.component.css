@@ -1,4 +1,4 @@
-.flex-column{
+x\.flex-column{
   border-radius: 5px;
 }
 
@@ -7,7 +7,7 @@
 }
 
 .shad-box {
-    height: 65%;
+    height: 50%;
     box-shadow: 1px 0px 5px 2px rgb(187, 187, 187);
     position: fixed;    
     width: 20%;

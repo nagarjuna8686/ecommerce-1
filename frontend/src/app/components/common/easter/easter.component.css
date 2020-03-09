@@ -1,0 +1,32 @@
+.x {
+    animation: colorchange 1s infinite; /* animation-name followed by duration in seconds*/
+       /* you could also use milliseconds (ms) or something like 2.5s */
+    -webkit-animation: colorchange 1s infinite; /* Chrome and Safari */
+    height: 5000px;
+    width: 5000px;
+  }
+
+
+  @keyframes colorchange
+  {
+    0%   {background: rgb(252, 252, 252);}
+    25%  {background: rgb(0, 0, 0);}
+    50%  {background: rgb(255, 255, 255);}
+    75%  {background: rgb(0, 0, 0);}
+    100% {background: rgb(255, 255, 255)(255, 255, 255);}
+  }
+
+  @-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
+  {
+    0%   {background: red;}
+    25%  {background: yellow;}
+    50%  {background: blue;}
+    75%  {background: green;}
+    100% {background: red;}
+  }
+  img{
+    height: 1000px;
+    width: 2000px;
+    display: flex;
+    justify-content: center;
+  }

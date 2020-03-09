@@ -56,6 +56,15 @@ input[type="text"]::placeholder{
   color: #FFC154;
   font-size: 25px;
   position: fixed;
+  transition: all .2s ease-in-out;
+}
+
+.cuorePrincipale:hover {
+
+  color: rgb(247, 186, 82);
+  transform: scale(1.1); 
+  font-size: 25px;
+  position: fixed;
 
 }
 

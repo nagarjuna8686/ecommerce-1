@@ -32,6 +32,7 @@ import { SpinnerComponent } from './components/common/spinner/spinner.component'
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { MessageComponent } from './components/common/message/message.component';
 import { MessageService } from './services/message.service';
+import { EasterComponent } from './components/common/easter/easter.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { MessageService } from './services/message.service';
     WishlistCompComponent,
     RegisterComponent,
     SpinnerComponent,
-    MessageComponent
+    MessageComponent,
+    EasterComponent
   ],
   imports: [
     BrowserModule,
