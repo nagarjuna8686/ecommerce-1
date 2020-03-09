@@ -4,7 +4,7 @@
       [ngClass]="{'added' : wishlistService.isItemInWishlist(inputProduct)}"
       (click)="wishlistService.toogleItemInWishlist(inputProduct)">
       <!-- Controllare quantity al posto di event-->
-      <fa-icon [icon]="['fas', 'heart']" ></fa-icon>
+      <fa-icon [icon]="['fas', 'heart']" class="cuore"></fa-icon>
     </div> 
     <p class="titleProduct">{{inputProduct.name}}</p>
     <p class="descProduct">{{inputProduct.description}}</p>
