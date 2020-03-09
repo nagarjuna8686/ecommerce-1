@@ -59,7 +59,7 @@ public class SendEmail {
 			message.setFrom(new InternetAddress(from));
 			String html = "\n<a href='http://localhost:8080\\backend\\bin\\src\\main\\webapp\\index.html'>Change password</a>";
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-			message.setSubject("Recupero Password");
+			message.setSubject("Reset Password");
 			message.setText(html, "UTF-8", "html");
 
 			// Send message
