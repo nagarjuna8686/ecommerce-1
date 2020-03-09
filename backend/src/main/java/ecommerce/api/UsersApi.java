@@ -115,12 +115,12 @@ public class UsersApi {
 		return Response.ok(listaUtenti).build();
 	}
 	
-	@PUT
+	@POST
 	@Path("/login")
 	public Response login(UsersDto udto) throws EcommerceException{
-		
-		if(userdao.login(udto)>0) {
-			return Response.status(Status.NO_CONTENT).build();
+		UsersDto utente = userdao.login(udto);
+		if(utente!=null) {
+			return Response.ok(utente).build();
 		}
 		return Response.status(Status.NOT_FOUND).build();
 	}

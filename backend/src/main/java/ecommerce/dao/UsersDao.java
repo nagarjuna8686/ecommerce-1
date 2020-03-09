@@ -337,10 +337,10 @@ public class UsersDao {
 		return usersReg;
 	}
 
-	public int login(UsersDto udto) throws EcommerceException{
+	public UsersDto login(UsersDto udto) throws EcommerceException{
 		
 		Connection conn;
-		int flag = 0;
+		UsersDto u = new UsersDto();
 		try {
 			conn = ds.getConnection();
 			String sql = "select * from users where password = md5(?) and email = ?";
@@ -349,11 +349,21 @@ public class UsersDao {
 			select_stmt.setString(2, udto.getEmail());
 			ResultSet resultToken = select_stmt.executeQuery();
 			if(resultToken.next()) {
+				String token = this.genToken();
+				u.setUserID(resultToken.getInt(1));
+				u.setEmail(resultToken.getString(2));
+				u.setPassword(resultToken.getString(3));
+				u.setName(resultToken.getString(4));
+				u.setSurname(resultToken.getString(5));
+				u.setBirthdate(resultToken.getString(6));
+				u.setPhone(resultToken.getString(7));
+				u.setToken(token);
+				
 				sql = "update users SET token = ? where email = ?";
 				select_stmt = conn.prepareStatement(sql);
-				select_stmt.setString(1, this.genToken());
+				select_stmt.setString(1, token);
 				select_stmt.setString(2, udto.getEmail());
-				flag = select_stmt.executeUpdate();
+				select_stmt.executeUpdate();
 			}
 			resultToken.close();
 			select_stmt.close();
@@ -361,7 +371,7 @@ public class UsersDao {
 		}catch (SQLException e){
 			throw new EcommerceException("User non trovato");
 		}
-		return flag;
+		return u;
 	}
 	
 }
